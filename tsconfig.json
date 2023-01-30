@@ -8,6 +8,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     //
+    "baseUrl": ".",
+    //
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
