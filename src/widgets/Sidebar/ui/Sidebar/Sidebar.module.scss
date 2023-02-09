@@ -18,4 +18,11 @@
   bottom: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 60px;
+}
+
+.lang {
+  margin-top: 30px;
 }
