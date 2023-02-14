@@ -1,14 +1,18 @@
-import React from 'react';
-import {useTranslation} from "react-i18next";
+import React, { type FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
-const AboutPage = () => {
-    const {t} = useTranslation(['about', 'translation']);
+interface AboutPageProps {
+    props?: any
+}
+
+const AboutPage: FC<AboutPageProps> = (props) => {
+    const { t } = useTranslation(['about', 'translation'])
 
     return (
         <div>
             {t('О сайте')}
         </div>
-    );
-};
+    )
+}
 
-export default AboutPage;
+export default AboutPage
