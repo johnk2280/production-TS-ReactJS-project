@@ -11,7 +11,7 @@ export const Navbar: FC<NavbarProps> = (props) => {
     const { className } = props
 
     return (
-        <div className={classNames(cls.Navbar, {}, [className])}>
+        <div className={classNames(cls.Navbar, {}, [className ?? ''])}>
             <div className={cls.links}>
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
