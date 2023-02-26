@@ -8,6 +8,7 @@ interface BugButtonProps {
 
 export const BugButton = ({ className }: BugButtonProps): JSX.Element => {
     const [error, setError] = useState(false)
+
     const toggleBug = (): void => {
         setError(true)
     }
