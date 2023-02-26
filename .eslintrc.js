@@ -11,18 +11,23 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     overrides: [
-        // {
-        //     // enable the rule specifically for TypeScript files
-        //     "files": ["*.ts", "*.mts", "*.cts", "*.tsx"],
-        //     "rules": {
-        //         "@typescript-eslint/explicit-function-return-type": [
-        //             "error",
-        //             {
-        //                 'allowExpressions': true
-        //             },
-        //         ]
-        //     }
-        // }
+        {
+            // enable the rule specifically for TypeScript files
+            "files": ['**/src/**/*.test.{ts, tsx}'],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": 'off',
+
+                //     [
+                //     "error",
+                //     {
+                //         'allowExpressions': true
+                //     },
+                //
+                // ],
+
+                 "i18next/no-literal-string": 'off'
+            }
+        }
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -58,7 +63,10 @@ module.exports = {
         '@typescript-eslint/strict-boolean-expressions': 'warn',
         '@typescript-eslint/no-floating-promises': 'warn',
         '@typescript-eslint/naming-convention': 'off',
-        "i18next/no-literal-string": ['error', {markupOnly: true}]
+        "i18next/no-literal-string": ['error', {
+            markupOnly: true,
+            ignoreAttribute: ['data-testid']
+        }]
     },
     globals: {
         '__IS_DEV__': true
