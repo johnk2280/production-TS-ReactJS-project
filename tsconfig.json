@@ -29,6 +29,7 @@
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./config/**/*.ts",
+    "./config/**/*.js",
     "./config/**/*.tsx",
   ]
 }
