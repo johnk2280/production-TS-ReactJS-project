@@ -55,7 +55,8 @@ module.exports = {
     "i18next/no-literal-string": ['error', {
       markupOnly: true,
       ignoreAttribute: ['data-testid', 'to']
-    }]
+    }],
+    "@typescript-eslint/consistent-type-assertions": "warn"
   },
   globals: {
     '__IS_DEV__': true

@@ -1,5 +1,7 @@
 {
   "Тестовый пример": "Test example",
   "Язык": "English",
-  "Произошла непредвиденная ошибка": "An unexpected error has occurred"
+  "Произошла непредвиденная ошибка": "An unexpected error has occurred",
+  "Переключить": "Toggle",
+  "вызвать ошибку": "throw error"
 }

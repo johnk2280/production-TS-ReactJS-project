@@ -1,5 +1,6 @@
 import { Button } from 'shared/ui/Button/Button'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface BugButtonProps {
     className?: string
@@ -7,6 +8,7 @@ interface BugButtonProps {
 
 export const BugButton = ({ className }: BugButtonProps): JSX.Element => {
     const [error, setError] = useState(false)
+    const { t } = useTranslation()
 
     const toggleBug = (): void => {
         setError(true)
@@ -20,7 +22,7 @@ export const BugButton = ({ className }: BugButtonProps): JSX.Element => {
 
     return (
         <Button onClick={toggleBug} className={''}>
-            throw error
+            { t('вызвать ошибку')}
         </Button>
     )
 }
