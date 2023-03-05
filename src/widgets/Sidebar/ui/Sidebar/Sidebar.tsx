@@ -8,6 +8,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink'
 import { use } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { RoutePath } from 'shared/config/routeConfig/routeConfig'
+import MainIcon from 'shared/assets/icons/home-link.svg'
+import AboutIcon from 'shared/assets/icons/about-link.svg'
 
 interface SidebarProps {
     className?: string
@@ -32,19 +34,27 @@ export const Sidebar: FC<SidebarProps> = (props) => {
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
                     to={RoutePath.main}
-                    className={cls.link}
+                    className={cls.item}
                 >
-                    { t('Главная') }
+                    <MainIcon className={cls.icon}/>
+                    <span className={cls.link}>
+                        { t('Главная') }
+                    </span>
+
                 </AppLink>
                 <AppLink
                     theme={AppLinkTheme.SECONDARY}
                     to={RoutePath.about}
-                    className={cls.link}
+                    className={cls.item}
+
                 >
-                    { t('О сайте') }
+                    <AboutIcon className={cls.icon}/>
+                    <span className={cls.link}>
+                        { t('О сайте') }
+                    </span>
+
                 </AppLink>
             </div>
-
             <Button
                 data-testid={'toggleButton'}
                 onClick={onToggle}
