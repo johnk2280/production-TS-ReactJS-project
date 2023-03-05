@@ -5,7 +5,7 @@ export function classNames (cls: string, mods: Mods = {}, additional: string[] =
     return [
         cls,
         ...additional.filter(Boolean),
-        Object.entries(mods)
+        ...Object.entries(mods)
             .filter(([key, value]) => Boolean(value)) // key: sting = className, value: boolean
             .map(([key, value]) => key) // key: sting = className, value: boolean
     ].join(' ').trim()
