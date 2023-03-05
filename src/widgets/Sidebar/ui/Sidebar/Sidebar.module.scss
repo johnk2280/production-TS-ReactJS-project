@@ -7,10 +7,6 @@
     transition: width 0.2s;
 }
 
-.collapsed {
-    width: var(--sidebar-width-collapsed);
-}
-
 .switchers {
     position: absolute;
     bottom: 20px;
@@ -21,6 +17,10 @@
     width: 60px;
 }
 
+.collapsed {
+    width: var(--sidebar-width-collapsed);
+}
+
 .lang {
     margin-top: 30px;
 }
@@ -29,4 +29,14 @@
     position: absolute;
     right: -32px;
     bottom: 32px;
+}
+
+.items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    margin-top: 10px;
 }
