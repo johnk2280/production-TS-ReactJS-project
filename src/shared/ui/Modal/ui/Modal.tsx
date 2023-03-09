@@ -1,6 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames'
 import cls from './Modal.module.scss'
-import React, { type FC, type ReactNode, useRef, useState } from 'react'
+import React, { type FC, type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { Portal } from 'shared/ui/Portal/ui/Portal'
+import { useTheme } from 'app/providers/ThemeProvider'
 
 interface ModalProps {
     className?: string
@@ -22,7 +24,7 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false)
     const timeRef = useRef<ReturnType<typeof setTimeout>>() // ссылка используется для реализации анимации закрытия, в нее передается таймер
 
-    const closeHandler = (): void => {
+    const closeHandler = useCallback((): void => {
         // Функция закрытия модального окна
         // Закрытие срабатывает только если был передан коллбэк onClose()
         if (onClose != null) {
@@ -30,9 +32,17 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
             timeRef.current = setTimeout(() => {
                 // Данный таймер реализован для анимации плавного закрытия контентной части модально окна
                 onClose()
+                setIsClosing(false)
             }, ANIMATION_DELAY)
         }
-    }
+    }, [onClose])
+
+    const onKeyDown = useCallback((e: KeyboardEvent): void => {
+        if (e.key === 'Escape') {
+            console.log(e.key)
+            closeHandler()
+        }
+    }, [closeHandler])
 
     const onContentClick = (e: React.MouseEvent): void => {
         // Блокирует клик на контентную часть, что бы не срабатывала функция closeHandler()
@@ -40,17 +50,30 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         e.stopPropagation()
     }
 
+    useEffect(() => {
+        return () => {
+            if (isOpen) {
+                window.addEventListener('keydown', onKeyDown)
+            }
+            // @ts-expect-error TS2769: No overload matches this call.
+            clearTimeout(timeRef.current)
+            window.removeEventListener('keydown', onKeyDown)
+        }
+    }, [isOpen, onKeyDown])
+
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing
     }
     return (
-        <div className={classNames(cls.Modal, mods, [className ?? ''])}>
-            <div className={classNames(cls.overlay)} onClick={closeHandler}>
-                <div className={classNames(cls.content)} onClick={onContentClick}>
-                    {children}
+        <Portal>
+            <div className={classNames(cls.Modal, mods, [className ?? ''])}>
+                <div className={classNames(cls.overlay)} onClick={closeHandler}>
+                    <div className={classNames(cls.content)} onClick={onContentClick}>
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
+        </Portal>
     )
 }
