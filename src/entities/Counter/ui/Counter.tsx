@@ -3,6 +3,7 @@ import { Button } from 'shared/ui/Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { counterActions } from '../model/slice/counterSlice'
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
+import { useTranslation } from 'react-i18next'
 
 interface CounterProps {
     className?: string
@@ -10,6 +11,7 @@ interface CounterProps {
 
 export const Counter: FC<CounterProps> = (props) => {
     const { className } = props
+    const { t } = useTranslation()
     const dispatch = useDispatch()
     const counterValue = useSelector(getCounterValue)
 
@@ -21,18 +23,19 @@ export const Counter: FC<CounterProps> = (props) => {
     }
 
     return (
-        <div>
-            {/* eslint-disable-next-line i18next/no-literal-string */}
-            <h1>value = {counterValue}</h1>
+        <div data-testid={'value-title'}>
+            <h1>{counterValue}</h1>
             <Button
+                data-testid={'increment-btn'}
                 onClick={increment}
             >
-                Increment
+                {t('Увеличить')}
             </Button>
             <Button
+                data-testid={'decrement-btn'}
                 onClick={decrement}
             >
-                Decrement
+                {t('Уменьшить')}
             </Button>
 
         </div>
