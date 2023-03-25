@@ -23,6 +23,7 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
 
     const [isClosing, setIsClosing] = useState(false)
     const timeRef = useRef<ReturnType<typeof setTimeout>>() // ссылка используется для реализации анимации закрытия, в нее передается таймер
+    const { theme } = useTheme()
 
     const closeHandler = useCallback((): void => {
         // Функция закрытия модального окна
@@ -67,7 +68,7 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
     }
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className ?? ''])}>
+            <div className={classNames(cls.Modal, mods, [className ?? '', theme ?? ''])}>
                 <div className={classNames(cls.overlay)} onClick={closeHandler}>
                     <div className={classNames(cls.content)} onClick={onContentClick}>
                         {children}
