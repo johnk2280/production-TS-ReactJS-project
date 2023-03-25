@@ -13,7 +13,7 @@ export const StoreProvider: FC<StoreProviderProps> = (props) => {
         children,
         initialState
     } = props
-    const store = createReduxStore()
+    const store = createReduxStore(initialState)
 
     return (
         <Provider store={store}>

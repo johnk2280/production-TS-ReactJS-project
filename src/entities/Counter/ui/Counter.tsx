@@ -2,6 +2,7 @@ import { type FC } from 'react'
 import { Button } from 'shared/ui/Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { counterActions } from '../model/slice/counterSlice'
+import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
 
 interface CounterProps {
     className?: string
@@ -10,7 +11,7 @@ interface CounterProps {
 export const Counter: FC<CounterProps> = (props) => {
     const { className } = props
     const dispatch = useDispatch()
-    const counterValue = useSelector(state => state)
+    const counterValue = useSelector(getCounterValue)
 
     const increment = (): void => {
         dispatch(counterActions.increment())
