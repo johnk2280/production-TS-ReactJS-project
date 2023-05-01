@@ -23,19 +23,19 @@ export const Counter: FC<CounterProps> = (props) => {
     };
 
     return (
-        <div data-testid={'value-title'}>
-            <h1>{counterValue}</h1>
+        <div data-testid={ 'value-title' }>
+            <h1>{ counterValue }</h1>
             <Button
-                data-testid={'increment-btn'}
-                onClick={increment}
+                data-testid={ 'increment-btn' }
+                onClick={ increment }
             >
-                {t('Увеличить')}
+                { t('Увеличить') }
             </Button>
             <Button
-                data-testid={'decrement-btn'}
-                onClick={decrement}
+                data-testid={ 'decrement-btn' }
+                onClick={ decrement }
             >
-                {t('Уменьшить')}
+                { t('Уменьшить') }
             </Button>
 
         </div>

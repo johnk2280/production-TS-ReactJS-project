@@ -21,8 +21,8 @@ export const BugButton = ({ className }: BugButtonProps): JSX.Element => {
     }, [error]);
 
     return (
-        <Button onClick={toggleBug} className={''}>
-            { t('вызвать ошибку')}
+        <Button onClick={ toggleBug } className={ '' }>
+            { t('вызвать ошибку') }
         </Button>
     );
 };

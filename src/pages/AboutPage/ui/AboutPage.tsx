@@ -10,7 +10,7 @@ const AboutPage: FC<AboutPageProps> = (props) => {
 
     return (
         <div>
-            {t('О сайте')}
+            { t('О сайте') }
         </div>
     );
 };

@@ -26,49 +26,49 @@ export const Sidebar: FC<SidebarProps> = (props) => {
 
     return (
         <div
-            data-testid = 'sidebar'
-            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className ?? ''])}
+            data-testid = "sidebar"
+            className={ classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className ?? '']) }
         >
-            <div className={cls.items}>
+            <div className={ cls.items }>
                 <AppLink
-                    theme={AppLinkTheme.SECONDARY}
-                    to={RoutePath.main}
-                    className={cls.item}
+                    theme={ AppLinkTheme.SECONDARY }
+                    to={ RoutePath.main }
+                    className={ cls.item }
                 >
-                    <MainIcon className={cls.icon}/>
-                    <span className={cls.link}>
+                    <MainIcon className={ cls.icon }/>
+                    <span className={ cls.link }>
                         { t('Главная') }
                     </span>
 
                 </AppLink>
                 <AppLink
-                    theme={AppLinkTheme.SECONDARY}
-                    to={RoutePath.about}
-                    className={cls.item}
+                    theme={ AppLinkTheme.SECONDARY }
+                    to={ RoutePath.about }
+                    className={ cls.item }
 
                 >
-                    <AboutIcon className={cls.icon}/>
-                    <span className={cls.link}>
+                    <AboutIcon className={ cls.icon }/>
+                    <span className={ cls.link }>
                         { t('О сайте') }
                     </span>
 
                 </AppLink>
             </div>
             <Button
-                data-testid={'toggleButton'}
-                onClick={onToggle}
-                className={cls.collapseBtn + ' !!!!!'}
-                theme={ButtonTheme.BACKGROUND_INVERTED}
-                isSquare={true}
-                size={ButtonSize.L}
+                data-testid={ 'toggleButton' }
+                onClick={ onToggle }
+                className={ cls.collapseBtn + ' !!!!!' }
+                theme={ ButtonTheme.BACKGROUND_INVERTED }
+                isSquare={ true }
+                size={ ButtonSize.L }
             >
-                {collapsed ? '>' : '<'}
+                { collapsed ? '>' : '<' }
             </Button>
-            <div className={cls.switchers}>
+            <div className={ cls.switchers }>
                 <ThemeSwitcher/>
                 <LangSwitcher
-                    className={cls.lang}
-                    short={collapsed}
+                    className={ cls.lang }
+                    short={ collapsed }
                 />
             </div>
         </div>

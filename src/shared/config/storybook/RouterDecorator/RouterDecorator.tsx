@@ -6,7 +6,7 @@ import { type ReactNode } from 'react';
 export const RouterDecorator = (story: () => Story): ReactNode => {
     return (
         <BrowserRouter>
-            {story()}
+            { story() }
         </BrowserRouter>
     );
 };

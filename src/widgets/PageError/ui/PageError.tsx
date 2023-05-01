@@ -14,10 +14,10 @@ export const PageError = ({ className }: PageErrorProps): JSX.Element => {
         location.reload();
     };
     return (
-        <div className={classNames(cls.PageError, {}, [className ?? ''])}>
-            <p>{t('Произошла непредвиденная ошибка')}</p>
-            <Button onClick={reloadPage}>
-                {t('Обновить страницу')}
+        <div className={ classNames(cls.PageError, {}, [className ?? '']) }>
+            <p>{ t('Произошла непредвиденная ошибка') }</p>
+            <Button onClick={ reloadPage }>
+                { t('Обновить страницу') }
             </Button>
         </div>
     );

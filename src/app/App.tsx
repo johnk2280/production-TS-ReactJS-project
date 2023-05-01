@@ -15,12 +15,12 @@ const App: FC<AppProps> = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={classNames('app', {}, [])}>
+        <div className={ classNames('app', {}, []) }>
             <Suspense fallback="">
                 <Navbar/>
-                <button onClick={() => {
+                <button onClick={ () => {
                     setIsOpen(true);
-                }}>toggle
+                } }>toggle
                 </button>
                 <div className="content-page">
                     <Sidebar/>

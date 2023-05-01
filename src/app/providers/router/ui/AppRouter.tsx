@@ -9,17 +9,17 @@ interface AppRouterProps {
 const AppRouter: FC<AppRouterProps> = (props) => {
     return (
         <Routes>
-            {Object.values(routeConfig).map(({ path, element }) => (
+            { Object.values(routeConfig).map(({ path, element }) => (
                 <Route
-                    key={path}
+                    key={ path }
                     element={
                         <div className="page-wrapper">
-                            {element}
+                            { element }
                         </div>
                     }
-                    path={path}
+                    path={ path }
                 />
-            ))}
+            )) }
         </Routes>
     );
 };

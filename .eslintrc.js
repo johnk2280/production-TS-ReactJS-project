@@ -37,6 +37,8 @@ module.exports = {
         "react-hooks",
     ],
     rules: {
+        'quotes': ['error', 'single'],
+        'jsx-quotes': ['error', 'prefer-double'],
         'indent': [2, 4],
         'react/jsx-indent': [2, 4],
         "react/jsx-indent-props": [2, 4],
@@ -78,6 +80,8 @@ module.exports = {
         }],
         "semi": "off",
         "@typescript-eslint/semi": ["error", "always"],
+        'object-curly-spacing': ['warn', 'always'],
+        'react/jsx-curly-spacing': ['warn', {'when': 'always', children: true}]
     },
     globals: {
         '__IS_DEV__': true

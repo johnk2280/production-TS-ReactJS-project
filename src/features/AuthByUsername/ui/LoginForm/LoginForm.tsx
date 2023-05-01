@@ -20,21 +20,21 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     };
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className ?? ''])}>
+        <div className={ classNames(cls.LoginForm, {}, [className ?? '']) }>
             <Input
-                className={classNames(cls.input)}
-                type={'text'}
-                value={value}
-                onChange={onChange}
+                className={ classNames(cls.input) }
+                type={ 'text' }
+                value={ value }
+                onChange={ onChange }
             />
             <Input
-                className={classNames(cls.input)}
-                type={'text'}
+                className={ classNames(cls.input) }
+                type={ 'text' }
             />
             <Button
-                className={cls.loginBtn}
+                className={ cls.loginBtn }
             >
-                {t('Войти')}
+                { t('Войти') }
             </Button>
         </div>
     );

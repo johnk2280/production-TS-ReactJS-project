@@ -8,12 +8,15 @@ interface InputProps extends HTMLInputProps {
     className?: string;
     value?: string;
     onChange?: (val: string) => void;
+    placeholder?: string;
 }
 
 export const Input: FC<InputProps> = (props) => {
     const {
         className,
         onChange,
+        value,
+        placeholder,
         ...otherProps
     } = props;
 
@@ -22,12 +25,16 @@ export const Input: FC<InputProps> = (props) => {
     };
 
     return (
-        <input
-            className={classNames(cls.Input)}
-            {...otherProps}
-            onChange={onChangeHandler}
-        >
+        <div className={ classNames(cls.Input, {}, [className ?? '']) }>
+            <div className={ cls.placeholder }>
+                { placeholder && `${placeholder + ' >'}` }
+            </div>
+            <input
+                value={ value }
+                onChange={ onChangeHandler }
+                { ...otherProps }
+            />
+        </div>
 
-        </input>
     );
 };

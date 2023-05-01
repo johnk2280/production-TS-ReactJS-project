@@ -23,17 +23,17 @@ export const Navbar: FC<NavbarProps> = (props) => {
     }, [setIsAuthModal]);
 
     return (
-        <div className={classNames(cls.Navbar, {}, [className ?? ''])}>
+        <div className={ classNames(cls.Navbar, {}, [className ?? '']) }>
             <Button
-                theme={ButtonTheme.BACKGROUND_INVERTED}
-                className={cls.links}
-                onClick={onShowModal}
+                theme={ ButtonTheme.BACKGROUND_INVERTED }
+                className={ cls.links }
+                onClick={ onShowModal }
             >
-                {t('Войти')}
+                { t('Войти') }
             </Button>
             <LoginModal
-                isOpen={isAuthModal}
-                onClose={onCloseModal}
+                isOpen={ isAuthModal }
+                onClose={ onCloseModal }
             />
         </div>
     );

@@ -22,11 +22,11 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
 
     return (
         <Button
-            className={classNames(cls.LangSwitcher, {}, [className ?? ''])}
-            theme={ButtonTheme.CLEAR}
-            onClick={toggle}
+            className={ classNames(cls.LangSwitcher, {}, [className ?? '']) }
+            theme={ ButtonTheme.CLEAR }
+            onClick={ toggle }
         >
-            {t(short ? 'Короткий язык' : 'Язык')}
+            { t(short ? 'Короткий язык' : 'Язык') }
         </Button>
     );
 };

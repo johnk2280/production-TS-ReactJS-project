@@ -6,7 +6,7 @@ export const ThemeDecorator = (theme: Theme): ReactNode => {
     const inner = (StoryComponent: Story): ReactNode => {
         return (
             <ThemeProvider>
-                <div className={`app ${theme}`}>
+                <div className={ `app ${theme}` }>
                     <StoryComponent/>
                 </div>
             </ThemeProvider>

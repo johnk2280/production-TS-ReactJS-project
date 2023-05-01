@@ -40,11 +40,11 @@ export const Button: FC<ButtonProps> = (props) => {
 
     return (
         <button
-            type={'button'}
-            className={classNames(cls.Button, mods, [className ?? ''])}
-            {...otherProps}
+            type={ 'button' }
+            className={ classNames(cls.Button, mods, [className ?? '']) }
+            { ...otherProps }
         >
-            {children}
+            { children }
         </button>
     );
 };
