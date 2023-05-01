@@ -1,13 +1,13 @@
-import { classNames } from 'shared/lib/classNames/classNames'
-import cls from './LoginModal.module.scss'
-import { Modal } from 'shared/ui/Modal'
-import { type FC } from 'react'
-import { LoginForm } from '../LoginForm/LoginForm'
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './LoginModal.module.scss';
+import { Modal } from 'shared/ui/Modal';
+import { type FC } from 'react';
+import { LoginForm } from '../LoginForm/LoginForm';
 
 interface LoginModalProps {
-    className?: string
-    isOpen?: boolean
-    onClose: () => void
+    className?: string;
+    isOpen?: boolean;
+    onClose: () => void;
 }
 
 export const LoginModal: FC<LoginModalProps> = (props) => {
@@ -15,7 +15,7 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
         className,
         isOpen,
         onClose
-    } = props
+    } = props;
 
     return (
         <Modal
@@ -25,5 +25,5 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
         >
             <LoginForm/>
         </Modal>
-    )
-}
+    );
+};

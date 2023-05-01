@@ -1,9 +1,9 @@
-import React, { type FC } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { routeConfig } from 'shared/config/routeConfig/routeConfig'
+import React, { type FC } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { routeConfig } from 'shared/config/routeConfig/routeConfig';
 
 interface AppRouterProps {
-    props?: any
+    props?: any;
 }
 
 const AppRouter: FC<AppRouterProps> = (props) => {
@@ -21,7 +21,7 @@ const AppRouter: FC<AppRouterProps> = (props) => {
                 />
             ))}
         </Routes>
-    )
-}
+    );
+};
 
-export default AppRouter
+export default AppRouter;

@@ -1,26 +1,26 @@
-import { type FC } from 'react'
-import { Button } from 'shared/ui/Button/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { counterActions } from '../model/slice/counterSlice'
-import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
-import { useTranslation } from 'react-i18next'
+import { type FC } from 'react';
+import { Button } from 'shared/ui/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { counterActions } from '../model/slice/counterSlice';
+import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+import { useTranslation } from 'react-i18next';
 
 interface CounterProps {
-    className?: string
+    className?: string;
 }
 
 export const Counter: FC<CounterProps> = (props) => {
-    const { className } = props
-    const { t } = useTranslation()
-    const dispatch = useDispatch()
-    const counterValue = useSelector(getCounterValue)
+    const { className } = props;
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+    const counterValue = useSelector(getCounterValue);
 
     const increment = (): void => {
-        dispatch(counterActions.increment())
-    }
+        dispatch(counterActions.increment());
+    };
     const decrement = (): void => {
-        dispatch(counterActions.decrement())
-    }
+        dispatch(counterActions.decrement());
+    };
 
     return (
         <div data-testid={'value-title'}>
@@ -39,5 +39,5 @@ export const Counter: FC<CounterProps> = (props) => {
             </Button>
 
         </div>
-    )
-}
+    );
+};

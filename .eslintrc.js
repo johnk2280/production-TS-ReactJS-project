@@ -49,6 +49,7 @@ module.exports = {
         // что-то связанное с импортом
         'import/prefer-default-export': 'off',
         'no-unused-vars': 'warn',
+        "@typescript-eslint/no-unused-vars": "warn",
         'react/react-in-jsx-scope': 'off',
         "@typescript-eslint/explicit-function-return-type": ['error', {
             'allowExpressions': true
@@ -64,6 +65,19 @@ module.exports = {
         "@typescript-eslint/consistent-type-assertions": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
+        "@typescript-eslint/member-delimiter-style": ["error", {
+            "multiline": {
+                "delimiter": "semi",
+                "requireLast": true
+            },
+            "singleline": {
+                "delimiter": "semi",
+                "requireLast": false
+            },
+            "multilineDetection": "brackets"
+        }],
+        "semi": "off",
+        "@typescript-eslint/semi": ["error", "always"],
     },
     globals: {
         '__IS_DEV__': true

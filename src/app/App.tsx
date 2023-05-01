@@ -1,25 +1,25 @@
-import React, { type FC, Suspense, useState } from 'react'
-import { classNames } from 'shared/lib/classNames/classNames'
-import { useTheme } from 'app/providers/ThemeProvider'
-import { AppRouter } from 'app/providers/router'
-import { Navbar } from 'widgets/Navbar'
-import { Sidebar } from 'widgets/Sidebar'
+import React, { type FC, Suspense, useState } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useTheme } from 'app/providers/ThemeProvider';
+import { AppRouter } from 'app/providers/router';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
 
 interface AppProps {
-    props?: any
+    props?: any;
 }
 
 const App: FC<AppProps> = (props) => {
-    const { theme } = useTheme()
+    const { theme } = useTheme();
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
                 <Navbar/>
                 <button onClick={() => {
-                    setIsOpen(true)
+                    setIsOpen(true);
                 }}>toggle
                 </button>
                 <div className="content-page">
@@ -29,7 +29,7 @@ const App: FC<AppProps> = (props) => {
             </Suspense>
 
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

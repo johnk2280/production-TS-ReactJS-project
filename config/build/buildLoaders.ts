@@ -1,14 +1,14 @@
-import type webpack from 'webpack'
-import { type BuildOptions } from './types/config'
-import { buildCssLoader } from './loaders/buildCssLoader'
+import type webpack from 'webpack';
+import { type BuildOptions } from './types/config';
+import { buildCssLoader } from './loaders/buildCssLoader';
 
 export function buildLoaders ({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack']
-    }
+    };
 
-    const cssLoader = buildCssLoader(isDev)
+    const cssLoader = buildCssLoader(isDev);
 
     const fileLoader = {
         test: /\.(png|jpe?g|gif|woff2|woff)$/i,
@@ -17,13 +17,13 @@ export function buildLoaders ({ isDev }: BuildOptions): webpack.RuleSetRule[] {
                 loader: 'file-loader'
             }
         ]
-    }
+    };
 
     const typescriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
-    }
+    };
 
     const babelLoader = {
         test: /\.(js|jsx|tsx)$/,
@@ -34,7 +34,7 @@ export function buildLoaders ({ isDev }: BuildOptions): webpack.RuleSetRule[] {
                 presets: ['@babel/preset-env']
             }
         }
-    }
+    };
 
     return [
         babelLoader,
@@ -42,5 +42,5 @@ export function buildLoaders ({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         cssLoader,
         svgLoader,
         fileLoader
-    ]
+    ];
 }
