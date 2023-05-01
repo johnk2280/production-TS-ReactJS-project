@@ -18,10 +18,11 @@ const App: FC<AppProps> = (props) => {
         <div className={ classNames('app', {}, []) }>
             <Suspense fallback="">
                 <Navbar/>
-                <button onClick={ () => {
-                    setIsOpen(true);
-                } }>toggle
-                </button>
+                { /* <button onClick={ () => { */ }
+                { /*    setIsOpen(true); */ }
+                { /*    // eslint-disable-next-line i18next/no-literal-string */ }
+                { /* } }>toggle */ }
+                { /* </button> */ }
                 <div className="content-page">
                     <Sidebar/>
                     <AppRouter/>

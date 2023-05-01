@@ -9,6 +9,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
@@ -18,12 +19,20 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         className,
         children,
         isOpen = false,
-        onClose // коллбэк для закрытия окна, т.е. для изменения состояния isOpen в родительском компоненте
+        onClose,
+        lazy// коллбэк для закрытия окна, т.е. для изменения состояния isOpen в родительском компоненте
     } = props;
 
     const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const timeRef = useRef<ReturnType<typeof setTimeout>>(); // ссылка используется для реализации анимации закрытия, в нее передается таймер
     const { theme } = useTheme();
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     const closeHandler = useCallback((): void => {
         // Функция закрытия модального окна
@@ -67,6 +76,11 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing
     };
+
+    if (lazy && !isMounted) {
+        return null;
+    }
+
     return (
         <Portal>
             <div className={ classNames(cls.Modal, mods, [className ?? '']) }>

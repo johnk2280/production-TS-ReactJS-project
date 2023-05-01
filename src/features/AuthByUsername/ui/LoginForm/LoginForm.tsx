@@ -22,12 +22,15 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
     return (
         <div className={ classNames(cls.LoginForm, {}, [className ?? '']) }>
             <Input
+                placeholder={ t('Введите логин') }
                 className={ classNames(cls.input) }
                 type={ 'text' }
                 value={ value }
                 onChange={ onChange }
             />
             <Input
+                // eslint-disable-next-line i18next/no-literal-string
+                placeholder={ t('Введите пароль') }
                 className={ classNames(cls.input) }
                 type={ 'text' }
             />

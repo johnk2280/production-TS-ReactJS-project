@@ -25,9 +25,9 @@ export const Input: FC<InputProps> = (props) => {
     };
 
     return (
-        <div className={ classNames(cls.Input, {}, [className ?? '']) }>
+        <div className={ classNames(cls.InputWrapper, {}, [className ?? '']) }>
             <div className={ cls.placeholder }>
-                { placeholder && `${placeholder + ' >'}` }
+                { placeholder && placeholder }
             </div>
             <input
                 value={ value }
