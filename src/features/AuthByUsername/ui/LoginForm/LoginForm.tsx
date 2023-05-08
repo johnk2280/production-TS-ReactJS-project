@@ -1,9 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './LoginForm.module.scss';
-import { type FC, useState } from 'react';
+import { type FC, type MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginActions } from '../../model/slice/loginSlice';
+import { getLoginState } from '../../model/selectors/getLoginState';
+import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName';
 
 interface LoginFormProps {
     className?: string;
@@ -12,12 +16,20 @@ interface LoginFormProps {
 export const LoginForm: FC<LoginFormProps> = (props) => {
     const { className } = props;
     const { t } = useTranslation();
-    const [value, setValue] = useState('');
+    const dispatch = useDispatch();
+    const { username, password, isLoading, error } = useSelector(getLoginState);
 
-    const onChange = (val: string): void => {
-        console.log(val);
-        setValue(val);
-    };
+    const onChangeUsername = useCallback((val: string) => {
+        dispatch(loginActions.setUsername(val));
+    }, [dispatch]);
+
+    const onChangePassword = useCallback((val: string) => {
+        dispatch((loginActions.setPassword(val)));
+    }, [dispatch]);
+
+    const onLoginClick = useCallback((e: MouseEvent<HTMLButtonElement>) => {
+        dispatch(loginByUserName({ username, password }));
+    }, [dispatch, password, username]);
 
     return (
         <div className={ classNames(cls.LoginForm, {}, [className ?? '']) }>
@@ -25,17 +37,20 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
                 placeholder={ t('Введите логин') }
                 className={ classNames(cls.input) }
                 type={ 'text' }
-                value={ value }
-                onChange={ onChange }
+                value={ username }
+                onChange={ onChangeUsername }
             />
             <Input
-                // eslint-disable-next-line i18next/no-literal-string
                 placeholder={ t('Введите пароль') }
                 className={ classNames(cls.input) }
-                type={ 'text' }
+                type={ 'password' }
+                value={ password }
+                onChange={ onChangePassword }
             />
             <Button
+                theme={ ButtonTheme.OUTLINE }
                 className={ cls.loginBtn }
+                onClick={ e => { onLoginClick(e); } }
             >
                 { t('Войти') }
             </Button>
