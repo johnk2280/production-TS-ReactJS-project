@@ -12,7 +12,6 @@ const MainPage: FC<MainPageProps> = (props) => {
     return (
         <div>
             { t('Главная страница') }
-            <Counter/>
         </div>
     );
 };
