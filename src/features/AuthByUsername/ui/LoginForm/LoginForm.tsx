@@ -33,6 +33,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
 
     return (
         <div className={ classNames(cls.LoginForm, {}, [className ?? '']) }>
+            { error && <div>{ error }</div> }
             <Input
                 placeholder={ t('Введите логин') }
                 className={ classNames(cls.input) }
@@ -51,6 +52,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
                 theme={ ButtonTheme.OUTLINE }
                 className={ cls.loginBtn }
                 onClick={ e => { onLoginClick(e); } }
+                disabled={ isLoading }
             >
                 { t('Войти') }
             </Button>
