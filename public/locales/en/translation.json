@@ -6,8 +6,10 @@
   "вызвать ошибку": "throw error",
   "Короткий язык": "EN",
   "Войти": "Login",
+  "Выйти": "Logout",
   "Увеличить": "Increment",
   "Уменьшить": "Decrement",
   "Введите логин": "Enter login",
-  "Введите пароль": "Enter password"
+  "Введите пароль": "Enter password",
+  "Форма авторизации": "Authorization form"
 }
