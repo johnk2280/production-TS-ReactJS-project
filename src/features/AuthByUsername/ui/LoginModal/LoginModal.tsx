@@ -1,8 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './LoginModal.module.scss';
 import { Modal } from 'shared/ui/Modal';
-import { type FC } from 'react';
-import { LoginForm } from '../LoginForm/LoginForm';
+import { type FC, Suspense } from 'react';
+import { LoginFormAsync } from '../LoginForm/LoginForm.async';
+import { useTranslation } from 'react-i18next';
 
 interface LoginModalProps {
     className?: string;
@@ -24,7 +25,9 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             onClose={ onClose }
             lazy
         >
-            <LoginForm/>
+            <Suspense fallback={ '' }>
+                <LoginFormAsync/>
+            </Suspense>
         </Modal>
     );
 };

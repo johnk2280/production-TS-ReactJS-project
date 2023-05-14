@@ -4,20 +4,21 @@ import { type FC, type MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { loginActions } from '../../model/slice/loginSlice';
 import { getLoginState } from '../../model/selectors/getLoginState';
 import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
-interface LoginFormProps {
+export interface LoginFormProps {
     className?: string;
 }
 
-export const LoginForm: FC<LoginFormProps> = (props) => {
+const LoginForm: FC<LoginFormProps> = (props) => {
     const { className } = props;
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const store = useStore();
     const { username, password, isLoading, error } = useSelector(getLoginState);
 
     const onChangeUsername = useCallback((val: string) => {
@@ -61,3 +62,5 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         </div>
     );
 };
+
+export default LoginForm;
