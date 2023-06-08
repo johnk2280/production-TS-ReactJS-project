@@ -10,7 +10,7 @@ export function createReduxStore (initialState?: StateSchema): EnhancedStore {
         user: userReducer
     };
 
-    const reduceerManager = createReducerManager(rootReducers);
+    const reducerManager = createReducerManager(rootReducers);
 
     const store = configureStore<StateSchema>({
         reducer: rootReducers,
@@ -20,7 +20,7 @@ export function createReduxStore (initialState?: StateSchema): EnhancedStore {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    store.reducerManager = reduceerManager;
+    store.reducerManager = reducerManager;
 
     return store;
 }
