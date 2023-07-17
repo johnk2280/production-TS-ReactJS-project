@@ -4,7 +4,7 @@ import { type FC, type MouseEvent, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
@@ -13,6 +13,7 @@ import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLogi
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export interface LoginFormProps {
     className?: string;
@@ -25,7 +26,7 @@ const initialReducers: ReducerList = {
 const LoginForm: FC<LoginFormProps> = (props) => {
     const { className } = props;
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
@@ -39,8 +40,8 @@ const LoginForm: FC<LoginFormProps> = (props) => {
         dispatch((loginActions.setPassword(val)));
     }, [dispatch]);
 
-    const onLoginClick = useCallback((e: MouseEvent<HTMLButtonElement>) => {
-        dispatch(loginByUserName({ username, password }));
+    const onLoginClick = useCallback(async (e: MouseEvent<HTMLButtonElement>) => {
+        const result = await dispatch(loginByUserName({ username, password }));
     }, [dispatch, password, username]);
 
     return (
