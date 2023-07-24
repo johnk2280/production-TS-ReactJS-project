@@ -1,6 +1,5 @@
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Counter } from 'entities/Counter';
 
 interface MainPageProps {
     props?: any;
