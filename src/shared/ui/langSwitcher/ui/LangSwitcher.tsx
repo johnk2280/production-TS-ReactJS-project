@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './LangSwitcher.module.scss';
-import React, { type FC } from 'react';
+import React, { type FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
@@ -9,7 +9,7 @@ interface LangSwitcherProps {
     short?: boolean;
 }
 
-export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
+export const LangSwitcher: FC<LangSwitcherProps> = memo((props: LangSwitcherProps) => {
     const {
         className,
         short = false
@@ -29,4 +29,6 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
             { t(short ? 'Короткий язык' : 'Язык') }
         </Button>
     );
-};
+});
+
+LangSwitcher.displayName = 'LangSwitcher';
