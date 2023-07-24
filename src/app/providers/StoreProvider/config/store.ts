@@ -1,8 +1,5 @@
 import {
-    type AnyAction,
     configureStore,
-    type DeepPartial,
-    type EnhancedStore,
     type ReducersMapObject
 } from '@reduxjs/toolkit';
 import { type StateSchema } from '../config/StateSchema';

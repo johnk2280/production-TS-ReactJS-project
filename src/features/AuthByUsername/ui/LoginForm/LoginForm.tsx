@@ -17,6 +17,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducerList = {
@@ -24,7 +25,10 @@ const initialReducers: ReducerList = {
 };
 
 const LoginForm: FC<LoginFormProps> = (props) => {
-    const { className } = props;
+    const {
+        className,
+        onSuccess
+    } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const username = useSelector(getLoginUsername);
@@ -42,7 +46,10 @@ const LoginForm: FC<LoginFormProps> = (props) => {
 
     const onLoginClick = useCallback(async (e: MouseEvent<HTMLButtonElement>) => {
         const result = await dispatch(loginByUserName({ username, password }));
-    }, [dispatch, password, username]);
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [dispatch, onSuccess, password, username]);
 
     return (
         <DynamicModuleLoader
@@ -69,7 +76,7 @@ const LoginForm: FC<LoginFormProps> = (props) => {
                 <Button
                     theme={ ButtonTheme.OUTLINE }
                     className={ cls.loginBtn }
-                    onClick={ e => { onLoginClick(e); } }
+                    onClick={ async e => { await onLoginClick(e); } }
                     disabled={ isLoading }
                 >
                     { t('Войти') }
