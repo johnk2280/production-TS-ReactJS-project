@@ -1,13 +1,23 @@
-import { configureStore, type DeepPartial, type EnhancedStore, type ReducersMapObject } from '@reduxjs/toolkit';
+import {
+    type AnyAction,
+    configureStore,
+    type DeepPartial,
+    type EnhancedStore,
+    type ReducersMapObject
+} from '@reduxjs/toolkit';
 import { type StateSchema } from '../config/StateSchema';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 
+// Возникают ошибки из-за возвращаемого типа, если явно указать type EnhancedStore,
+// тогда, как возвращается type:
+// EnhancedStore<StateSchema, AnyAction, [ThunkMiddleware<StateSchema, AnyAction, undefined>]>
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function createReduxStore (
     initialState?: StateSchema,
     asyncReducers?: ReducersMapObject<StateSchema>
-): EnhancedStore {
+) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
