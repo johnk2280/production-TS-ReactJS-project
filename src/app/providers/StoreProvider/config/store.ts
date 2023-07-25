@@ -6,6 +6,8 @@ import { type StateSchema } from '../config/StateSchema';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
+import { $api } from 'shared/api/api';
+import { type NavigateFunction } from 'react-router-dom';
 
 // Возникают ошибки из-за возвращаемого типа, если явно указать type EnhancedStore,
 // тогда, как возвращается type:
@@ -13,7 +15,8 @@ import { createReducerManager } from './reducerManager';
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function createReduxStore (
     initialState?: StateSchema,
-    asyncReducers?: ReducersMapObject<StateSchema>
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: NavigateFunction
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
@@ -23,10 +26,18 @@ export function createReduxStore (
 
     const reducerManager = createReducerManager(rootReducers);
 
-    const store = configureStore<StateSchema>({
+    const store = configureStore({
         reducer: reducerManager.reduce,
         preloadedState: initialState,
-        devTools: __IS_DEV__
+        devTools: __IS_DEV__,
+        middleware: getDefaultMiddleware => getDefaultMiddleware({
+            thunk: {
+                extraArgument: {
+                    api: $api,
+                    navigate
+                }
+            }
+        })
     });
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
