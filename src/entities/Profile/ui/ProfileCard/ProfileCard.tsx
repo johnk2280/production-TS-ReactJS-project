@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/Input';
 
 interface ProfileCardProps {
     className?: string;
@@ -22,12 +23,34 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
 
+    console.log(data);
+    // TODO: добавить стили
     return (
         <div className={ classNames(cls.ProfileCard, {}, [className]) }>
-            <Text title={ t('Профиль пользователя') }/>
-            <Button theme={ ButtonTheme.OUTLINE }/>
-            { t('Редактировать') }
+            <div className={ cls.header }>
+                <Text
+                    title={ t('Профиль пользователя') }
+                    className={ cls.title }
+                />
+                <Button
+                    className={ cls.editBtn }
+                    theme={ ButtonTheme.OUTLINE }
+                />
+                { t('Редактировать') }
+            </div>
+            <div className={ cls.data }>
+                <Input
+                    value={ data?.firstname }
+                    placeholder={ t('Имя') }
+                    className={ cls.input }
+                />
+                <Input
+                    value={ data?.lastname }
+                    placeholder={ t('Фамилия') }
+                    className={ cls.input }
+                />
 
+            </div>
         </div>
     );
 };

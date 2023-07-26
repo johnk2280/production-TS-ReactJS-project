@@ -27,7 +27,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        dispatch(fetchProfileData());
+        const resp = dispatch(fetchProfileData());
     }, [dispatch]);
 
     return (
