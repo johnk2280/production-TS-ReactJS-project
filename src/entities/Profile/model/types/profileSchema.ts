@@ -1,7 +1,7 @@
 import type { Country, Currency } from 'shared/const/common';
 
 export interface ProfileType {
-    first: string;
+    firstname: string;
     lastname: string;
     age: number;
     currency: Currency;
