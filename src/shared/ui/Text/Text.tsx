@@ -1,6 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Text.module.scss';
 import { type FC, memo } from 'react';
+import { type TFunction } from 'react-i18next';
 
 export enum TextTheme {
     PRIMARY = 'primary',
@@ -9,7 +10,7 @@ export enum TextTheme {
 
 interface TextProps {
     className?: string;
-    title?: string;
+    title?: string | TFunction;
     text?: string;
     theme?: TextTheme;
 }
