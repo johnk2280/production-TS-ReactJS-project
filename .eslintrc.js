@@ -84,6 +84,7 @@ module.exports = {
         'react/jsx-curly-spacing': ['warn', {'when': 'always', children: true}]
     },
     globals: {
-        '__IS_DEV__': true
+        __IS_DEV__: true,
+        __API__: true
     }
 };

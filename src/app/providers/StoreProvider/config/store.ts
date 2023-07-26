@@ -1,5 +1,6 @@
 import {
     configureStore,
+    type EnhancedStore,
     type ReducersMapObject
 } from '@reduxjs/toolkit';
 import { type StateSchema } from '../config/StateSchema';
@@ -48,3 +49,4 @@ export function createReduxStore (
 }
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+export type RootState = ReturnType<typeof createReduxStore>['getState'];

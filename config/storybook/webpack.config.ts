@@ -30,6 +30,7 @@ export default ({config}: { config: webpack.Configuration }): webpack.Configurat
     // @ts-ignore
     config.plugins.push(new DefinePlugin({
         __IS_DEV__: true,
+        __API__: JSON.stringify('')
     }))
 
     return config

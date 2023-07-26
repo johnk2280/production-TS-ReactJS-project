@@ -14,6 +14,7 @@ import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLo
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector';
 
 export interface LoginFormProps {
     className?: string;
@@ -45,6 +46,9 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     }, [dispatch]);
 
     const onLoginClick = useCallback(async (e: MouseEvent<HTMLButtonElement>) => {
+        // Данная ошибка тянется после из store.ts
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         const result = await dispatch(loginByUserName({ username, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
