@@ -1,4 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, type Mods } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import React, { type FC, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Portal } from 'shared/ui/Portal/ui/Portal';
@@ -20,7 +20,7 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         children,
         isOpen = false,
         onClose,
-        lazy// коллбэк для закрытия окна, т.е. для изменения состояния isOpen в родительском компоненте
+        lazy// Коллбэк для закрытия окна, т.е. для изменения состояния isOpen в родительском компоненте
     } = props;
 
     const [isClosing, setIsClosing] = useState(false);
@@ -72,7 +72,7 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing
     };
