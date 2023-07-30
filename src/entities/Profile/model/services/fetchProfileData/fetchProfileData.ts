@@ -11,7 +11,11 @@ export const fetchProfileData = createAsyncThunk<ProfileType, void | never, Thun
             const response = await extra.api.get<ProfileType>('/profile');
             return response.data;
         } catch (e) {
-            return rejectWithValue(e.message);
+            let message: string = '';
+            if (e instanceof Error) {
+                message = e.message;
+            }
+            return rejectWithValue(message);
         }
     }
 );

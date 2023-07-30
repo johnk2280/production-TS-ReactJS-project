@@ -27,7 +27,11 @@ ThunkConfig<string>
             dispatch(userActions.setAuthData(response.data));
             return response.data;
         } catch (e) {
-            return rejectWithValue(e.message);
+            let message: string = '';
+            if (e instanceof Error) {
+                message = e.message;
+            }
+            return rejectWithValue(message);
         }
     }
 );
