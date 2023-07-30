@@ -46,9 +46,6 @@ const LoginForm: FC<LoginFormProps> = (props) => {
     }, [dispatch]);
 
     const onLoginClick = useCallback(async (e: MouseEvent<HTMLButtonElement>) => {
-        // Данная ошибка тянется после из store.ts
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         const result = await dispatch(loginByUserName({ username, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();

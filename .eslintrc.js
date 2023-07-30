@@ -67,6 +67,7 @@ module.exports = {
         "@typescript-eslint/consistent-type-assertions": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
+        "no-undef": "off",
         "@typescript-eslint/member-delimiter-style": ["error", {
             "multiline": {
                 "delimiter": "semi",
