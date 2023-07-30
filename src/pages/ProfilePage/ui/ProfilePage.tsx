@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile';
 import { Simulate } from 'react-dom/test-utils';
-import suspend = Simulate.suspend;
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 const reducers: ReducerList = {

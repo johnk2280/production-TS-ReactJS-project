@@ -10,7 +10,7 @@ import {
 } from '@reduxjs/toolkit';
 import { type ProfileSchema } from 'entities/Profile';
 import { type AxiosInstance } from 'axios';
-import { type NavigateOptions, type To, type NavigateFunction } from 'react-router-dom';
+import { type NavigateFunction } from 'react-router-dom';
 
 export interface StateSchema {
     counter: CounterSchema;
