@@ -1,17 +1,11 @@
 import { type Story } from '@storybook/react';
 import { type Theme, ThemeProvider } from 'app/providers/ThemeProvider';
-import { type ReactNode } from 'react';
 
-export const ThemeDecorator = (theme: Theme): ReactNode => {
-    const inner = (StoryComponent: Story): ReactNode => {
-        return (
-            <ThemeProvider>
-                <div className={ `app ${theme}` }>
-                    <StoryComponent/>
-                </div>
-            </ThemeProvider>
-        );
-    };
-
-    return inner;
-};
+// eslint-disable-next-line react/display-name
+export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) => (
+    <ThemeProvider initialTheme={ theme }>
+        <div className={ `app ${theme}` }>
+            <StoryComponent />
+        </div>
+    </ThemeProvider>
+);
