@@ -12,6 +12,7 @@ import {
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
+import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducerList = {
     profile: profileReducer
@@ -42,6 +43,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
             removeAfterUnmount
         >
             <div className={ classNames('', {}, [className ?? '']) }>
+                <ProfilePageHeader/>
                 <ProfileCard
                     data={ data }
                     isLoading={ isLoading }
