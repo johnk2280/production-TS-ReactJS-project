@@ -42,7 +42,6 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
             removeAfterUnmount
         >
             <div className={ classNames('', {}, [className ?? '']) }>
-                { t('Страница профиля') }
                 <ProfileCard
                     data={ data }
                     isLoading={ isLoading }
