@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
 import { type ProfileType } from '../../model/types/profileSchema';
 import { useTranslation } from 'react-i18next';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
@@ -34,7 +34,16 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
     }
 
     if (error) {
-
+        return (
+            <div className={ classNames(cls.ProfileCard, {}, [className, cls.error]) }>
+                <Text
+                    theme={ TextTheme.ERROR }
+                    title={ t('Произошла ошибка при загрузке профиля') }
+                    text={ t('Попробуйте обновить страницу') }
+                    align={ TextAlign.CENTER }
+                />
+            </div>
+        );
     }
 
     return (
@@ -43,6 +52,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                 <Text
                     title={ t('Профиль пользователя') }
                     className={ cls.title }
+                    align={ TextAlign.CENTER }
                 />
                 <Button
                     className={ cls.editBtn }

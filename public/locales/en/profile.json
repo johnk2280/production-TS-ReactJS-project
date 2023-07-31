@@ -3,5 +3,7 @@
     "Профиль пользователя": "User profile",
     "Редактировать": "Edit",
     "Имя": "Firstname",
-    "Фамилия": "Lastname"
+    "Фамилия": "Lastname",
+    "Произошла ошибка при загрузке профиля": "An error occurred while loading the profile",
+    "Попробуйте обновить страницу": "Try refreshing the page"
 }

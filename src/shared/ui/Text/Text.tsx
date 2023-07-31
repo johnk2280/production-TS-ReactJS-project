@@ -8,11 +8,18 @@ export enum TextTheme {
     ERROR = 'error',
 }
 
+export enum TextAlign {
+    RIGHT = 'right',
+    LEFT = 'left',
+    CENTER = 'center',
+}
+
 interface TextProps {
     className?: string;
     title?: string | TFunction;
     text?: string;
     theme?: TextTheme;
+    align?: TextAlign;
 }
 
 export const Text: FC<TextProps> = memo((props: TextProps) => {
@@ -20,11 +27,13 @@ export const Text: FC<TextProps> = memo((props: TextProps) => {
         className,
         title,
         text,
-        theme = TextTheme.PRIMARY
+        theme = TextTheme.PRIMARY,
+        align = TextAlign.LEFT
     } = props;
 
     const mods = {
-        [cls[theme]]: true
+        [cls[theme]]: true,
+        [cls[align]]: true
     };
 
     return (
