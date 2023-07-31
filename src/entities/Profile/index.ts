@@ -1,3 +1,5 @@
+export { getReadOnly } from './model/selectors/getReadOnly/getReadOnly';
+
 export { ProfileCard } from './ui/ProfileCard/ProfileCard';
 
 export { getProfileIsLoading } from './model/selectors/getProfileIsLoading/getProfileIsLoading';
