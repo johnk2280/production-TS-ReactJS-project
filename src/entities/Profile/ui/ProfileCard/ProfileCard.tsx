@@ -1,30 +1,42 @@
 import { type FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
-import { getProfileData, getProfileError, getProfileIsLoading } from 'entities/Profile';
-import { useSelector } from 'react-redux';
+import { type ProfileType } from '../../model/types/profileSchema';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 interface ProfileCardProps {
     className?: string;
+    data?: ProfileType;
+    isLoading?: boolean;
+    error?: string;
 }
 
 export const ProfileCard: FC<ProfileCardProps> = (props) => {
     const {
-        className = ''
+        className = '',
+        data,
+        isLoading,
+        error
     } = props;
 
     const { t } = useTranslation('profile');
 
-    const data = useSelector(getProfileData);
-    const isLoading = useSelector(getProfileIsLoading);
-    const error = useSelector(getProfileError);
+    if (isLoading) {
+        return (
+            <div className={ classNames(cls.ProfileCard, {}, [className, cls.loading]) }>
+                <Loader/>
+            </div>
+        );
+    }
 
-    console.log(data);
-    // TODO: добавить стили
+    if (error) {
+
+    }
+
     return (
         <div className={ classNames(cls.ProfileCard, {}, [className]) }>
             <div className={ cls.header }>
@@ -35,8 +47,9 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                 <Button
                     className={ cls.editBtn }
                     theme={ ButtonTheme.OUTLINE }
-                />
-                { t('Редактировать') }
+                >
+                    { t('Редактировать') }
+                </Button>
             </div>
             <div className={ cls.data }>
                 <Input
