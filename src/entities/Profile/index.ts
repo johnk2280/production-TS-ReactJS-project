@@ -1,4 +1,4 @@
-export { getReadOnly } from './model/selectors/getReadOnly/getReadOnly';
+export { getProfileReadOnly } from 'entities/Profile/model/selectors/getProfileReadOnly/getProfileReadOnly';
 
 export { ProfileCard } from './ui/ProfileCard/ProfileCard';
 

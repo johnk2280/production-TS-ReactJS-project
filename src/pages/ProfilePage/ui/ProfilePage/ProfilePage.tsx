@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react';
+import { type FC, useCallback, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
@@ -6,7 +6,7 @@ import {
     fetchProfileData,
     getProfileData,
     getProfileError,
-    getProfileIsLoading,
+    getProfileIsLoading, getProfileReadOnly, profileActions,
     ProfileCard,
     profileReducer
 } from 'entities/Profile';
@@ -32,10 +32,26 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
     const data = useSelector(getProfileData);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
+    const readonly = useSelector(getProfileReadOnly);
 
     useEffect(() => {
         dispatch(fetchProfileData());
     }, [dispatch]);
+
+    const onChangeFirstname = useCallback((val?: string) => {
+        dispatch(profileActions.updateProfile({ firstname: val }));
+    }, [dispatch]);
+    const onChangeLastname = useCallback((val?: string) => {
+        dispatch(profileActions.updateProfile({ lastname: val }));
+    }, [dispatch]);
+    const onChangeAge = useCallback((val?: string) => {
+        dispatch(profileActions.updateProfile({ age: Number(val ?? 0) }));
+    }, [dispatch]);
+    const onChangeCurrency = useCallback(() => {}, []);
+    const onChangeCountry = useCallback(() => {}, []);
+    const onChangeCity = useCallback(() => {}, []);
+    const onChangeUsername = useCallback((val?: string) => {}, []);
+    const onChangeAvatar = useCallback((val?: string) => {}, []);
 
     return (
         <DynamicModuleLoader
@@ -48,6 +64,15 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
                     data={ data }
                     isLoading={ isLoading }
                     error={ error }
+                    readonly={ readonly }
+                    onChangeFirstname={ onChangeFirstname }
+                    onChangeLastname={ onChangeLastname }
+                    onChangeAge={ onChangeAge }
+                    onChangeCurrency={ onChangeCurrency }
+                    onChangeCountry={ onChangeCountry }
+                    onChangeCity={ onChangeCity }
+                    onChangeUsername={ onChangeUsername }
+                    onChangeAvatar={ onChangeAvatar }
                 />
             </div>
         </DynamicModuleLoader>

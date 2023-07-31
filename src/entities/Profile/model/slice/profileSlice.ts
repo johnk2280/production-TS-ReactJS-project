@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ProfileSchema } from '../types/profileSchema';
+import type { ProfileSchema, ProfileType } from '../types/profileSchema';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 
 const initialState: ProfileSchema = {
@@ -15,6 +15,12 @@ export const profileSlice = createSlice({
     reducers: {
         setReadonly: (state, action: PayloadAction<boolean>) => {
             state.readonly = action.payload;
+        },
+        updateProfile: (state, action: PayloadAction<ProfileType>) => {
+            state.data = {
+                ...state.data,
+                ...action.payload
+            };
         }
     },
     extraReducers: (builder) => {

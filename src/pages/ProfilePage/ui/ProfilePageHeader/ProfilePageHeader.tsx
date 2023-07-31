@@ -5,7 +5,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import cls from './ProfilePageHeader.module.scss';
 import { useSelector } from 'react-redux';
-import { getReadOnly, profileActions } from 'entities/Profile';
+import { getProfileReadOnly, profileActions } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface ProfilePageHeaderProps {
@@ -20,7 +20,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
     const { t } = useTranslation('profile');
 
     const dispatch = useAppDispatch();
-    const readonly = useSelector(getReadOnly);
+    const readonly = useSelector(getProfileReadOnly);
 
     const onEdit = useCallback(() => {
         dispatch(profileActions.setReadonly(false));
