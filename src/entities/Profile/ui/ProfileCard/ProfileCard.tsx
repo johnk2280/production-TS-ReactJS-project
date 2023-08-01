@@ -9,6 +9,9 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Select } from 'shared/ui/Select/Select';
 
+import { type Currency } from 'entities/Currency/model/types/currency';
+import { CurrencySelect } from 'entities/Currency';
+
 interface ProfileCardProps {
     className?: string;
     data?: ProfileType;
@@ -18,8 +21,8 @@ interface ProfileCardProps {
     onChangeFirstname?: (val?: string) => void;
     onChangeLastname?: (val?: string) => void;
     onChangeAge?: (val?: string) => void;
-    onChangeCurrency?: () => void;
-    onChangeCountry?: () => void;
+    onChangeCurrency?: (value: Currency) => void;
+    onChangeCountry?: (value: Country) => void;
     onChangeCity?: () => void;
     onChangeUsername?: (val?: string) => void;
     onChangeAvatar?: (val?: string) => void;
@@ -119,19 +122,16 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     onChange={ onChangeAvatar }
                     readonly={ readonly }
                 />
-                <Select
-                    value={ data?.firstname }
-                    placeholder={ t('Валюта') }
-                    className={ cls.input }
-                    onChange={ onChangeFirstname }
+                <CurrencySelect
+                    value={ data?.currency }
+                    onChange={ onChangeCurrency }
                     readonly={ readonly }
                 />
-                <Input
+                <Select
                     value={ data?.lastname }
-                    placeholder={ t('Страна') }
+                    label={ t('Страна') }
                     className={ cls.input }
-                    onChange={ onChangeLastname }
-                    readonly={ readonly }
+                    onChange={ onChangeCountry }
                 />
 
             </div>
