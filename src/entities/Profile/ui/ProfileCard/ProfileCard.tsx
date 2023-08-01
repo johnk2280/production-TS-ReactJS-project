@@ -66,9 +66,11 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 
     return (
         <div className={ classNames(cls.ProfileCard, {}, [className]) }>
-            {
-                data?.avatar && <Avatar src={ data?.avatar } alt={ '' }/>
-            }
+            <div className={ cls.avatarWrapper }>
+                {
+                    data?.avatar && <Avatar src={ data?.avatar } alt={ '' }/>
+                }
+            </div>
             <div className={ cls.data }>
                 <Input
                     value={ data?.firstname }
