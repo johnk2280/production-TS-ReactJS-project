@@ -33,11 +33,11 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
         onChangeFirstname,
         onChangeLastname,
         onChangeAge,
-        onChangeCountry,
-        onChangeCurrency,
         onChangeCity,
         onChangeUsername,
-        onChangeAvatar
+        onChangeAvatar,
+        onChangeCountry,
+        onChangeCurrency
     } = props;
 
     const { t } = useTranslation('profile');
@@ -76,6 +76,48 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                 <Input
                     value={ data?.lastname }
                     placeholder={ t('Фамилия') }
+                    className={ cls.input }
+                    onChange={ onChangeLastname }
+                    readonly={ readonly }
+                />
+                <Input
+                    value={ data?.age }
+                    placeholder={ t('Возраст') }
+                    className={ cls.input }
+                    onChange={ onChangeAge }
+                    readonly={ readonly }
+                />
+                <Input
+                    value={ data?.city }
+                    placeholder={ t('Город') }
+                    className={ cls.input }
+                    onChange={ onChangeCity }
+                    readonly={ readonly }
+                />
+                <Input
+                    value={ data?.username }
+                    placeholder={ t('Имя пользователя') }
+                    className={ cls.input }
+                    onChange={ onChangeUsername }
+                    readonly={ readonly }
+                />
+                <Input
+                    value={ data?.avatar }
+                    placeholder={ t('Аватар') }
+                    className={ cls.input }
+                    onChange={ onChangeAvatar }
+                    readonly={ readonly }
+                />
+                <Input
+                    value={ data?.firstname }
+                    placeholder={ t('Валюта') }
+                    className={ cls.input }
+                    onChange={ onChangeFirstname }
+                    readonly={ readonly }
+                />
+                <Input
+                    value={ data?.lastname }
+                    placeholder={ t('Страна') }
                     className={ cls.input }
                     onChange={ onChangeLastname }
                     readonly={ readonly }

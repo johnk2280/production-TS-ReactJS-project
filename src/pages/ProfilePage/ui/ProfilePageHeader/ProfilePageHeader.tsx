@@ -5,7 +5,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import cls from './ProfilePageHeader.module.scss';
 import { useSelector } from 'react-redux';
-import { getProfileReadOnly, profileActions } from 'entities/Profile';
+import { getProfileReadOnly, profileActions, updateProfileData } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface ProfilePageHeaderProps {
@@ -30,6 +30,10 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
         dispatch(profileActions.cancelEdit());
     }, [dispatch]);
 
+    const onSave = useCallback(() => {
+        dispatch(updateProfileData());
+    }, [dispatch]);
+
     return (
         <div className={ classNames(cls.ProfilePageHeader, {}, [className]) }>
             <Text
@@ -49,13 +53,23 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
                         </Button>
                     )
                     : (
-                        <Button
-                            className={ cls.editBtn }
-                            theme={ ButtonTheme.OUTLINE }
-                            onClick={ onCancelEdit }
-                        >
-                            { t('Отменить') }
-                        </Button>
+                        <>
+                            <Button
+                                className={ cls.editBtn }
+                                theme={ ButtonTheme.OUTLINE_RED }
+                                onClick={ onCancelEdit }
+                            >
+                                { t('Отменить') }
+                            </Button>
+                            <Button
+                                className={ cls.saveBtn }
+                                theme={ ButtonTheme.OUTLINE }
+                                onClick={ onSave }
+                            >
+                                { t('Сохранить') }
+                            </Button>
+                        </>
+
                     )
             }
 

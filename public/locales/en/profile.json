@@ -6,5 +6,12 @@
     "Фамилия": "Lastname",
     "Произошла ошибка при загрузке профиля": "An error occurred while loading the profile",
     "Попробуйте обновить страницу": "Try refreshing the page",
-    "Отменить": "Cancel"
+    "Отменить": "Cancel",
+    "Сохранить": "Save",
+    "Возраст": "Age",
+    "Город": "City",
+    "Имя пользователя": "Username",
+    "Аватар": "Avatar",
+    "Валюта": "Currency",
+    "Страна": "Country"
 }

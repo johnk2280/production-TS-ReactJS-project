@@ -4,10 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import {
     fetchProfileData,
-    getProfileData,
-    getProfileError, getProfileForm,
-    getProfileIsLoading, getProfileReadOnly, profileActions,
+    getProfileForm,
+    getProfileError,
+    getProfileIsLoading,
+    getProfileReadOnly,
     ProfileCard,
+    profileActions,
     profileReducer
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -47,11 +49,17 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
     const onChangeAge = useCallback((val?: string) => {
         dispatch(profileActions.updateProfile({ age: Number(val ?? 0) }));
     }, [dispatch]);
+    const onChangeCity = useCallback((val?: string) => {
+        dispatch(profileActions.updateProfile({ city: val ?? '' }));
+    }, [dispatch]);
+    const onChangeUsername = useCallback((val?: string) => {
+        dispatch(profileActions.updateProfile({ username: val ?? '' }));
+    }, [dispatch]);
+    const onChangeAvatar = useCallback((val?: string) => {
+        dispatch(profileActions.updateProfile({ avatar: val ?? '' }));
+    }, [dispatch]);
     const onChangeCurrency = useCallback(() => {}, []);
     const onChangeCountry = useCallback(() => {}, []);
-    const onChangeCity = useCallback(() => {}, []);
-    const onChangeUsername = useCallback((val?: string) => {}, []);
-    const onChangeAvatar = useCallback((val?: string) => {}, []);
 
     return (
         <DynamicModuleLoader
