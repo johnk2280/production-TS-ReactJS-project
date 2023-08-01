@@ -32,3 +32,7 @@ error {
   display: flex;
   justify-content: center;
 }
+
+.editing {
+   border: 2px solid var(--inverted-primary-color);
+}

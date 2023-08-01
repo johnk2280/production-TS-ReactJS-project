@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, type Mods } from 'shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
 import { type ProfileType } from '../../model/types/profileSchema';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +7,7 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Select } from 'shared/ui/Select/Select';
 
 interface ProfileCardProps {
     className?: string;
@@ -64,8 +65,12 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
         );
     }
 
+    const mods: Mods = {
+        [cls.editing]: !readonly
+    };
+
     return (
-        <div className={ classNames(cls.ProfileCard, {}, [className]) }>
+        <div className={ classNames(cls.ProfileCard, mods, [className]) }>
             <div className={ cls.avatarWrapper }>
                 {
                     data?.avatar && <Avatar src={ data?.avatar } alt={ '' }/>
@@ -114,7 +119,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     onChange={ onChangeAvatar }
                     readonly={ readonly }
                 />
-                <Input
+                <Select
                     value={ data?.firstname }
                     placeholder={ t('Валюта') }
                     className={ cls.input }
