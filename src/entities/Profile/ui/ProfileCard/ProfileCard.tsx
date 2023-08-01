@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 
 interface ProfileCardProps {
     className?: string;
@@ -13,14 +14,14 @@ interface ProfileCardProps {
     isLoading?: boolean;
     error?: string;
     readonly?: boolean;
-    onChangeFirstname: (val?: string) => void;
-    onChangeLastname: (val?: string) => void;
-    onChangeAge: (val?: string) => void;
-    onChangeCurrency: () => void;
-    onChangeCountry: () => void;
-    onChangeCity: () => void;
-    onChangeUsername: (val?: string) => void;
-    onChangeAvatar: (val?: string) => void;
+    onChangeFirstname?: (val?: string) => void;
+    onChangeLastname?: (val?: string) => void;
+    onChangeAge?: (val?: string) => void;
+    onChangeCurrency?: () => void;
+    onChangeCountry?: () => void;
+    onChangeCity?: () => void;
+    onChangeUsername?: (val?: string) => void;
+    onChangeAvatar?: (val?: string) => void;
 }
 
 export const ProfileCard: FC<ProfileCardProps> = (props) => {
@@ -65,6 +66,9 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
 
     return (
         <div className={ classNames(cls.ProfileCard, {}, [className]) }>
+            {
+                data?.avatar && <Avatar src={ data?.avatar } alt={ '' }/>
+            }
             <div className={ cls.data }>
                 <Input
                     value={ data?.firstname }
