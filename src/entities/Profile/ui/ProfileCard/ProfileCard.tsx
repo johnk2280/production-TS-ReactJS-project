@@ -7,10 +7,9 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { Select } from 'shared/ui/Select/Select';
-
 import { type Currency } from 'entities/Currency/model/types/currency';
 import { CurrencySelect } from 'entities/Currency';
+import { type Country, CountrySelect } from 'entities/Country';
 
 interface ProfileCardProps {
     className?: string;
@@ -126,12 +125,13 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
                     value={ data?.currency }
                     onChange={ onChangeCurrency }
                     readonly={ readonly }
+                    className={ cls.input }
                 />
-                <Select
-                    value={ data?.lastname }
-                    label={ t('Страна') }
+                <CountrySelect
+                    value={ data?.country }
                     className={ cls.input }
                     onChange={ onChangeCountry }
+                    readonly={ readonly }
                 />
 
             </div>
