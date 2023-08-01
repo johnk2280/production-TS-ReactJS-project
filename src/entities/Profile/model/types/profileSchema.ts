@@ -13,6 +13,7 @@ export interface ProfileType {
 
 export interface ProfileSchema {
     data?: ProfileType;
+    form?: ProfileType;
     isLoading: boolean;
     error?: string;
     readonly: boolean;

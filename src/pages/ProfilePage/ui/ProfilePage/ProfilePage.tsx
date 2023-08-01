@@ -5,7 +5,7 @@ import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/Dyn
 import {
     fetchProfileData,
     getProfileData,
-    getProfileError,
+    getProfileError, getProfileForm,
     getProfileIsLoading, getProfileReadOnly, profileActions,
     ProfileCard,
     profileReducer
@@ -29,7 +29,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
 
     const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
-    const data = useSelector(getProfileData);
+    const formData = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadOnly);
@@ -61,7 +61,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
             <div className={ classNames('', {}, [className ?? '']) }>
                 <ProfilePageHeader/>
                 <ProfileCard
-                    data={ data }
+                    data={ formData }
                     isLoading={ isLoading }
                     error={ error }
                     readonly={ readonly }

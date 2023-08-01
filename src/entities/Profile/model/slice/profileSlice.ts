@@ -17,10 +17,14 @@ export const profileSlice = createSlice({
             state.readonly = action.payload;
         },
         updateProfile: (state, action: PayloadAction<ProfileType>) => {
-            state.data = {
-                ...state.data,
+            state.form = {
+                ...state.form,
                 ...action.payload
             };
+        },
+        cancelEdit: (state) => {
+            state.readonly = true;
+            state.form = state.data;
         }
     },
     extraReducers: (builder) => {
@@ -33,6 +37,7 @@ export const profileSlice = createSlice({
                 state.error = '';
                 state.isLoading = false;
                 state.data = action.payload;
+                state.form = action.payload;
             })
             .addCase(fetchProfileData.rejected, (state, action) => {
                 state.error = action.payload ?? 'error';
