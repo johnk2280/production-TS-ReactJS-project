@@ -29,8 +29,8 @@ Primary.args = {
     }
 };
 
-export const withError = Template.bind({});
-withError.args = {
+export const WithError = Template.bind({});
+WithError.args = {
     error: 'assdfg'
 };
 
