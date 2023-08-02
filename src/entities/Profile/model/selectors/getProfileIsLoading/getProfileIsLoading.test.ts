@@ -1,20 +1,20 @@
+import {getProfileIsLoading} from "./getProfileIsLoading";
 import {StateSchema} from "app/providers/StoreProvider";
-import {getProfileError} from "./getProfileError";
 
 
-describe('getProfileError.test', () => {
+describe('getProfileIsLoading.test', () => {
     test('should return error', () => {
 
         const state: DeepPartial<StateSchema> = {
             profile: {
-                error: 'error',
+                isLoading: true
             }
         }
-        expect(getProfileError(state as StateSchema)).toEqual('error')
+        expect(getProfileIsLoading(state as StateSchema)).toEqual(true)
     });
 
     test('should work wih empty state', () => {
         const state: DeepPartial<StateSchema> = {}
-        expect(getProfileError(state as StateSchema)).toEqual('')
+        expect(getProfileIsLoading(state as StateSchema)).toEqual(false)
     })
 })
