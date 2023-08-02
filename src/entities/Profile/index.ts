@@ -1,3 +1,9 @@
+export {
+    getProfileValidateError
+} from './model/selectors/getProfileValidateError/getProfileValidateError';
+
+export { validateProfileData } from 'entities/Profile/model/services/validateProfileData/validateProfileData';
+
 export { updateProfileData } from './model/services/updateProfileData/updateProfileData';
 
 export { getProfileReadOnly } from 'entities/Profile/model/selectors/getProfileReadOnly/getProfileReadOnly';

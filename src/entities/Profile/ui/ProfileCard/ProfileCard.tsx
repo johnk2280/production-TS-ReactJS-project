@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { classNames, type Mods } from 'shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
-import { type ProfileType } from '../../model/types/profileSchema';
+import { type ProfileType, type ValidateProfileError } from '../../model/types/profileSchema';
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
@@ -15,7 +15,7 @@ interface ProfileCardProps {
     className?: string;
     data?: ProfileType;
     isLoading?: boolean;
-    error?: string;
+    error?: string | ValidateProfileError[];
     readonly?: boolean;
     onChangeFirstname?: (val?: string) => void;
     onChangeLastname?: (val?: string) => void;

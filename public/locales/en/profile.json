@@ -13,5 +13,10 @@
     "Имя пользователя": "Username",
     "Аватар": "Avatar",
     "Валюта": "Currency",
-    "Страна": "Country"
+    "Страна": "Country",
+    "Некорректный возраст": "Wrong age",
+    "Имя и фамилия пользователя обязательны": "First and last name of the user is required",
+    "Данные не указаны": "Data not specified",
+    "Некорректный регион": "Incorrect region",
+    "Ошибка сервера": "Server error"
 }
