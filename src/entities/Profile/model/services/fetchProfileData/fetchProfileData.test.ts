@@ -7,14 +7,14 @@ import {Country} from "entities/Country";
 jest.mock('axios');
 
 const data = {
-            firstname: 'Evgen',
-            lastname: 'Kungurov',
-            age: 42,
-            currency: Currency.RUB,
-            country: Country.Russia,
-            city: 'Chelyabinsk',
-            username: 'admin',
-        }
+    firstname: 'Evgen',
+    lastname: 'Kungurov',
+    age: 42,
+    currency: Currency.RUB,
+    country: Country.Russia,
+    city: 'Chelyabinsk',
+    username: 'admin',
+}
 
 describe('fetchProfileData.test', () => {
     test('success fetching', async () => {
