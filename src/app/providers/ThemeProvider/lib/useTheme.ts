@@ -14,6 +14,8 @@ export function useTheme (): UseThemeResult {
         if (theme === Theme.DARK) {
             newTheme = Theme.LIGHT;
         } else if (theme === Theme.LIGHT) {
+            newTheme = Theme.ORANGE;
+        } else if (theme === Theme.ORANGE) {
             newTheme = Theme.DARK;
         } else {
             newTheme = Theme.LIGHT;
