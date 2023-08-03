@@ -3,6 +3,7 @@ import {profileActions, profileReducer} from "./profileSlice";
 import {Currency} from "entities/Currency";
 import {Country} from "entities/Country";
 import {updateProfileData} from "entities/Profile";
+import {TRUE} from "sass";
 
 
 const data = {
@@ -71,6 +72,25 @@ describe('profileSlice.test', () => {
                 isLoading: true,
                 error: '',
                 validateError: undefined,
+            });
+    });
+
+    test('test updateProfileData.fulfilled', () => {
+        const state: DeepPartial<ProfileSchema> = {
+            isLoading: true,
+            error: '',
+            validateError: undefined,
+            readonly: true
+        };
+
+        expect(profileReducer(state as ProfileSchema, updateProfileData.fulfilled(data, '')))
+            .toEqual({
+                isLoading: false,
+                error: '',
+                validateError: undefined,
+                form: data,
+                data: data,
+                readonly: true
             });
     });
 })
