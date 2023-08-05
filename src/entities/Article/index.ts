@@ -1,7 +1,7 @@
 export {
     articleDetailsActions,
     articleDetailsReducer
-} from './model/slice/articleDetailSlice';
+} from './model/slice/articleDetailsSlice';
 
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
 

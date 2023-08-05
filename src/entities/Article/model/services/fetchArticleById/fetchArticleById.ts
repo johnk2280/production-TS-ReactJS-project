@@ -12,7 +12,6 @@ export const fetchArticleById = createAsyncThunk<Article, string, ThunkConfig<st
             if (!response.data) {
                 throw new Error();
             }
-
             return response.data;
         } catch (e) {
             let message: string = '';
