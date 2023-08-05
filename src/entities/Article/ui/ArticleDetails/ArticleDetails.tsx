@@ -11,6 +11,8 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading
 } from '../../model/selectors/articleDetails';
+import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -26,6 +28,8 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
         className = '',
         id
     } = props;
+    const { t } = useTranslation('article-details');
+
     const dispatch = useAppDispatch();
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
@@ -42,7 +46,12 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
             <div>Loading...</div>
         );
     } else if (error) {
-        content = (<div>Error</div>);
+        content = (
+            <Text
+                align={ TextAlign.CENTER }
+                title={ t('Произошла ошибка при загрузке статьи') }
+            />
+        );
     } else {
         content = (
             <div>ARTICLE DETAILS</div>
