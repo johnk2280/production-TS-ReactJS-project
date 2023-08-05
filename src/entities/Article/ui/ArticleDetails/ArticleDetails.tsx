@@ -14,7 +14,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = (props) => {
 
     return (
         <div className={ classNames(cls.ArticleDetails, {}, [className]) }>
-
+            ARTICLE DETAILS
         </div>
     );
 };

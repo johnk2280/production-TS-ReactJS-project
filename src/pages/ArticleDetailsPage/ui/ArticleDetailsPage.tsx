@@ -1,3 +1,4 @@
+import { ArticleDetails } from 'entities/Article';
 import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleDetailsPage.module.scss';
@@ -13,7 +14,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     return (
         <div className={ classNames(cls.ArticleDetailsPage, {}, [className]) }>
-            ARTICLE DETAILS PAGE
+            <ArticleDetails/>
         </div>
     );
 };
