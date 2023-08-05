@@ -57,7 +57,7 @@ module.exports = {
             'allowExpressions': true
         }],
         '@typescript-eslint/no-misused-promises': 'off',
-        '@typescript-eslint/strict-boolean-expressions': 'warn',
+        '@typescript-eslint/strict-boolean-expressions': 'off',
         '@typescript-eslint/no-floating-promises': 'warn',
         '@typescript-eslint/naming-convention': 'off',
         "i18next/no-literal-string": ['error', {

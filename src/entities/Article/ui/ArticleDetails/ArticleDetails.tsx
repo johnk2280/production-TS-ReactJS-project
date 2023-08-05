@@ -5,6 +5,12 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById/fetchArticleById';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import { useSelector } from 'react-redux';
+import {
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading
+} from '../../model/selectors/articleDetails';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -21,15 +27,32 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
         id
     } = props;
     const dispatch = useAppDispatch();
+    const article = useSelector(getArticleDetailsData);
+    const isLoading = useSelector(getArticleDetailsIsLoading);
+    const error = useSelector(getArticleDetailsError);
 
     useEffect(() => {
         dispatch(fetchArticleById(id));
     }, [dispatch, id]);
 
+    let content;
+
+    if (isLoading) {
+        content = (
+            <div>Loading...</div>
+        );
+    } else if (error) {
+        content = (<div>Error</div>);
+    } else {
+        content = (
+            <div>ARTICLE DETAILS</div>
+        );
+    }
+
     return (
         <DynamicModuleLoader reducers={ reducers } removeAfterUnmount={ true }>
             <div className={ classNames(cls.ArticleDetails, {}, [className]) }>
-                ARTICLE DETAILS
+                { content }
             </div>
         </DynamicModuleLoader>
 
