@@ -1,8 +1,11 @@
-import React from 'react';
-import { type ComponentStory, type ComponentMeta } from '@storybook/react';
-import ArticlesPage from './ArticlesPage';
-import { type Article } from 'entities/Article';
-import { ArticleBlockType, ArticleType } from 'entities/Article/model/types/article';
+import {StateSchema} from "app/providers/StoreProvider";
+import {Article} from "entities/Article";
+import {ArticleBlockType, ArticleType} from "entities/Article/model/types/article";
+import {
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading
+} from "entities/Article/model/selectors/articleDetails";
 
 const article: Article = {
     id: '1',
@@ -74,15 +77,49 @@ const article: Article = {
     ]
 };
 
-export default {
-    title: 'pages/ArticlesPage',
-    component: ArticlesPage,
-    argTypes: {
-        backgroundColor: { control: 'color' }
-    }
-} as ComponentMeta<typeof ArticlesPage>;
+describe('articleDetails.test', () => {
+    test('should return error', () => {
+        const state: DeepPartial<StateSchema> = {
+            articleDetails: {
+                data: article
+            }
+        }
+        expect(getArticleDetailsData(state as StateSchema)).toEqual(article)
+    });
 
-const Template: ComponentStory<typeof ArticlesPage> = (args) => <ArticlesPage { ...args } />;
+    test('should work wih empty state', () => {
+        const state: DeepPartial<StateSchema> = {}
+        expect(getArticleDetailsData(state as StateSchema)).toEqual(undefined)
+    });
 
-export const Normal = Template.bind({});
-Normal.args = {};
+    test('should return error', () => {
+        const data = article
+        const state: DeepPartial<StateSchema> = {
+            articleDetails: {
+                isLoading: true
+            }
+        }
+        expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(true)
+    });
+
+    test('should work wih empty state', () => {
+        const state: DeepPartial<StateSchema> = {}
+        expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(false)
+    });
+
+    test('should return error', () => {
+        const data = article
+        const state: DeepPartial<StateSchema> = {
+            articleDetails: {
+                error: 'error'
+            }
+        }
+        expect(getArticleDetailsError(state as StateSchema)).toEqual('error')
+    });
+
+    test('should work wih empty state', () => {
+        const state: DeepPartial<StateSchema> = {}
+        expect(getArticleDetailsError(state as StateSchema)).toEqual(undefined)
+    });
+
+})
