@@ -49,14 +49,14 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
             return (
                 <ArticleImageBlockComponent
                     className={ cls.block }
-                    block={ }
+                    block={ block }
                 />)
             ;
         } else if (block.type === ArticleBlockType.CODE) {
             return (
                 <ArticleCodeBlockComponent
                     className={ cls.block }
-                    block={ }
+                    block={ block }
                 />
             );
         } else if (block.type === ArticleBlockType.TEXT) {
