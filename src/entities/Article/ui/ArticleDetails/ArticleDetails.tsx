@@ -11,12 +11,13 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading
 } from '../../model/selectors/articleDetails';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import EyeIcon from 'shared/assets/icons/eye-icon.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-icon.svg';
+import { Icon } from 'shared/ui/Icon/Icon';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -76,14 +77,15 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
                     className={ cls.title }
                     title={ article?.title }
                     text={ article?.subtitle }
+                    size={ TextSize.L }
                 />
                 <div className={ cls.articleInfo }>
-                    <EyeIcon className={ cls.icon }/>
+                    <Icon Svg={ EyeIcon } className={ cls.icon }/>
                     <Text text={ String(article?.views) }/>
                 </div>
                 <div className={ cls.articleInfo }>
-                    <CalendarIcon className={ cls.icon }/>
-                    <Text text={ String(article?.views) }/>
+                    <Icon Svg={ CalendarIcon } className={ cls.icon }/>
+                    <Text text={ String(article?.createdAt) }/>
                 </div>
 
             </>
