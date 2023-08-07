@@ -50,6 +50,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
                 <ArticleImageBlockComponent
                     className={ cls.block }
                     block={ block }
+                    key={ block.id }
                 />)
             ;
         } else if (block.type === ArticleBlockType.CODE) {
@@ -57,6 +58,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
                 <ArticleCodeBlockComponent
                     className={ cls.block }
                     block={ block }
+                    key={ block.id }
                 />
             );
         } else if (block.type === ArticleBlockType.TEXT) {
@@ -64,6 +66,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
                 <ArticleTextBlockComponent
                     className={ cls.block }
                     block={ block }
+                    key={ block.id }
                 />
             );
         } else {
@@ -72,7 +75,9 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
     }, []);
 
     useEffect(() => {
-        dispatch(fetchArticleById(id));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticleById(id));
+        }
     }, [dispatch, id]);
 
     let content;
