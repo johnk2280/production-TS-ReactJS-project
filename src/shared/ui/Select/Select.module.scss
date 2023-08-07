@@ -1,23 +1,23 @@
 .Wrapper {
-  display: flex;
+    display: flex;
 }
 
 .label {
-  min-width: 150px;
-  margin-right: 5px;
+    min-width: 150px;
+    margin-right: 5px;
 }
 
 .select {
-  background: none;
-  outline: none;
-  color: var(--primary-color );
-  padding: 3px;
-  border: 1px solid var(--primary-color);
-  border-radius: 3px;
+    background: none;
+    outline: none;
+    color: var(--primary-color);
+    padding: 3px;
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
 }
 
 .option {
-  color: var(--inverted-primary-color);
-  background: var(--inverted-bg-color);
-  font: var(--font-m);
+    color: var(--inverted-primary-color);
+    background: var(--inverted-bg-color);
+    font: var(--font-m);
 }

@@ -1,6 +1,5 @@
 import { type FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './CurrencySelect.module.scss';
 import { Select } from 'shared/ui/Select/Select';
 import { Currency } from '../../model/types/currency';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +33,7 @@ export const CurrencySelect: FC<CurrencySelectProps> = memo((props: CurrencySele
 
     return (
         <Select
-            className={ classNames(cls.Currency, {}, [className]) }
+            className={ classNames('', {}, [className]) }
             label={ t('Валюта') }
             onChange={ onChangeHandler }
             options={ options }
