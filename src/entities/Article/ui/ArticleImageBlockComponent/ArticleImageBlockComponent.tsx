@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleImageBlockComponent.module.scss';
 
@@ -6,7 +6,7 @@ interface ArticleImageBlockComponentProps {
     className?: string;
 }
 
-export const ArticleImageBlockComponent: FC<ArticleImageBlockComponentProps> = (props) => {
+export const ArticleImageBlockComponent: FC<ArticleImageBlockComponentProps> = memo((props: ArticleImageBlockComponentProps) => {
     const {
         className = ''
     } = props;
@@ -16,4 +16,6 @@ export const ArticleImageBlockComponent: FC<ArticleImageBlockComponentProps> = (
 
         </div>
     );
-};
+});
+
+ArticleImageBlockComponent.displayName = 'ArticleImageBlockComponent';
