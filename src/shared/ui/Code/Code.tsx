@@ -1,7 +1,7 @@
-import { type FC, memo } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Code.module.scss';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import CopyIcon from 'shared/assets/icons/copy-20-20.svg';
 
 interface CodeProps {
@@ -15,12 +15,18 @@ export const Code: FC<CodeProps> = memo((props: CodeProps) => {
         text
     } = props;
 
+    const onCopy = useCallback(() => {
+        navigator.clipboard.writeText(text);
+    }, [text]);
+
     return (
         <pre className={ classNames(cls.Code, {}, [className]) }>
             <Button
                 className={ cls.copyBtn }
+                theme={ ButtonTheme.CLEAR }
+                onClick={ onCopy }
             >
-                Копировать
+                <CopyIcon className={ cls.copyIcon }/>
             </Button>
             <code >
                 { text }
