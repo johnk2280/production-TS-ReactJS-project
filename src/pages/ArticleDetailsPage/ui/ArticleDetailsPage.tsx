@@ -10,6 +10,11 @@ import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/Dyn
 import { articleDetailCommentsReducer, getArticleComments } from '../model/slice/articleDetailsCommentsSlice';
 import { getArticleCommentsError, getArticleCommentsIsLoading } from '../model/selectors/comments';
 import cls from './ArticleDetaisPage.module.scss';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import {
+    fetchCommentsByArticleId
+} from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -25,9 +30,13 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     } = props;
     const { t } = useTranslation('article-details');
     const { id } = useParams();
+    const dispatch = useAppDispatch();
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const commentsError = useSelector(getArticleCommentsError);
+
+    useInitialEffect(() => {
+        dispatch(fetchCommentsByArticleId(id));
+    });
 
     if (!id) {
         return (
