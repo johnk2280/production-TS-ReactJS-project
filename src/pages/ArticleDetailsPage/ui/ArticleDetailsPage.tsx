@@ -34,7 +34,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                 className={ cls.commentTitle }
                 title={ t('Комментарии') }
             />
-            <CommentList/>
+            <CommentList isLoading={ true } />
         </div>
     );
 };
