@@ -14,8 +14,19 @@ export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
 export const articleDetailsCommentsSlice = createSlice({
     name: 'articleDetailsComments',
     initialState: commentsAdapter.getInitialState<ArticleDetailsCommentsSchema>({
-        ids: [],
-        entities: {},
+        ids: ['1', '2'],
+        entities: {
+            1: {
+                id: '1',
+                text: 'comment1',
+                user: { id: '1', username: 'user 1' }
+            },
+            2: {
+                id: '2',
+                text: 'comment2',
+                user: { id: '2', username: 'user 2' }
+            }
+        },
         error: undefined,
         isLoading: false
     }),
