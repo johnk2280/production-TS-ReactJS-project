@@ -1,7 +1,6 @@
 import { ArticleDetails } from 'entities/Article';
 import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleDetailsPage.module.scss';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -19,14 +18,14 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     if (!id) {
         return (
-            <div className={ classNames(cls.ArticleDetailsPage, {}, [className]) }>
+            <div className={ classNames('', {}, [className]) }>
                 { t('Статья не найдена') }
             </div>
         );
     }
 
     return (
-        <div className={ classNames(cls.ArticleDetailsPage, {}, [className]) }>
+        <div className={ classNames('', {}, [className]) }>
             <ArticleDetails id={ id }/>
         </div>
     );
