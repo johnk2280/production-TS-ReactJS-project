@@ -5,6 +5,9 @@ import { type IComment } from 'entities/Comment';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Text } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useSelector } from 'react-redux';
 
 interface CommentCardProps {
     className?: string;
@@ -33,7 +36,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props: CommentCardProps) 
 
     return (
         <div className={ classNames(cls.CommentCard, {}, [className]) }>
-            <div className={ cls.commentHeader }>
+            <AppLink to={ `${RoutePath.profile}${item.user.id}` } className={ cls.commentHeader }>
                 <Avatar
                     src={ item.user.avatar }
                     size={ 30 }
@@ -42,7 +45,7 @@ export const CommentCard: FC<CommentCardProps> = memo((props: CommentCardProps) 
                     className={ cls.username }
                     title={ item.user.username }
                 />
-            </div>
+            </AppLink>
             <Text
                 className={ cls.text }
                 text={ item.text }
