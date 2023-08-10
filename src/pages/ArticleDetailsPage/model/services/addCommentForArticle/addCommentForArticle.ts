@@ -3,23 +3,19 @@ import { type ThunkConfig } from 'app/providers/StoreProvider';
 import { type IComment } from 'entities/Comment';
 import { getUserAuthData } from 'entities/User';
 import { getArticleDetailsData } from 'entities/Article';
-import { getCommentFormText } from 'features/AddCommentForm/model/selectors/getCommentForm';
-import { addCommentFormActions } from 'features/AddCommentForm/model/slice/addCommentFormSlice';
 import {
     fetchCommentsByArticleId
-} from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import addCommentForm from 'features/AddCommentForm/ui/AddCommentForm/AddCommentForm';
+} from '../../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 
 export const addCommentForArticle = createAsyncThunk<
 IComment,
-void | never,
+string,
 ThunkConfig<string>
 >(
     'articleDetails/addCommentForArticle',
-    async (_, thunkApi) => {
+    async (text, thunkApi) => {
         const { dispatch, rejectWithValue, extra, getState } = thunkApi;
         const article = getArticleDetailsData(getState());
-        const text = getCommentFormText(getState());
         const userData = getUserAuthData(getState());
 
         if (!userData || !text || !article) {
@@ -36,7 +32,6 @@ ThunkConfig<string>
                 }
             );
 
-            // dispatch(addCommentFormActions.setText(''));
             dispatch(fetchCommentsByArticleId(article.id));
 
             if (!response.data) {

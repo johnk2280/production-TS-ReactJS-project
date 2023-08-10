@@ -12,7 +12,7 @@ import cls from './AddCommentForm.module.scss';
 
 interface AddCommentFormProps {
     className?: string;
-    onSendComment?: () => void;
+    onSendComment: (val: string) => void;
 }
 
 const reducers: ReducerList = {
@@ -33,6 +33,11 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
         dispatch(addCommentFormActions.setText(val));
     }, [dispatch]);
 
+    const onSendHandler = useCallback(() => {
+        onSendComment(text ?? '');
+        onCommentTextChange('');
+    }, [onCommentTextChange, onSendComment, text]);
+
     return (
         <DynamicModuleLoader reducers={ reducers } >
             <div className={ classNames(cls.AddCommentForm, {}, [className]) }>
@@ -44,7 +49,7 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
                 />
                 <Button
                     theme={ ButtonTheme.OUTLINE }
-                    onClick={ onSendComment }
+                    onClick={ onSendHandler }
                 >
                     { t('Отправить') }
                 </Button>
