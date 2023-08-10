@@ -9,6 +9,7 @@ import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/Dyn
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
 import { getCommentFormError, getCommentFormText } from '../../model/selectors/getCommentForm';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { sendComment } from 'features/AddCommentForm/model/services/sendComment/sendComment';
 
 interface AddCommentFormProps {
     className?: string;
@@ -31,6 +32,11 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
         dispatch(addCommentFormActions.setText(val));
     }, [dispatch]);
 
+    const onCommentTextSend = useCallback(() => {
+        dispatch(sendComment());
+        dispatch(addCommentFormActions.setText(''));
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={ reducers } >
             <div className={ classNames(cls.AddCommentForm, {}, [className]) }>
@@ -42,6 +48,7 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
                 />
                 <Button
                     theme={ ButtonTheme.OUTLINE }
+                    onClick={ onCommentTextSend }
                 >
                     { t('Отправить') }
                 </Button>

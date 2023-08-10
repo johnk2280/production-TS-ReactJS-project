@@ -102,6 +102,24 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "норм статья",
+      "id": "5qt5Nll"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "опять получилось!!!",
+      "id": "81J-9IL"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "и у меня получилось",
+      "id": "oGdMNEh"
     }
   ],
   "users": [

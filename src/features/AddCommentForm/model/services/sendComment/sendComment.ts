@@ -3,6 +3,7 @@ import { type ThunkConfig } from 'app/providers/StoreProvider';
 import { type IComment } from 'entities/Comment';
 import { getArticleDetailsData } from 'entities/Article/model/selectors/articleDetails';
 import { getCommentFormText } from 'features/AddCommentForm/model/selectors/getCommentForm';
+import { getUserAuthData } from 'entities/User';
 
 export const sendComment = createAsyncThunk<
 IComment,
@@ -14,12 +15,19 @@ ThunkConfig<string>
         const { dispatch, rejectWithValue, extra, getState } = thunkApi;
         const article = getArticleDetailsData(getState());
         const text = getCommentFormText(getState());
+        const userData = getUserAuthData(getState());
+
+        if (!userData || !text || !article) {
+            return rejectWithValue('error');
+        }
 
         try {
             const response = await extra.api.post<IComment>(
                 '/comments/',
                 {
-                    articleId: article?.id
+                    articleId: article?.id,
+                    userId: userData?.id,
+                    text
                 }
             );
 
