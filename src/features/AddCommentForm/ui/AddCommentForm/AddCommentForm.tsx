@@ -1,18 +1,18 @@
-import { type FC, memo, useCallback } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './AddCommentForm.module.scss';
-import { Input } from 'shared/ui/Input/Input';
 import { useTranslation } from 'react-i18next';
+import { type FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Input } from 'shared/ui/Input/Input';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
 import { getCommentFormError, getCommentFormText } from '../../model/selectors/getCommentForm';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { sendComment } from 'features/AddCommentForm/model/services/sendComment/sendComment';
+import cls from './AddCommentForm.module.scss';
 
 interface AddCommentFormProps {
     className?: string;
+    onSendComment?: () => void;
 }
 
 const reducers: ReducerList = {
@@ -21,7 +21,8 @@ const reducers: ReducerList = {
 
 const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps) => {
     const {
-        className = ''
+        className = '',
+        onSendComment
     } = props;
     const { t } = useTranslation('translation');
     const dispatch = useAppDispatch();
@@ -30,11 +31,6 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
 
     const onCommentTextChange = useCallback((val: string) => {
         dispatch(addCommentFormActions.setText(val));
-    }, [dispatch]);
-
-    const onCommentTextSend = useCallback(() => {
-        dispatch(sendComment());
-        dispatch(addCommentFormActions.setText(''));
     }, [dispatch]);
 
     return (
@@ -48,7 +44,7 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
                 />
                 <Button
                     theme={ ButtonTheme.OUTLINE }
-                    onClick={ onCommentTextSend }
+                    onClick={ onSendComment }
                 >
                     { t('Отправить') }
                 </Button>

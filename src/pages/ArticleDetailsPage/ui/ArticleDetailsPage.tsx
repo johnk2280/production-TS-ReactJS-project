@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ import {
     fetchCommentsByArticleId
 } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { AddCommentForm } from 'features/AddCommentForm';
+import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -34,6 +35,10 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     const dispatch = useAppDispatch();
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+
+    const onSendComment = useCallback(() => {
+        dispatch(addCommentForArticle());
+    }, [dispatch]);
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
@@ -55,7 +60,9 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                     className={ cls.commentTitle }
                     title={ t('Комментарии') }
                 />
-                <AddCommentForm/>
+                <AddCommentForm
+                    onSendComment={ onSendComment }
+                />
                 <CommentList isLoading={ commentsIsLoading } comments={ comments }/>
             </div>
         </DynamicModuleLoader>
