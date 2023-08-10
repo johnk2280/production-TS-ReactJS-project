@@ -8,14 +8,15 @@ import {ValidateProfileError} from "../../types/profileSchema";
 jest.mock('axios');
 
 const data = {
-            firstname: 'Evgen',
-            lastname: 'Kungurov',
-            age: 42,
-            currency: Currency.RUB,
-            country: Country.Russia,
-            city: 'Chelyabinsk',
-            username: 'admin',
-        }
+    id: '1',
+    firstname: 'Evgen',
+    lastname: 'Kungurov',
+    age: 42,
+    currency: Currency.RUB,
+    country: Country.Russia,
+    city: 'Chelyabinsk',
+    username: 'admin',
+}
 
 describe('updateProfileData.test', () => {
     test('success updating', async () => {
@@ -49,21 +50,21 @@ describe('updateProfileData.test', () => {
     });
 
     test('validate error', async () => {
-            const thunk = new TestAsyncThunk(updateProfileData, {
-                profile: {
-                    form: {
-                        ...data,
-                        firstname: '',
-                        lastname: '',
-                    }
+        const thunk = new TestAsyncThunk(updateProfileData, {
+            profile: {
+                form: {
+                    ...data,
+                    firstname: '',
+                    lastname: '',
                 }
-            });
-            const result = await thunk.callThunk();
-
-            expect(result.meta.requestStatus).toBe('rejected')
-            expect(result.payload).toEqual([
-                ValidateProfileError.INCORRECT_USER_DATA
-            ])
+            }
         });
+        const result = await thunk.callThunk();
+
+        expect(result.meta.requestStatus).toBe('rejected')
+        expect(result.payload).toEqual([
+            ValidateProfileError.INCORRECT_USER_DATA
+        ])
+    });
 
 })

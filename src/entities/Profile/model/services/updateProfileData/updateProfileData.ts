@@ -4,9 +4,13 @@ import { type ThunkConfig } from 'app/providers/StoreProvider';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../../services/validateProfileData/validateProfileData';
 
-export const updateProfileData = createAsyncThunk<ProfileType, void | never, ThunkConfig<ValidateProfileError[]>>(
+export const updateProfileData = createAsyncThunk<
+ProfileType,
+void | never,
+ThunkConfig<ValidateProfileError[]>
+>(
     'profile/updateProfileData',
-    async (_, thunkApi) => {
+    async (profileId, thunkApi) => {
         const {
             dispatch,
             rejectWithValue,
@@ -25,16 +29,20 @@ export const updateProfileData = createAsyncThunk<ProfileType, void | never, Thu
         }
 
         try {
-            const response = await extra.api.put<ProfileType>(
-                '/profile',
-                formData
-            );
+            if (formData?.id) {
+                const response = await extra.api.put<ProfileType>(
+                    `/profile/${formData?.id}`,
+                    formData
+                );
 
-            if (!response.data) {
-                throw new Error();
+                if (!response.data) {
+                    throw new Error();
+                }
+
+                return response.data;
             }
 
-            return response.data;
+            return rejectWithValue([ValidateProfileError.NO_DATA]);
         } catch (e) {
             let message: string = '';
             if (e instanceof Error) {
