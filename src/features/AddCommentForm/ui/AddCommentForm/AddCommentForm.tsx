@@ -7,7 +7,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
-import { getCommentFormError, getCommentFormText } from '../../model/selectors/getCommentForm';
+import { getCommentFormIsLoading, getCommentFormText } from '../../model/selectors/getCommentForm';
 import cls from './AddCommentForm.module.scss';
 
 interface AddCommentFormProps {
@@ -27,7 +27,7 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
     const { t } = useTranslation('translation');
     const dispatch = useAppDispatch();
     const text = useSelector(getCommentFormText);
-    const error = useSelector(getCommentFormError);
+    const isLoading = useSelector(getCommentFormIsLoading);
 
     const onCommentTextChange = useCallback((val: string) => {
         dispatch(addCommentFormActions.setText(val));
@@ -37,6 +37,14 @@ const AddCommentForm: FC<AddCommentFormProps> = memo((props: AddCommentFormProps
         onSendComment(text ?? '');
         onCommentTextChange('');
     }, [onCommentTextChange, onSendComment, text]);
+
+    if (isLoading) {
+        return (
+            <div className={ classNames(cls.AddCommentForm, {}, [className]) }>
+
+            </div>
+        );
+    }
 
     return (
         <DynamicModuleLoader reducers={ reducers } >
