@@ -11,5 +11,7 @@
   "Уменьшить": "Decrement",
   "Введите логин": "Enter login",
   "Введите пароль": "Enter password",
-  "Форма авторизации": "Authorization form"
+  "Форма авторизации": "Authorization form",
+  "Введите комментарий": "Enter a comment",
+  "Отправить": "Send"
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { type ComponentStory, type ComponentMeta } from '@storybook/react';
-import { AddCommentForm } from './AddCommentForm';
+import AddCommentForm from './AddCommentForm';
 
 export default {
     title: 'shared/AddCommentForm',
