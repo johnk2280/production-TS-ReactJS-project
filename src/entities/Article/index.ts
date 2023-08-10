@@ -1,3 +1,5 @@
+export { getArticleDetailsData } from './model/selectors/articleDetails';
+
 export {
     articleDetailsActions,
     articleDetailsReducer

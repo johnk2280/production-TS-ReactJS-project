@@ -8,7 +8,7 @@ import { CommentList } from 'entities/Comment';
 import { Text } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { articleDetailCommentsReducer, getArticleComments } from '../model/slice/articleDetailsCommentsSlice';
-import { getArticleCommentsError, getArticleCommentsIsLoading } from '../model/selectors/comments';
+import { getArticleCommentsIsLoading } from '../model/selectors/comments';
 import cls from './ArticleDetaisPage.module.scss';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
