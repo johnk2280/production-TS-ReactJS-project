@@ -1,10 +1,10 @@
 import React, { type FC, memo } from 'react';
-import cls from './SidebarItem.module.scss';
+import { useSelector } from 'react-redux';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { getUserAuthData } from 'entities/User';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { type SidebarItemType } from '../../model/types/sidebarTypes';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useSelector } from 'react-redux';
-import { getUserAuthData } from 'entities/User';
+import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
     item: SidebarItemType;
