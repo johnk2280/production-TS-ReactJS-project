@@ -31,7 +31,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
     return (
         <div className={ classNames(cls.ArticleList, {}, [className]) }>
             {
-                articleList.map(renderArticle)
+                articleList.length ? articleList.map(renderArticle) : null
             }
         </div>
     );

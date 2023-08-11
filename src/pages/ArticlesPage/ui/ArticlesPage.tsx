@@ -2,6 +2,7 @@ import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type Article } from 'entities/Article';
 import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
+import { ArticleView } from 'entities/Article/model/types/article';
 
 interface ArticlesPageProps {
     className?: string;
@@ -88,7 +89,10 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
 
     return (
         <div className={ classNames('', {}, [className]) }>
-            <ArticleList articleList={ articleListMock }/>
+            <ArticleList
+                articleList={ articleListMock }
+                view={ ArticleView.SMALL }
+            />
 
         </div>
     );
