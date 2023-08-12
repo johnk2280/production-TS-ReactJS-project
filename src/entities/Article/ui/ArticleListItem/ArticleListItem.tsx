@@ -22,8 +22,20 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 
     if (view === ArticleView.BIG) {
         return (
-            <div className={ classNames(cls.ArticleListItem, {}, [className, cls[view]]) }>
-                <Card>
+            <div className={ classNames('', {}, [className, cls[view]]) }>
+                <Card >
+                    <div className={ cls.imageWrapper }>
+                        <img src={ article.img } alt={ article.title } className={ cls.img }/>
+                        <Text text={ article.createdAt } className={ cls.date }/>
+                    </div>
+                    <div className={ cls.infoWrapper }>
+                        <Text text={ article.type.join(', ') } className={ cls.types }/>
+                        <>
+                            <Text text={ String(article?.views) } className={ cls.views }/>
+                            <Icon Svg={ EyeIcon }/>
+                        </>
+                    </div>
+                    <Text text={ article.title } className={ cls.title }/>
                 </Card>
             </div>
         );
