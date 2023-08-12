@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type Article, ArticleView } from '../../model/types/article';
 import { Card } from 'shared/ui/Card/Card';
@@ -6,19 +6,26 @@ import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import EyeIcon from 'shared/assets/icons/eye-icon.svg';
 import cls from './ArticleListItem.module.scss';
+import { useHover } from 'shared/lib/hooks/useHover/useHover';
 
 interface ArticleListItemProps {
     className?: string;
     article: Article;
     view: ArticleView;
+    onClick: (id: string) => void;
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleListItemProps) => {
     const {
         className = '',
         view,
-        article
+        article,
+        onClick
     } = props;
+
+    const handleClickArticle = useCallback(() => {
+        onClick(article.id);
+    }, [article.id, onClick]);
 
     if (view === ArticleView.BIG) {
         return (
@@ -43,7 +50,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 
     return (
         <div className={ classNames('', {}, [className, cls[view]]) }>
-            <Card >
+            <Card onClick={ handleClickArticle }>
                 <div className={ cls.imageWrapper }>
                     <img src={ article.img } alt={ article.title } className={ cls.img }/>
                     <Text text={ article.createdAt } className={ cls.date }/>

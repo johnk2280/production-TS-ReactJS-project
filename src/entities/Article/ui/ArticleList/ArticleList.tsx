@@ -3,6 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleList.module.scss';
 import { type Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { useNavigate } from 'react-router-dom';
 
 interface ArticleListProps {
     className?: string;
@@ -18,18 +19,26 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
         view = ArticleView.BIG,
         isLoading
     } = props;
+    const navigate = useNavigate();
+
+    const onClickArticle = useCallback((id: string) => {
+        navigate(`${id}`);
+    }, [navigate]);
 
     const renderArticle = useCallback((article: Article) => {
         return (
             <ArticleListItem
+                className={ cls.card }
                 article={ article }
                 view={ view }
+                key={ article.id }
+                onClick={ onClickArticle }
             />
         );
-    }, [view]);
+    }, [onClickArticle, view]);
 
     return (
-        <div className={ classNames(cls.ArticleList, {}, [className]) }>
+        <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
             {
                 articleList.length ? articleList.map(renderArticle) : null
             }
