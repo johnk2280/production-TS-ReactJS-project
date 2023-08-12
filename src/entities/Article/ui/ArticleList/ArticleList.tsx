@@ -1,10 +1,10 @@
-import { type FC, memo, useCallback } from 'react';
+import { type FC, memo, type ReactNode, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleList.module.scss';
 import { type Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
-import { useNavigate } from 'react-router-dom';
-import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItemSkeleton/ArticleListItemSkeleton';
+import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
+import cls from './ArticleList.module.scss';
 
 interface ArticleListProps {
     className?: string;
@@ -13,6 +13,13 @@ interface ArticleListProps {
     view?: ArticleView;
 }
 
+const getSkeletons = (view: ArticleView): ReactNode[] => {
+    return new Array(view === ArticleView.SMALL ? 9 : 3)
+        .fill(0)
+        .map((item, index) => (
+            <ArticleListItemSkeleton key={ index } view={ view } className={ cls.card }/>
+        ));
+};
 export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) => {
     const {
         className = '',
@@ -40,7 +47,9 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
 
     if (isLoading) {
         return (
-            <ArticleListItemSkeleton />
+            <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
+                { getSkeletons(view) }
+            </div>
         );
     }
 

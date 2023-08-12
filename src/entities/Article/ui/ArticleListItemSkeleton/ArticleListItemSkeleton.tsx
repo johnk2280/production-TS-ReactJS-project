@@ -1,12 +1,9 @@
 import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleView } from '../../model/types/article';
 import cls from './ArticleListItemSkeleton.module.scss';
 import { Card } from 'shared/ui/Card/Card';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import { Text } from 'shared/ui/Text/Text';
-import { Icon } from 'shared/ui/Icon/Icon';
-import EyeIcon from 'shared/assets/icons/eye-icon.svg';
+import { ArticleView } from '../../model/types/article';
 
 interface ArticleListItemSkeletonProps {
     className?: string;

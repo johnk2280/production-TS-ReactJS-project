@@ -1,3 +1,7 @@
+export { ArticleView } from './model/types/article';
+
+export { ArticleList } from './ui/ArticleList/ArticleList';
+
 export { getArticleDetailsData } from './model/selectors/articleDetails';
 
 export {

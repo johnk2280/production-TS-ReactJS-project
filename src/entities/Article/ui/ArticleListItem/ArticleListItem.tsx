@@ -14,14 +14,14 @@ import cls from './ArticleListItem.module.scss';
 interface ArticleListItemProps {
     className?: string;
     article: Article;
-    view: ArticleView;
+    view?: ArticleView;
     onClick: (id: string) => void;
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleListItemProps) => {
     const {
         className = '',
-        view,
+        view = ArticleView.SMALL,
         article,
         onClick
     } = props;

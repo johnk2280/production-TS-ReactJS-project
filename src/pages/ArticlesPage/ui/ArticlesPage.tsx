@@ -1,8 +1,6 @@
 import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { type Article } from 'entities/Article';
-import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
-import { ArticleView } from 'entities/Article/model/types/article';
+import { ArticleList, type Article, ArticleView } from 'entities/Article';
 
 interface ArticlesPageProps {
     className?: string;
@@ -91,6 +89,7 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const {
         className = ''
     } = props;
+
     const articleListMock: Article[] = new Array(16)
         .fill(0)
         .map((item, index) => ({ ...articleMock, id: String(index + 1) }));
@@ -100,7 +99,6 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
             <ArticleList
                 articleList={ articleListMock }
                 view={ ArticleView.BIG }
-                isLoading={ true }
             />
 
         </div>
