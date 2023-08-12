@@ -6,7 +6,6 @@ import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import EyeIcon from 'shared/assets/icons/eye-icon.svg';
 import cls from './ArticleListItem.module.scss';
-import { useHover } from 'shared/lib/hooks/useHover/useHover';
 
 interface ArticleListItemProps {
     className?: string;

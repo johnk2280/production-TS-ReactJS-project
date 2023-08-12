@@ -1,27 +1,31 @@
 import { type FC, memo, useCallback, useEffect } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleDetails.module.scss';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById/fetchArticleById';
-import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
-import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { useSelector } from 'react-redux';
-import {
-    getArticleDetailsData,
-    getArticleDetailsError,
-    getArticleDetailsIsLoading
-} from '../../model/selectors/articleDetails';
-import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import EyeIcon from 'shared/assets/icons/eye-icon.svg';
 import CalendarIcon from 'shared/assets/icons/calendar-icon.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import {
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading
+} from '../../model/selectors/articleDetails';
+import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { type ArticleBlock, ArticleBlockType } from '../../model/types/article';
-import { ArticleCodeBlockComponent } from 'entities/Article/ui/ArticleCodeBlockComponent/ArticleCodeBlockComponent';
-import { ArticleImageBlockComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
-import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import cls from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -40,6 +44,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
     const { t } = useTranslation('article-details');
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
@@ -73,6 +78,10 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
             return null;
         }
     }, []);
+
+    const backToArticleList = useCallback(() => {
+        navigate(RoutePath.articles);
+    }, [navigate]);
 
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
@@ -134,6 +143,12 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
     return (
         <DynamicModuleLoader reducers={ reducers } removeAfterUnmount={ true }>
             <div className={ classNames(cls.ArticleDetails, {}, [className]) }>
+                <Button
+                    theme={ ButtonTheme.OUTLINE }
+                    onClick={ backToArticleList }
+                >
+                    { t('< НАЗАД') }
+                </Button>
                 { content }
             </div>
         </DynamicModuleLoader>
