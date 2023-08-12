@@ -37,11 +37,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
                     <Text text={ article.createdAt } className={ cls.date }/>
                 </div>
                 <div className={ cls.infoWrapper }>
-                    <Text title={ article.type.join(', ') } className={ cls.types }/>
-                    <div className={ cls.articleInfo }>
+                    <Text text={ article.type.join(', ') } className={ cls.types }/>
+                    <>
                         <Text text={ String(article?.views) } className={ cls.views }/>
                         <Icon Svg={ EyeIcon }/>
-                    </div>
+                    </>
                 </div>
                 <Text text={ article.title } className={ cls.title }/>
             </Card>
