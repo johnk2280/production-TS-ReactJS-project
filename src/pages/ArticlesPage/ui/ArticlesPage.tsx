@@ -10,13 +10,20 @@ interface ArticlesPageProps {
 
 const articleMock = {
     id: '1',
+    user: {
+        id: '1',
+        username: 'johnk',
+        avatar: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg'
+    },
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год?',
     img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
     views: 1022,
     createdAt: '26.02.2022',
     type: [
-        'IT'
+        'IT',
+        'Наука',
+        'Frontend'
     ],
     blocks: [
         {
@@ -86,13 +93,13 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     } = props;
     const articleListMock: Article[] = new Array(16)
         .fill(0)
-        .map((item, index) => ({ ...articleMock, id: String(index) }));
+        .map((item, index) => ({ ...articleMock, id: String(index + 1) }));
 
     return (
         <div className={ classNames('', {}, [className]) }>
             <ArticleList
                 articleList={ articleListMock }
-                view={ ArticleView.SMALL }
+                view={ ArticleView.BIG }
             />
 
         </div>

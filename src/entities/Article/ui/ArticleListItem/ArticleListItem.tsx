@@ -1,12 +1,15 @@
 import { type FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { type Article, ArticleView } from '../../model/types/article';
+import { type Article, ArticleBlockType, type ArticleTextBlock, ArticleView } from '../../model/types/article';
 import { Card } from 'shared/ui/Card/Card';
 import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import EyeIcon from 'shared/assets/icons/eye-icon.svg';
 import cls from './ArticleListItem.module.scss';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
 
 interface ArticleListItemProps {
     className?: string;
@@ -22,17 +25,37 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
         article,
         onClick
     } = props;
+    const { t } = useTranslation('article-details');
 
     const handleClickArticle = useCallback(() => {
         onClick(article.id);
     }, [article.id, onClick]);
 
     if (view === ArticleView.BIG) {
+        const textBlock = article.blocks.find(
+            block => block.type === ArticleBlockType.TEXT
+        ) as ArticleTextBlock;
         return (
             <div className={ classNames('', {}, [className, cls[view]]) }>
                 <Card >
                     <div className={ cls.header }>
-                        <Avatar size={ 30 } src={ article.user.id }/>
+                        <Avatar size={ 30 } src={ article.user.avatar }/>
+                        <Text text={ article.user.username } className={ cls.username }/>
+                        <Text text={ article.createdAt } className={ cls.date }/>
+                    </div>
+                    <Text title={ article.title } className={ cls.title }/>
+                    <Text text={ article.type.join(', ') } className={ cls.types }/>
+                    <img src={ article.img } alt={ article.title } className={ cls.img }/>
+                    { textBlock && <ArticleTextBlockComponent block={ textBlock } className={ cls.textBlock } /> }
+                    <div className={ cls.footer }>
+                        <Button onClick={ handleClickArticle } theme={ ButtonTheme.OUTLINE }>
+                            { t('Читать далее ...') }
+                        </Button>
+                        <>
+                            <Text text={ String(article?.views) } className={ cls.views }/>
+                            <Icon Svg={ EyeIcon }/>
+                        </>
+
                     </div>
                 </Card>
             </div>
