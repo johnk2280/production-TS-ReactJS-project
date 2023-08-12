@@ -1,15 +1,15 @@
 import { type FC, memo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { type Article, ArticleBlockType, type ArticleTextBlock, ArticleView } from '../../model/types/article';
 import { Card } from 'shared/ui/Card/Card';
 import { Text } from 'shared/ui/Text/Text';
 import { Icon } from 'shared/ui/Icon/Icon';
 import EyeIcon from 'shared/assets/icons/eye-icon.svg';
-import cls from './ArticleListItem.module.scss';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { ArticleTextBlockComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { useTranslation } from 'react-i18next';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { type Article, ArticleBlockType, type ArticleTextBlock, ArticleView } from '../../model/types/article';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import cls from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
     className?: string;

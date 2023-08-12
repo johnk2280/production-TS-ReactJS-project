@@ -100,6 +100,7 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
             <ArticleList
                 articleList={ articleListMock }
                 view={ ArticleView.BIG }
+                isLoading={ true }
             />
 
         </div>

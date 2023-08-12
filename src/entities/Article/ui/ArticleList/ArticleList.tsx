@@ -4,6 +4,7 @@ import cls from './ArticleList.module.scss';
 import { type Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { useNavigate } from 'react-router-dom';
+import { ArticleListItemSkeleton } from 'entities/Article/ui/ArticleListItemSkeleton/ArticleListItemSkeleton';
 
 interface ArticleListProps {
     className?: string;
@@ -36,6 +37,12 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
             />
         );
     }, [onClickArticle, view]);
+
+    if (isLoading) {
+        return (
+            <ArticleListItemSkeleton />
+        );
+    }
 
     return (
         <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
