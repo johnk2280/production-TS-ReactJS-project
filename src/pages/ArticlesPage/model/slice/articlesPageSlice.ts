@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { type Article, ArticleView } from 'entities/Article';
 import { type StateSchema } from 'app/providers/StoreProvider';
-import { type ArticlesPageSchema } from 'pages/ArticlesPage';
+import { type ArticlesPageSchema } from '../types/articlesPageSchema';
 
 const articlesPageAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id
