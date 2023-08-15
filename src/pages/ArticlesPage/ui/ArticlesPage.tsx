@@ -19,7 +19,7 @@ const reducers: ReducerList = {
     articlesPage: articlesPageReducer
 };
 
-const ArticlesPage: FC<ArticlesPageProps> = (props) => {
+export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const {
         className = ''
     } = props;
@@ -35,7 +35,9 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
 
     useInitialEffect(() => {
         dispatch(articlesPageActions.initView());
-        dispatch(fetchArticles());
+        dispatch(fetchArticles({
+            page: 2
+        }));
     });
 
     return (
