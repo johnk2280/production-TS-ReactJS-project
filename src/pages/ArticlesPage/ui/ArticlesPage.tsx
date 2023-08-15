@@ -29,11 +29,12 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
 
-    const onChangView = useCallback((view: ArticleView) => {
+    const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
     }, [dispatch]);
 
     useInitialEffect(() => {
+        dispatch(articlesPageActions.initView());
         dispatch(fetchArticles());
     });
 
@@ -41,7 +42,7 @@ const ArticlesPage: FC<ArticlesPageProps> = (props) => {
         <DynamicModuleLoader reducers={ reducers }>
             <div className={ classNames(cls.ArticlesPage, {}, [className]) }>
                 <ArticleViewSelector
-                    onClickView={ onChangView }
+                    onClickView={ onChangeView }
                     view={ view }
                 />
                 <ArticleList
