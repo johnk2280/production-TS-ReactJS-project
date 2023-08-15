@@ -2,7 +2,7 @@ import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { type Article, ArticleView } from 'entities/Article';
 import { type StateSchema } from 'app/providers/StoreProvider';
 import { type ArticlesPageSchema } from '../types/articlesPageSchema';
-import { fetchArticles } from 'pages/ArticlesPage/model/services/fetchArticles/fetchArticles';
+import { fetchArticles } from './../services/fetchArticles/fetchArticles';
 
 const articlesPageAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id
@@ -43,3 +43,8 @@ export const articlesPageSlice = createSlice({
             });
     }
 });
+
+export const {
+    reducer: articlesPageReducer,
+    actions: articlesPageActions
+} = articlesPageSlice;
