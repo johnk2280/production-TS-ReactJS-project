@@ -43,7 +43,9 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
 
     return (
         <DynamicModuleLoader reducers={ reducers }>
-            <Page className={ classNames(cls.ArticlesPage, {}, [className]) }>
+            <Page
+                className={ classNames(cls.ArticlesPage, {}, [className]) }
+            >
                 <ArticleViewSelector
                     onClickView={ onChangeView }
                     view={ view }
