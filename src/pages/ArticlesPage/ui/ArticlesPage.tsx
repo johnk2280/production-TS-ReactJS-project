@@ -16,6 +16,7 @@ import {
 } from '../model/selectors/articlesPage';
 import cls from './ArticlesPage.module.scss';
 import { Page } from 'shared/ui/Page/Page';
+import { fetchNextArticles } from 'pages/ArticlesPage/model/services/fetchNextArticles/fetchNextArticles';
 
 interface ArticlesPageProps {
     className?: string;
@@ -42,13 +43,8 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     }, [dispatch]);
 
     const onLoadNextPart = useCallback(() => {
-        if (hasMore && !isLoading) {
-            dispatch(articlesPageActions.setPage(page + 1));
-            dispatch(fetchArticles({
-                page: page + 1
-            }));
-        }
-    }, [dispatch, hasMore, isLoading, page]);
+        dispatch(fetchNextArticles());
+    }, [dispatch]);
 
     useInitialEffect(() => {
         dispatch(articlesPageActions.initView());
