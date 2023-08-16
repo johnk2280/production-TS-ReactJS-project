@@ -45,19 +45,10 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
         );
     }, [onClickArticle, view]);
 
-    if (isLoading) {
-        return (
-            <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
-                { getSkeletons(view) }
-            </div>
-        );
-    }
-
     return (
         <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
-            {
-                articleList.length ? articleList.map(renderArticle) : null
-            }
+            { articleList.length ? articleList.map(renderArticle) : null }
+            { isLoading && getSkeletons(view) }
         </div>
     );
 });

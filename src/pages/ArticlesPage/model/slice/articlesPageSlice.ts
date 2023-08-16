@@ -47,7 +47,8 @@ export const articlesPageSlice = createSlice({
             .addCase(fetchArticles.fulfilled, (state, action) => {
                 state.error = '';
                 state.isLoading = false;
-                articlesPageAdapter.setAll(state, action.payload);
+                articlesPageAdapter.addMany(state, action.payload);
+                state.hasMore = action.payload.length > 0;
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.error = action.payload ?? 'error';

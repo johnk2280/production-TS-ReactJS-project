@@ -8,7 +8,12 @@ import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/Dyn
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
 import { articlesPageActions, articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';
 import { fetchArticles } from '../model/services/fetchArticles/fetchArticles';
-import { getArticlesPageError, getArticlesPageIsLoading, getArticlesPageView } from '../model/selectors/articlesPage';
+import {
+    getArticlesPageError, getArticlesPageHasMore,
+    getArticlesPageIsLoading,
+    getArticlesPageNum,
+    getArticlesPageView
+} from '../model/selectors/articlesPage';
 import cls from './ArticlesPage.module.scss';
 import { Page } from 'shared/ui/Page/Page';
 
@@ -29,10 +34,21 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const view = useSelector(getArticlesPageView);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
+    const page = useSelector(getArticlesPageNum);
+    const hasMore = useSelector(getArticlesPageHasMore);
 
     const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
     }, [dispatch]);
+
+    const onLoadNextPart = useCallback(() => {
+        if (hasMore && !isLoading) {
+            dispatch(articlesPageActions.setPage(page + 1));
+            dispatch(fetchArticles({
+                page: page + 1
+            }));
+        }
+    }, [dispatch, hasMore, isLoading, page]);
 
     useInitialEffect(() => {
         dispatch(articlesPageActions.initView());
@@ -44,6 +60,7 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     return (
         <DynamicModuleLoader reducers={ reducers }>
             <Page
+                onScrollEnd={ onLoadNextPart }
                 className={ classNames(cls.ArticlesPage, {}, [className]) }
             >
                 <ArticleViewSelector
