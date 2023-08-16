@@ -1,15 +1,16 @@
 import {
     type AnyAction,
     type CombinedState,
-    configureStore, type Reducer,
-    type ReducersMapObject, type ThunkDispatch
+    configureStore,
+    type Reducer,
+    type ReducersMapObject,
+    type ThunkDispatch
 } from '@reduxjs/toolkit';
 import { type StateSchema, type ThunkExtraArgs } from '../config/StateSchema';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { $api } from 'shared/api/api';
-import { type NavigateFunction } from 'react-router-dom';
 
 // Возникают ошибки из-за возвращаемого типа, если явно указать type EnhancedStore,
 // тогда, как возвращается type:
@@ -17,8 +18,7 @@ import { type NavigateFunction } from 'react-router-dom';
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function createReduxStore (
     initialState?: StateSchema,
-    asyncReducers?: ReducersMapObject<StateSchema>,
-    navigate?: NavigateFunction
+    asyncReducers?: ReducersMapObject<StateSchema>
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
@@ -29,8 +29,7 @@ export function createReduxStore (
     const reducerManager = createReducerManager(rootReducers);
 
     const extraArgs = {
-        api: $api,
-        navigate
+        api: $api
     };
 
     const store = configureStore({
