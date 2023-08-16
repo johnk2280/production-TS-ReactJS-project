@@ -17,6 +17,7 @@ import {
 } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
+import { Page } from 'shared/ui/Page/Page';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -46,15 +47,15 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     if (!id) {
         return (
-            <div className={ classNames('', {}, [className]) }>
+            <Page className={ classNames('', {}, [className]) }>
                 { t('Статья не найдена') }
-            </div>
+            </Page>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={ reducers } removeAfterUnmount={ true }>
-            <div className={ classNames('', {}, [className]) }>
+            <Page className={ classNames('', {}, [className]) }>
                 <ArticleDetails id={ id }/>
                 <Text
                     className={ cls.commentTitle }
@@ -64,7 +65,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                     onSendComment={ onSendComment }
                 />
                 <CommentList isLoading={ commentsIsLoading } comments={ comments }/>
-            </div>
+            </Page>
         </DynamicModuleLoader>
 
     );

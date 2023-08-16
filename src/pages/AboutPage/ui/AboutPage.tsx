@@ -1,5 +1,6 @@
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Page } from 'shared/ui/Page/Page';
 
 interface AboutPageProps {
     props?: any;
@@ -9,9 +10,9 @@ const AboutPage: FC<AboutPageProps> = (props) => {
     const { t } = useTranslation(['about', 'translation']);
 
     return (
-        <div>
+        <Page>
             { t('О сайте') }
-        </div>
+        </Page>
     );
 };
 

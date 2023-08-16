@@ -31,20 +31,22 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
     }, [dispatch]);
 
     if (authData != null) {
-        return (<div className={ classNames(cls.Navbar, {}, [className ?? '']) }>
-            <Button
-                theme={ ButtonTheme.BACKGROUND_INVERTED }
-                className={ cls.links }
-                onClick={ onLogout }
-            >
-                { t('Выйти') }
-            </Button>
+        return (
+            <header className={ classNames(cls.Navbar, {}, [className ?? '']) }>
+                <Button
+                    theme={ ButtonTheme.BACKGROUND_INVERTED }
+                    className={ cls.links }
+                    onClick={ onLogout }
+                >
+                    { t('Выйти') }
+                </Button>
 
-        </div>);
+            </header>
+        );
     }
 
     return (
-        <div className={ classNames(cls.Navbar, {}, [className ?? '']) }>
+        <header className={ classNames(cls.Navbar, {}, [className ?? '']) }>
             <Button
                 theme={ ButtonTheme.BACKGROUND_INVERTED }
                 className={ cls.links }
@@ -61,7 +63,7 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                 )
             }
 
-        </div>
+        </header>
     );
 });
 

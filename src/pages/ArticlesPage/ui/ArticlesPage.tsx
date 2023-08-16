@@ -10,6 +10,7 @@ import { articlesPageActions, articlesPageReducer, getArticles } from '../model/
 import { fetchArticles } from '../model/services/fetchArticles/fetchArticles';
 import { getArticlesPageError, getArticlesPageIsLoading, getArticlesPageView } from '../model/selectors/articlesPage';
 import cls from './ArticlesPage.module.scss';
+import { Page } from 'shared/ui/Page/Page';
 
 interface ArticlesPageProps {
     className?: string;
@@ -36,13 +37,13 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     useInitialEffect(() => {
         dispatch(articlesPageActions.initView());
         dispatch(fetchArticles({
-            page: 2
+            page: 1
         }));
     });
 
     return (
         <DynamicModuleLoader reducers={ reducers }>
-            <div className={ classNames(cls.ArticlesPage, {}, [className]) }>
+            <Page className={ classNames(cls.ArticlesPage, {}, [className]) }>
                 <ArticleViewSelector
                     onClickView={ onChangeView }
                     view={ view }
@@ -52,7 +53,7 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
                     articleList={ articles }
                     view={ view }
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
 
     );

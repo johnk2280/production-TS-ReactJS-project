@@ -22,6 +22,7 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ValidateProfileError } from 'entities/Profile/model/types/profileSchema';
 import { useParams } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { Page } from 'shared/ui/Page/Page';
 
 const reducers: ReducerList = {
     profile: profileReducer
@@ -89,7 +90,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
             reducers={ reducers }
             removeAfterUnmount
         >
-            <div className={ classNames('', {}, [className ?? '']) }>
+            <Page className={ classNames('', {}, [className ?? '']) }>
                 <ProfilePageHeader/>
                 {
                     validateErrors?.length && validateErrors.map(err =>
@@ -116,7 +117,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
                     onChangeUsername={ onChangeUsername }
                     onChangeAvatar={ onChangeAvatar }
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
 
     );
