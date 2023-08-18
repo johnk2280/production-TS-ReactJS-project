@@ -11,6 +11,7 @@ import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { createReducerManager } from './reducerManager';
 import { $api } from 'shared/api/api';
+import { UIReducer } from 'features/UI';
 
 // Возникают ошибки из-за возвращаемого типа, если явно указать type EnhancedStore,
 // тогда, как возвращается type:
@@ -23,7 +24,8 @@ export function createReduxStore (
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
-        user: userReducer
+        user: userReducer,
+        ui: UIReducer
     };
 
     const reducerManager = createReducerManager(rootReducers);
