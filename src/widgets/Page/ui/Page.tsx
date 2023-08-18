@@ -8,6 +8,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUIScrollByPath, UIActions } from 'features/UI';
 import { type StateSchema } from 'app/providers/StoreProvider';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
 
 interface PageProps {
     className?: string;
@@ -36,12 +37,12 @@ export const Page: FC<PageProps> = memo((props: PageProps) => {
         callback: onScrollEnd
     });
 
-    const onScroll = (e: UIEvent<HTMLDivElement>): void => {
+    const onScroll = useThrottle((e: UIEvent<HTMLDivElement>): void => {
         dispatch(UIActions.setScrollPosition({
             position: e.currentTarget.scrollTop,
             path: pathname
         }));
-    };
+    }, 100);
 
     useInitialEffect(() => {
         wrapperRef.current.scrollTop = scrollPosition;
