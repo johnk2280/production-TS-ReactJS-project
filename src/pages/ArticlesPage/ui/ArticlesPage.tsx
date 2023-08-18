@@ -9,9 +9,9 @@ import { ArticleViewSelector } from 'features/ArticleViewSelector';
 import { articlesPageActions, articlesPageReducer, getArticles } from '../model/slice/articlesPageSlice';
 import { getArticlesPageIsLoading, getArticlesPageView } from '../model/selectors/articlesPage';
 import cls from './ArticlesPage.module.scss';
-import { Page } from 'shared/ui/Page/Page';
 import { fetchNextArticles } from '../model/services/fetchNextArticles/fetchNextArticles';
 import { initArticlesPage } from '../model/services/initArticlesPage/initArticlesPage';
+import { Page } from 'widgets/Page';
 
 interface ArticlesPageProps {
     className?: string;

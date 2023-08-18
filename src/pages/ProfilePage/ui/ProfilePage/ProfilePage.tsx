@@ -1,4 +1,4 @@
-import { type FC, useCallback, useEffect } from 'react';
+import { type FC, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
@@ -22,7 +22,7 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ValidateProfileError } from 'entities/Profile/model/types/profileSchema';
 import { useParams } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page';
 
 const reducers: ReducerList = {
     profile: profileReducer

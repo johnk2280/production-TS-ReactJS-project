@@ -17,7 +17,7 @@ import {
 } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page';
 
 interface ArticleDetailsPageProps {
     className?: string;
