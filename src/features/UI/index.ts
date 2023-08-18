@@ -1,4 +1,4 @@
-export { getUIScrollPath } from './model/selectors/ui';
+export { getUIScrollByPath } from './model/selectors/ui';
 
 export { UIReducer, UIActions } from './model/slice/UISlice';
 
