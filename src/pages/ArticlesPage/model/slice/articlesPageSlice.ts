@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type Article, ArticleView } from 'entities/Article';
+import { type Article, ArticleSortField, ArticleView } from 'entities/Article';
 import { type StateSchema } from 'app/providers/StoreProvider';
 import { type ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticles } from './../services/fetchArticles/fetchArticles';
@@ -21,9 +21,13 @@ export const articlesPageSlice = createSlice({
         error: undefined,
         isLoading: false,
         view: ArticleView.SMALL,
+        limit: 3,
         hasMore: true,
         page: 1,
-        _inited: false
+        _inited: false,
+        sortField: ArticleSortField.CREATED,
+        order: 'asc',
+        search: ''
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
