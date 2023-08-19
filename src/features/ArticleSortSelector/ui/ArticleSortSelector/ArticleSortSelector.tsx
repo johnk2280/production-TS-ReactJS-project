@@ -59,6 +59,7 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
                 onChange={ onChangeSortField }
             />
             <Select
+                className={ cls.order }
                 label={ t('По') }
                 options={ orderOptions }
                 value={ order }
