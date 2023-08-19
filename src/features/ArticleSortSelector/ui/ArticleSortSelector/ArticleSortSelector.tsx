@@ -1,4 +1,4 @@
-import { type FC, memo, useMemo } from 'react';
+import { type FC, memo, useCallback, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleSortSelector.module.scss';
 import { Select, type SelectOption } from 'shared/ui/Select/Select';
@@ -50,15 +50,29 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
         }
     ], [t]);
 
+    // Временный костыль что бы скастовать к нужному типу
+    const changeSortHandler = useCallback((newSort: string) => {
+        onChangeSortField(newSort as ArticleSortField);
+    }, [onChangeSortField]);
+
+    const changeOrderHandler = useCallback((newOrder: string) => {
+        onChangeOrder(newOrder as SortOrder);
+    }, [onChangeOrder]);
+    // =========================================================================
+
     return (
         <div className={ classNames(cls.ArticleSortSelector, {}, [className]) }>
             <Select
                 label={ t('Сортировать по') }
                 options={ sortOptions }
+                value={ sort }
+                onChange={ changeSortHandler }
             />
             <Select
                 label={ t('По') }
                 options={ orderOptions }
+                value={ order }
+                onChange={ changeOrderHandler }
             />
         </div>
     );
