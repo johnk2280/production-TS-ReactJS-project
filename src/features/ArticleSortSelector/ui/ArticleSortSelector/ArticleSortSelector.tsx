@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback, useMemo } from 'react';
+import { type FC, memo, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleSortSelector.module.scss';
 import { Select, type SelectOption } from 'shared/ui/Select/Select';
@@ -37,7 +37,7 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = memo((props: Ar
 
     const sortOptions = useMemo<Array<SelectOption<ArticleSortField>>>(() => [
         {
-            value: ArticleSortField.CREATED,
+            value: ArticleSortField.CREATED_AT,
             content: t('дате создания')
         },
         {

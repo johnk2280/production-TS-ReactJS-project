@@ -12,6 +12,7 @@ import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchN
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { Page } from 'widgets/Page';
 import { ArticlesPageFilter } from 'pages/ArticlesPage/ui/ArticlesPageFilter/ArticlesPageFilter';
+import { useSearchParams } from 'react-router-dom';
 
 interface ArticlesPageProps {
     className?: string;
@@ -25,6 +26,7 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     const {
         className = ''
     } = props;
+    const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
     const articles = useSelector(getArticles.selectAll);
     const view = useSelector(getArticlesPageView);
@@ -35,7 +37,7 @@ export const ArticlesPage: FC<ArticlesPageProps> = (props) => {
     }, [dispatch]);
 
     useInitialEffect(() => {
-        dispatch(initArticlesPage());
+        dispatch(initArticlesPage(searchParams));
     });
 
     return (
