@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback } from 'react';
+import { type FC, memo, useCallback, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticlesPageFilter.module.scss';
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import {
     getArticlesPageSearch,
     getArticlesPageSortField,
-    getArticlesPageSortOrder,
+    getArticlesPageSortOrder, getArticlesPageType,
     getArticlesPageView
 } from '../../model/selectors/articlesPage';
-import { type ArticleSortField, type ArticleView } from 'entities/Article';
+import { type ArticleSortField, ArticleType, type ArticleView } from 'entities/Article';
 import { articlesPageActions } from '../../model/slice/articlesPageSlice';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useTranslation } from 'react-i18next';
@@ -17,9 +17,10 @@ import { Input } from 'shared/ui/Input/Input';
 import { Card } from 'shared/ui/Card/Card';
 import { ArticleSortSelector } from 'features/ArticleSortSelector';
 import { type SortOrder } from 'shared/types/sortTypes';
-import { fetchArticles } from 'pages/ArticlesPage/model/services/fetchArticles/fetchArticles';
+import { fetchArticles } from '../../model/services/fetchArticles/fetchArticles';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { useSearchParams } from 'react-router-dom';
+import { type TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
 
 interface ArticlesPageFilterProps {
     className?: string;
@@ -36,6 +37,27 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
     const sortField = useSelector(getArticlesPageSortField);
     const sortOrder = useSelector(getArticlesPageSortOrder);
     const search = useSelector(getArticlesPageSearch);
+    const articleType = useSelector(getArticlesPageType);
+
+    const typeTabs = useMemo<TabItem[]>(() => [
+        {
+            value: ArticleType.ALL,
+            content: t('Все')
+        },
+        {
+            value: ArticleType.IT,
+            content: t('Айти')
+        },
+        {
+            value: ArticleType.SCIENCE,
+            content: t('Наука')
+        },
+        {
+            value: ArticleType.ECONOMICS,
+            content: t('Экономика')
+        }
+
+    ], [t]);
 
     const fetchData = useCallback(() => {
         dispatch(fetchArticles({ replace: true }));
@@ -68,6 +90,13 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
         debouncedFetchData();
     }, [debouncedFetchData, dispatch, setSearchParams, sortField, sortOrder]);
 
+    const onChangeType = useCallback((type: ArticleType) => {
+        dispatch(articlesPageActions.setType(type));
+        dispatch(articlesPageActions.setPage(1));
+        setSearchParams(`_sort=${sortField}&_order=${sortOrder}&q=${search}`);
+        fetchData();
+    }, [dispatch, fetchData, search, setSearchParams, sortField, sortOrder]);
+
     return (
         <div className={ classNames(cls.ArticlesPageFilter, {}, [className]) }>
             <div className={ cls.sortWrapper }>
@@ -89,7 +118,7 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
                     value={ search }
                 />
             </Card>
-
+            <Tabs tabs={ typeTabs } value={ articleType } onTabClick={ onChangeType }/>
         </div>
     );
 });

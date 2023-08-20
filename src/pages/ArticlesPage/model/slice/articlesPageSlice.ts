@@ -5,7 +5,7 @@ import { type ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticles } from './../services/fetchArticles/fetchArticles';
 import { ARTICLES_VIEW_LOCAL_STORAGE_KEY } from 'shared/const/localStorage';
 import { type SortOrder } from 'shared/types/sortTypes';
-import { action } from '@storybook/addon-actions';
+import { ArticleType } from 'entities/Article/model/types/article';
 
 const articlesPageAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id
@@ -29,7 +29,8 @@ export const articlesPageSlice = createSlice({
         _inited: false,
         sortField: ArticleSortField.CREATED_AT,
         order: 'asc',
-        search: ''
+        search: '',
+        type: ArticleType.ALL
     }),
     reducers: {
         setView: (state, action: PayloadAction<ArticleView>) => {
@@ -53,8 +54,10 @@ export const articlesPageSlice = createSlice({
         },
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
+        },
+        setType: (state, action: PayloadAction<ArticleType>) => {
+            state.type = action.payload;
         }
-
     },
     extraReducers: (builder) => {
         builder
