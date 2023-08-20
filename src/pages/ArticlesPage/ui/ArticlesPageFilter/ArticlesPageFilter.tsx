@@ -72,28 +72,29 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
     const onChangeSortOrder = useCallback((newOrder: SortOrder) => {
         dispatch(articlesPageActions.setOrder(newOrder));
         dispatch(articlesPageActions.setPage(1));
-        setSearchParams(`_sort=${sortField}&_order=${newOrder}&q=${search}`);
+        setSearchParams(`_sort=${sortField}&_order=${newOrder}&q=${search}&type=${articleType}`);
         fetchData();
-    }, [dispatch, fetchData, search, setSearchParams, sortField]);
+    }, [articleType, dispatch, fetchData, search, setSearchParams, sortField]);
 
     const onChangeSortField = useCallback((newSort: ArticleSortField) => {
         dispatch(articlesPageActions.setSort(newSort));
         dispatch(articlesPageActions.setPage(1));
-        setSearchParams(`_sort=${newSort}&_order=${sortOrder}&q=${search}`);
+        setSearchParams(`_sort=${newSort}&_order=${sortOrder}&q=${search}&type=${articleType}`);
         fetchData();
-    }, [dispatch, fetchData, search, setSearchParams, sortOrder]);
+    }, [articleType, dispatch, fetchData, search, setSearchParams, sortOrder]);
 
     const onChangeSearch = useCallback((text: string) => {
         dispatch(articlesPageActions.setSearch(text));
         dispatch(articlesPageActions.setPage(1));
-        setSearchParams(`_sort=${sortField}&_order=${sortOrder}&q=${text}`);
+        setSearchParams(`_sort=${sortField}&_order=${sortOrder}&q=${text}&type=${articleType}`);
         debouncedFetchData();
-    }, [debouncedFetchData, dispatch, setSearchParams, sortField, sortOrder]);
+    }, [articleType, debouncedFetchData, dispatch, setSearchParams, sortField, sortOrder]);
 
-    const onChangeType = useCallback((type: ArticleType) => {
-        dispatch(articlesPageActions.setType(type));
+    const onChangeType = useCallback((tab: TabItem) => {
+        // TODO: пофиксить костыльное приведение типа по аналогии с Select
+        dispatch(articlesPageActions.setType(tab.value as ArticleType));
         dispatch(articlesPageActions.setPage(1));
-        setSearchParams(`_sort=${sortField}&_order=${sortOrder}&q=${search}`);
+        setSearchParams(`_sort=${sortField}&_order=${sortOrder}&q=${search}&type=${tab.value}`);
         fetchData();
     }, [dispatch, fetchData, search, setSearchParams, sortField, sortOrder]);
 
@@ -118,7 +119,11 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
                     value={ search }
                 />
             </Card>
-            <Tabs tabs={ typeTabs } value={ articleType } onTabClick={ onChangeType }/>
+            <Tabs
+                tabs={ typeTabs }
+                value={ articleType }
+                onTabClick={ onChangeType }
+            />
         </div>
     );
 });
