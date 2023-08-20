@@ -4,6 +4,8 @@ import cls from './ArticlesPageFilter.module.scss';
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
 import { useSelector } from 'react-redux';
 import {
+    getArticlesPageLimit,
+    getArticlesPageNum,
     getArticlesPageSearch,
     getArticlesPageSortField,
     getArticlesPageSortOrder,
@@ -19,6 +21,7 @@ import { ArticleSortSelector } from 'features/ArticleSortSelector';
 import { type SortOrder } from 'shared/types/sortTypes';
 import { fetchArticles } from 'pages/ArticlesPage/model/services/fetchArticles/fetchArticles';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { useSearchParams } from 'react-router-dom';
 
 interface ArticlesPageFilterProps {
     className?: string;
@@ -29,6 +32,7 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
         className = ''
     } = props;
     const { t } = useTranslation('articles-page');
+    const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useAppDispatch();
     const view = useSelector(getArticlesPageView);
     const sortField = useSelector(getArticlesPageSortField);
@@ -48,20 +52,23 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
     const onChangeSortOrder = useCallback((newOrder: SortOrder) => {
         dispatch(articlesPageActions.setOrder(newOrder));
         dispatch(articlesPageActions.setPage(1));
+        setSearchParams(`_sort=${sortField}&_order=${newOrder}&q=${search}`);
         fetchData();
-    }, [dispatch, fetchData]);
+    }, [dispatch, fetchData, search, setSearchParams, sortField]);
 
     const onChangeSortField = useCallback((newSort: ArticleSortField) => {
         dispatch(articlesPageActions.setSort(newSort));
         dispatch(articlesPageActions.setPage(1));
+        setSearchParams(`_sort=${newSort}&_order=${sortOrder}&q=${search}`);
         fetchData();
-    }, [dispatch, fetchData]);
+    }, [dispatch, fetchData, search, setSearchParams, sortOrder]);
 
     const onChangeSearch = useCallback((text: string) => {
         dispatch(articlesPageActions.setSearch(text));
         dispatch(articlesPageActions.setPage(1));
+        setSearchParams(`_sort=${sortField}&_order=${sortOrder}&q=${text}`);
         debouncedFetchData();
-    }, [debouncedFetchData, dispatch]);
+    }, [debouncedFetchData, dispatch, setSearchParams, sortField, sortOrder]);
 
     return (
         <div className={ classNames(cls.ArticlesPageFilter, {}, [className]) }>
