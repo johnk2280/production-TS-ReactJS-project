@@ -3,7 +3,6 @@ import { type ThunkConfig } from 'app/providers/StoreProvider';
 import {
     getArticlesPageHasMore,
     getArticlesPageIsLoading,
-    getArticlesPageLimit,
     getArticlesPageNum
 } from 'pages/ArticlesPage/model/selectors/articlesPage';
 import { articlesPageActions } from 'pages/ArticlesPage/model/slice/articlesPageSlice';
@@ -17,16 +16,13 @@ ThunkConfig<string>
     'articlesPage/fetchNextArticles',
     async (_, thunkApi) => {
         const { getState, dispatch } = thunkApi;
-        const limit = getArticlesPageLimit(getState());
         const page = getArticlesPageNum(getState());
         const hasMore = getArticlesPageHasMore(getState());
         const isLoading = getArticlesPageIsLoading(getState());
 
         if (hasMore && !isLoading) {
             dispatch(articlesPageActions.setPage(page + 1));
-            dispatch(fetchArticles({
-                page: page + 1
-            }));
+            dispatch(fetchArticles());
         }
     }
 );

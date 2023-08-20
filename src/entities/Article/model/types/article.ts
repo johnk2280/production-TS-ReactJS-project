@@ -3,7 +3,7 @@ import { type User } from 'entities/User';
 export enum ArticleSortField {
     VIEWS = 'views',
     TITLE = 'title',
-    CREATED = 'created'
+    CREATED_AT = 'createdAt'
 }
 
 export enum ArticleBlockType {

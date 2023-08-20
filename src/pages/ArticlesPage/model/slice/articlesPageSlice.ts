@@ -26,7 +26,7 @@ export const articlesPageSlice = createSlice({
         hasMore: true,
         page: 1,
         _inited: false,
-        sortField: ArticleSortField.CREATED,
+        sortField: ArticleSortField.CREATED_AT,
         order: 'asc',
         search: ''
     }),
