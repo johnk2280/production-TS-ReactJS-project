@@ -18,6 +18,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { ArticleSortSelector } from 'features/ArticleSortSelector';
 import { type SortOrder } from 'shared/types/sortTypes';
 import { fetchArticles } from 'pages/ArticlesPage/model/services/fetchArticles/fetchArticles';
+import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 
 interface ArticlesPageFilterProps {
     className?: string;
@@ -38,6 +39,8 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
         dispatch(fetchArticles({ replace: true }));
     }, [dispatch]);
 
+    const debouncedFetchData = useDebounce(fetchData, 500);
+
     const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
     }, [dispatch]);
@@ -57,8 +60,8 @@ export const ArticlesPageFilter: FC<ArticlesPageFilterProps> = memo((props: Arti
     const onChangeSearch = useCallback((text: string) => {
         dispatch(articlesPageActions.setSearch(text));
         dispatch(articlesPageActions.setPage(1));
-        fetchData();
-    }, [dispatch, fetchData]);
+        debouncedFetchData();
+    }, [debouncedFetchData, dispatch]);
 
     return (
         <div className={ classNames(cls.ArticlesPageFilter, {}, [className]) }>
