@@ -15,7 +15,7 @@ ThunkConfig<string>
         const inited = getArticlesPageInited(getState());
         if (!inited) {
             dispatch(articlesPageActions.initView());
-            dispatch(fetchArticles());
+            dispatch(fetchArticles({}));
         }
     }
 );

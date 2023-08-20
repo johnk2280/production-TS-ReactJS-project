@@ -9,14 +9,19 @@ import {
     getArticlesPageSortOrder
 } from 'pages/ArticlesPage/model/selectors/articlesPage';
 
+interface FetchArticlesProps {
+    replace?: boolean;
+}
+
 export const fetchArticles = createAsyncThunk<
 Article[],
-void | never,
+FetchArticlesProps,
 ThunkConfig<string>
 >(
     'articlesPage/fetchArticles',
-    async (_, thunkApi) => {
+    async (params, thunkApi) => {
         const { extra, rejectWithValue, getState } = thunkApi;
+        const { replace } = params;
         const limit = getArticlesPageLimit(getState());
         const page = getArticlesPageNum(getState());
         const sortField = getArticlesPageSortField(getState());

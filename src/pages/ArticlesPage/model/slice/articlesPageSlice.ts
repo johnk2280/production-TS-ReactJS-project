@@ -5,6 +5,7 @@ import { type ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticles } from './../services/fetchArticles/fetchArticles';
 import { ARTICLES_VIEW_LOCAL_STORAGE_KEY } from 'shared/const/localStorage';
 import { type SortOrder } from 'shared/types/sortTypes';
+import { action } from '@storybook/addon-actions';
 
 const articlesPageAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id
@@ -57,15 +58,24 @@ export const articlesPageSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchArticles.pending, (state) => {
+            .addCase(fetchArticles.pending, (state, action) => {
                 state.error = '';
                 state.isLoading = true;
+
+                if (action.meta.arg.replace) {
+                    articlesPageAdapter.removeAll(state);
+                }
             })
             .addCase(fetchArticles.fulfilled, (state, action) => {
                 state.error = '';
                 state.isLoading = false;
-                articlesPageAdapter.addMany(state, action.payload);
                 state.hasMore = action.payload.length > 0;
+
+                if (action.meta.arg.replace) {
+                    articlesPageAdapter.setAll(state, action.payload);
+                } else {
+                    articlesPageAdapter.addMany(state, action.payload);
+                }
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.error = action.payload ?? 'error';
