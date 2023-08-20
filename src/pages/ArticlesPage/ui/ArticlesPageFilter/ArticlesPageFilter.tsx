@@ -4,8 +4,6 @@ import cls from './ArticlesPageFilter.module.scss';
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
 import { useSelector } from 'react-redux';
 import {
-    getArticlesPageLimit,
-    getArticlesPageNum,
     getArticlesPageSearch,
     getArticlesPageSortField,
     getArticlesPageSortOrder,
