@@ -63,7 +63,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     return (
         <DynamicModuleLoader reducers={ reducers } removeAfterUnmount={ true }>
-            <Page className={ classNames('', {}, [className]) }>
+            <Page className={ classNames(cls.ArticleDetailsPage, {}, [className]) }>
                 <ArticleDetails id={ id }/>
                 <Text
                     className={ cls.commentTitle }
@@ -71,6 +71,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                     size={ TextSize.L }
                 />
                 <ArticleList
+                    className={ cls.recommendations }
                     articleList={ recommendations }
                     isLoading={ recommendationsIsLoading }
                 />
