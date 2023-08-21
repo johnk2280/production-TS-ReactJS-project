@@ -5,6 +5,8 @@ import { type Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
 import cls from './ArticleList.module.scss';
+import { Text, TextSize } from 'shared/ui/Text/Text';
+import { useTranslation } from 'react-i18next';
 
 interface ArticleListProps {
     className?: string;
@@ -28,6 +30,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
         isLoading
     } = props;
     const navigate = useNavigate();
+    const { t } = useTranslation('articles-page');
 
     const onClickArticle = useCallback((id: string) => {
         navigate(`${id}`);
@@ -44,6 +47,14 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
             />
         );
     }, [onClickArticle, view]);
+
+    if (!isLoading && !articleList.length) {
+        return (
+            <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
+                <Text size={ TextSize.L } title={ t('Статьи не найдены') }/>
+            </div>
+        );
+    }
 
     return (
         <div className={ classNames(cls.ArticleList, {}, [className, cls[view]]) }>
