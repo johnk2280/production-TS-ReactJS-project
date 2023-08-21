@@ -2,29 +2,34 @@ import { type FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArticleDetails } from 'entities/Article';
+import { ArticleDetails, ArticleList, ArticleView } from 'entities/Article';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentList } from 'entities/Comment';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 import { articleDetailCommentsReducer, getArticleComments } from '../model/slice/articleDetailsCommentsSlice';
 import { getArticleCommentsIsLoading } from '../model/selectors/comments';
 import cls from './ArticleDetaisPage.module.scss';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import {
-    fetchCommentsByArticleId
-} from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { AddCommentForm } from 'features/AddCommentForm';
-import { addCommentForArticle } from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
+import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
 import { Page } from 'widgets/Page';
+import {
+    articleDetailPageRecommendationsReducer,
+    getArticleRecommendations
+} from '../model/slice/articleDetailsPageRecommendationsSlice';
+import { getArticleRecommendationsIsLoading } from '../model/selectors/recommendations';
+import { fetchArticleRecommendations } from '../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 
 interface ArticleDetailsPageProps {
     className?: string;
 }
 
 const reducers: ReducerList = {
-    articleDetailsComments: articleDetailCommentsReducer
+    articleDetailsComments: articleDetailCommentsReducer,
+    articleDetailsRecommendations: articleDetailPageRecommendationsReducer
 };
 
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
@@ -36,6 +41,8 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     const dispatch = useAppDispatch();
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentForArticle(text));
@@ -43,6 +50,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchArticleRecommendations());
     });
 
     if (!id) {
@@ -55,11 +63,22 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     return (
         <DynamicModuleLoader reducers={ reducers } removeAfterUnmount={ true }>
-            <Page className={ classNames('', {}, [className]) }>
+            <Page className={ classNames(cls.ArticleDetailsPage, {}, [className]) }>
                 <ArticleDetails id={ id }/>
                 <Text
                     className={ cls.commentTitle }
+                    title={ t('Рекомендуем') }
+                    size={ TextSize.L }
+                />
+                <ArticleList
+                    className={ cls.recommendations }
+                    articleList={ recommendations }
+                    isLoading={ recommendationsIsLoading }
+                />
+                <Text
+                    className={ cls.commentTitle }
                     title={ t('Комментарии') }
+                    size={ TextSize.L }
                 />
                 <AddCommentForm
                     onSendComment={ onSendComment }
