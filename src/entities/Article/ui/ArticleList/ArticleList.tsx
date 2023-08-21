@@ -26,7 +26,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
     const {
         className = '',
         articleList,
-        view = ArticleView.BIG,
+        view = ArticleView.SMALL,
         isLoading
     } = props;
     const navigate = useNavigate();

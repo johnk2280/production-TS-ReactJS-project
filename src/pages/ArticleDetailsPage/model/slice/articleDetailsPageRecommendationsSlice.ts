@@ -5,6 +5,9 @@ import {
     type ArticleDetailsRecommendationsSchema
 } from '../../model/types/ArticleDetailsRecommendationsSchema';
 import { type Article } from 'entities/Article';
+import {
+    fetchArticleRecommendations
+} from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 
 const recommendationsAdapter = createEntityAdapter<Article>({
     selectId: (article) => article.id
@@ -22,26 +25,25 @@ export const articleDetailsPageRecommendationsSlice = createSlice({
         error: undefined,
         isLoading: false
     }),
-    reducers: {}
-    // extraReducers: (builder) => {
-    //     builder
-    //         .addCase(fetchCommentsByArticleId.pending, (state) => {
-    //             state.error = '';
-    //             state.isLoading = true;
-    //         })
-    //         .addCase(fetchCommentsByArticleId.fulfilled, (state, action) => {
-    //             state.error = '';
-    //             state.isLoading = false;
-    //             recommendationsAdapter.setAll(state, action.payload);
-    //         })
-    //         .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
-    //             state.error = action.payload;
-    //             state.isLoading = false;
-    //         });
-    // }
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchArticleRecommendations.pending, (state) => {
+                state.error = '';
+                state.isLoading = true;
+            })
+            .addCase(fetchArticleRecommendations.fulfilled, (state, action) => {
+                state.error = '';
+                state.isLoading = false;
+                recommendationsAdapter.setAll(state, action.payload);
+            })
+            .addCase(fetchArticleRecommendations.rejected, (state, action) => {
+                state.error = action.payload;
+                state.isLoading = false;
+            });
+    }
 });
 
 export const {
-    reducer: articleDetailPageRecommendationsReducer,
-    actions: articleDetailPageRecommendationsAction
+    reducer: articleDetailPageRecommendationsReducer
 } = articleDetailsPageRecommendationsSlice;

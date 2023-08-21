@@ -2,7 +2,7 @@ import { type FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArticleDetails, ArticleList } from 'entities/Article';
+import { ArticleDetails, ArticleList, ArticleView } from 'entities/Article';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentList } from 'entities/Comment';
 import { Text, TextSize } from 'shared/ui/Text/Text';
@@ -21,6 +21,7 @@ import {
     getArticleRecommendations
 } from '../model/slice/articleDetailsPageRecommendationsSlice';
 import { getArticleRecommendationsIsLoading } from '../model/selectors/recommendations';
+import { fetchArticleRecommendations } from '../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -49,6 +50,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchArticleRecommendations());
     });
 
     if (!id) {
