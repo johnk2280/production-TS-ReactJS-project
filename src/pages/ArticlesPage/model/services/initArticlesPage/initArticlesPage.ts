@@ -4,7 +4,7 @@ import { articlesPageActions } from '../../slice/articlesPageSlice';
 import { fetchArticles } from '../../services/fetchArticles/fetchArticles';
 import { getArticlesPageInited } from '../../selectors/articlesPage';
 import { type SortOrder } from 'shared/types/sortTypes';
-import { ArticleSortField } from 'entities/Article';
+import { ArticleSortField, ArticleType } from 'entities/Article';
 
 export const initArticlesPage = createAsyncThunk<
 void | never,
@@ -26,6 +26,9 @@ ThunkConfig<string>
             );
             dispatch(
                 articlesPageActions.setSearch(params.get('q') ?? '')
+            );
+            dispatch(
+                articlesPageActions.setType(params.get('type') as ArticleType ?? ArticleType.ALL)
             );
             dispatch(
                 articlesPageActions.initView()
