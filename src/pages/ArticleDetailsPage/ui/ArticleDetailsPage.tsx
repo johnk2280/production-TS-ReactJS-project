@@ -2,12 +2,12 @@ import { type FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArticleDetails, ArticleList, ArticleView } from 'entities/Article';
+import { ArticleDetails, ArticleList } from 'entities/Article';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentList } from 'entities/Comment';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
-import { articleDetailCommentsReducer, getArticleComments } from '../model/slice/articleDetailsCommentsSlice';
+import { getArticleComments } from '../model/slice/articleDetailsCommentsSlice';
 import { getArticleCommentsIsLoading } from '../model/selectors/comments';
 import cls from './ArticleDetaisPage.module.scss';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -16,20 +16,17 @@ import { fetchCommentsByArticleId } from '../model/services/fetchCommentsByArtic
 import { AddCommentForm } from 'features/AddCommentForm';
 import { addCommentForArticle } from '../model/services/addCommentForArticle/addCommentForArticle';
 import { Page } from 'widgets/Page';
-import {
-    articleDetailPageRecommendationsReducer,
-    getArticleRecommendations
-} from '../model/slice/articleDetailsPageRecommendationsSlice';
+import { getArticleRecommendations } from '../model/slice/articleDetailsPageRecommendationsSlice';
 import { getArticleRecommendationsIsLoading } from '../model/selectors/recommendations';
 import { fetchArticleRecommendations } from '../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import { articleDetailsPageReducer } from '../model/slice';
 
 interface ArticleDetailsPageProps {
     className?: string;
 }
 
 const reducers: ReducerList = {
-    articleDetailsComments: articleDetailCommentsReducer,
-    articleDetailsRecommendations: articleDetailPageRecommendationsReducer
+    articleDetailsPage: articleDetailsPageReducer
 };
 
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
