@@ -71,6 +71,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                     className={ cls.recommendations }
                     articleList={ recommendations }
                     isLoading={ recommendationsIsLoading }
+                    target={ '_blank' }
                 />
                 <Text
                     className={ cls.commentTitle }

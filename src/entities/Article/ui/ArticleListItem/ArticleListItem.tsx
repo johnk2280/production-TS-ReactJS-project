@@ -1,4 +1,4 @@
-import { type FC, memo, useCallback } from 'react';
+import { type FC, type HTMLAttributeAnchorTarget, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Card } from 'shared/ui/Card/Card';
@@ -17,13 +17,15 @@ interface ArticleListItemProps {
     className?: string;
     article: Article;
     view?: ArticleView;
+    target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleListItemProps) => {
     const {
         className = '',
         view = ArticleView.SMALL,
-        article
+        article,
+        target
     } = props;
     const { t } = useTranslation('article-details');
 
@@ -44,7 +46,10 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
                     <img src={ article.img } alt={ article.title } className={ cls.img }/>
                     { textBlock && <ArticleTextBlockComponent block={ textBlock } className={ cls.textBlock } /> }
                     <div className={ cls.footer }>
-                        <AppLink to={ RoutePath.article_details + article.id }>
+                        <AppLink
+                            target={ target }
+                            to={ RoutePath.article_details + article.id }
+                        >
                             <Button theme={ ButtonTheme.OUTLINE }>
                                 { t('Читать далее ...') }
                             </Button>
@@ -62,6 +67,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = memo((props: ArticleLis
 
     return (
         <AppLink
+            target={ target }
             className={ classNames('', {}, [className, cls[view]]) }
             to={ RoutePath.article_details + article.id }
         >
