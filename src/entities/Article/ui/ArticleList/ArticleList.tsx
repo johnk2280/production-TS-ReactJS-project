@@ -29,12 +29,7 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
         view = ArticleView.SMALL,
         isLoading
     } = props;
-    const navigate = useNavigate();
     const { t } = useTranslation('articles-page');
-
-    const onClickArticle = useCallback((id: string) => {
-        navigate(`${id}`);
-    }, [navigate]);
 
     const renderArticle = useCallback((article: Article) => {
         return (
@@ -43,10 +38,9 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
                 article={ article }
                 view={ view }
                 key={ article.id }
-                onClick={ onClickArticle }
             />
         );
-    }, [onClickArticle, view]);
+    }, [view]);
 
     if (!isLoading && !articleList.length) {
         return (
