@@ -1,4 +1,4 @@
-import { type FC, memo, type ReactNode, useCallback } from 'react';
+import { type FC, type HTMLAttributeAnchorTarget, memo, type ReactNode, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type Article, ArticleView } from '../../model/types/article';
@@ -13,6 +13,7 @@ interface ArticleListProps {
     articleList: Article[];
     isLoading?: boolean;
     view?: ArticleView;
+    target?: HTMLAttributeAnchorTarget;
 }
 
 const getSkeletons = (view: ArticleView): ReactNode[] => {
@@ -27,14 +28,10 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
         className = '',
         articleList,
         view = ArticleView.SMALL,
-        isLoading
+        isLoading,
+        target
     } = props;
-    const navigate = useNavigate();
     const { t } = useTranslation('articles-page');
-
-    const onClickArticle = useCallback((id: string) => {
-        navigate(`${id}`);
-    }, [navigate]);
 
     const renderArticle = useCallback((article: Article) => {
         return (
@@ -43,10 +40,10 @@ export const ArticleList: FC<ArticleListProps> = memo((props: ArticleListProps) 
                 article={ article }
                 view={ view }
                 key={ article.id }
-                onClick={ onClickArticle }
+                target={ target }
             />
         );
-    }, [onClickArticle, view]);
+    }, [target, view]);
 
     if (!isLoading && !articleList.length) {
         return (

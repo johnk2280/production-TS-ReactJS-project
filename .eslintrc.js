@@ -62,7 +62,7 @@ module.exports = {
         '@typescript-eslint/naming-convention': 'off',
         "i18next/no-literal-string": ['error', {
             markupOnly: true,
-            ignoreAttribute: ['data-testid', 'to']
+            ignoreAttribute: ['data-testid', 'to', 'target']
         }],
         "@typescript-eslint/consistent-type-assertions": "warn",
         "react-hooks/rules-of-hooks": "error",
