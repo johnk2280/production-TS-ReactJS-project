@@ -1,5 +1,4 @@
 import { type FC, type HTMLAttributeAnchorTarget, memo, type ReactNode, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
