@@ -44,7 +44,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
     const { t } = useTranslation('article-details');
 
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+
     const article = useSelector(getArticleDetailsData);
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
@@ -78,10 +78,6 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
             return null;
         }
     }, []);
-
-    const backToArticleList = useCallback(() => {
-        navigate(RoutePath.articles);
-    }, [navigate]);
 
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
@@ -143,12 +139,6 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
     return (
         <DynamicModuleLoader reducers={ reducers } removeAfterUnmount={ true }>
             <div className={ classNames(cls.ArticleDetails, {}, [className]) }>
-                <Button
-                    theme={ ButtonTheme.OUTLINE }
-                    onClick={ backToArticleList }
-                >
-                    { t('< НАЗАД') }
-                </Button>
                 { content }
             </div>
         </DynamicModuleLoader>
