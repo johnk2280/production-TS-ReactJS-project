@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getArticleDetailsPageHasEditPermission } from '../../model/selectors/editPermissions';
+import { getArticleDetailsData } from 'entities/Article';
 
 interface ArticleDetailsPageHeaderProps {
     className?: string;
@@ -19,10 +20,15 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = memo(
     const { t } = useTranslation('article-details');
     const navigate = useNavigate();
     const hasEditPermission = useSelector(getArticleDetailsPageHasEditPermission);
+    const article = useSelector(getArticleDetailsData);
 
     const backToArticleList = useCallback(() => {
         navigate(RoutePath.articles);
     }, [navigate]);
+
+    const onEditArticle = useCallback(() => {
+        article && navigate(`${RoutePath.article_details}${article.id}/edit`);
+    }, [article, navigate]);
     return (
         <div className={ classNames(cls.ArticleDetailsPageHeader, {}, [className]) }>
             <Button
@@ -36,7 +42,7 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = memo(
                     <Button
                         className={ cls.editBtn }
                         theme={ ButtonTheme.OUTLINE }
-                        onClick={ backToArticleList }
+                        onClick={ onEditArticle }
                     >
                         { t('Редактировать') }
                     </Button>
