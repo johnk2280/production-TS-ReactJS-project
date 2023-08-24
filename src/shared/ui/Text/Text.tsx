@@ -5,6 +5,7 @@ import { type TFunction } from 'react-i18next';
 
 export enum TextTheme {
     PRIMARY = 'primary',
+    INVERTED = 'inverted',
     ERROR = 'error',
 }
 
