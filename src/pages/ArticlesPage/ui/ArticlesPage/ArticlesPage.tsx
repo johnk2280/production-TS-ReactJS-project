@@ -11,7 +11,7 @@ import cls from './ArticlesPage.module.scss';
 import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { Page } from 'widgets/Page';
-import { ArticlesPageFilter } from 'pages/ArticlesPage/ui/ArticlesPageFilter/ArticlesPageFilter';
+import { ArticlesPageFilter } from '../ArticlesPageFilter/ArticlesPageFilter';
 import { useSearchParams } from 'react-router-dom';
 
 interface ArticlesPageProps {

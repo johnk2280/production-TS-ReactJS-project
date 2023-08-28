@@ -1,5 +1,5 @@
 import { type StateSchema } from 'app/providers/StoreProvider';
-import { type ScrollSchema } from 'features/UI/model/types/UISchema';
+import { type ScrollSchema } from '../types/UISchema';
 import { createSelector } from '@reduxjs/toolkit';
 
 export const getUIScroll = (state: StateSchema): ScrollSchema => state.ui.scroll;
