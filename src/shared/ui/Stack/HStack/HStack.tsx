@@ -1,21 +1,13 @@
-import { type FC, memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './HStack.module.scss';
+import { type FC } from 'react';
+import { Flex, type FlexProps } from '../Flex/Flex';
 
-interface HStackProps {
-    className?: string;
-}
+type HStackProps = Omit<FlexProps, 'direction'>;
 
-export const HStack: FC<HStackProps> = memo((props: HStackProps) => {
-    const {
-        className = ''
-    } = props;
-
+export const HStack: FC<HStackProps> = (props: HStackProps) => {
     return (
-        <div className={ classNames(cls.HStack, {}, [className]) }>
-
-        </div>
+        <Flex
+            direction={ 'row' }
+            { ...props }
+        />
     );
-});
-
-HStack.displayName = 'HStack';
+};

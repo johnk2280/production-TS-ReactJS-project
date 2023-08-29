@@ -1,20 +1,14 @@
 import { type FC, memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './VStack.module.scss';
+import { Flex, type FlexProps } from '../Flex/Flex';
 
-interface VStackProps {
-    className?: string;
-}
+type VStackProps = Omit<FlexProps, 'direction'>;
 
 export const VStack: FC<VStackProps> = memo((props: VStackProps) => {
-    const {
-        className = ''
-    } = props;
-
     return (
-        <div className={ classNames(cls.VStack, {}, [className]) }>
-
-        </div>
+        <Flex
+            direction={ 'column' }
+            { ...props }
+        />
     );
 });
 
