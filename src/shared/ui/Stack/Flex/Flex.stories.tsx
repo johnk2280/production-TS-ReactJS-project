@@ -12,5 +12,35 @@ export default {
 
 const Template: ComponentStory<typeof Flex> = (args) => <Flex { ...args } />;
 
-export const Normal = Template.bind({});
-Normal.args = {};
+export const Row = Template.bind({});
+Row.args = {
+    children: (
+        <>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>one</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>two</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>three</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>four</div>
+        </>
+    )
+};
+
+export const Column = Template.bind({});
+Column.args = {
+    direction: 'column',
+    children: (
+        <>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>one</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>two</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>three</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>four</div>
+        </>
+    )
+};
