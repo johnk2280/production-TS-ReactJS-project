@@ -109,3 +109,72 @@ Gap32.args = {
         </>
     )
 };
+
+export const ColumnGap4 = Template.bind({});
+ColumnGap4.args = {
+    direction: 'column',
+    gap: '4',
+    children: (
+        <>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>one</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>two</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>three</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>four</div>
+        </>
+    )
+};
+export const ColumnGap8 = Template.bind({});
+ColumnGap8.args = {
+    direction: 'column',
+    gap: '8',
+    children: (
+        <>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>one</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>two</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>three</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>four</div>
+        </>
+    )
+};
+export const ColumnGap16 = Template.bind({});
+ColumnGap16.args = {
+    direction: 'column',
+    gap: '16',
+    children: (
+        <>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>one</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>two</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>three</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>four</div>
+        </>
+    )
+};
+export const ColumnGap32 = Template.bind({});
+ColumnGap32.args = {
+    direction: 'column',
+    gap: '32',
+    children: (
+        <>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>one</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>two</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>three</div>
+            { /* eslint-disable-next-line i18next/no-literal-string */ }
+            <div>four</div>
+        </>
+    )
+};
