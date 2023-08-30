@@ -1,3 +1,5 @@
+export { ValidateProfileError } from './model/types/profileSchema';
+
 export {
     getProfileValidateError
 } from './model/selectors/getProfileValidateError/getProfileValidateError';
