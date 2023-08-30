@@ -40,6 +40,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
     return (
         <HStack
             justify={ 'between' }
+            max={ true }
             className={ classNames('', {}, [className]) }
         >
             <Text
@@ -59,7 +60,7 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
                                 </Button>
                             )
                             : (
-                                <HStack gap={ '8' }>
+                                <HStack gap={ '8' } max={ true }>
                                     <Button
                                         theme={ ButtonTheme.OUTLINE_RED }
                                         onClick={ onCancelEdit }
