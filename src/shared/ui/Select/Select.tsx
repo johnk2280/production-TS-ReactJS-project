@@ -1,6 +1,7 @@
 import React, { type ChangeEvent, useCallback, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Select.module.scss';
+import { HStack } from '../Stack/HStack/HStack';
 
 export interface SelectOption<T extends string> {
     value: T;
@@ -43,7 +44,12 @@ export const Select = <T extends string>(props: SelectProps<T>): JSX.Element => 
     }, [onChange]);
 
     return (
-        <div className={ classNames(cls.Wrapper, {}, [className]) }>
+        <HStack
+            gap={ '16' }
+            max={ true }
+            justify={ 'between' }
+            className={ classNames(cls.Wrapper, {}, [className]) }
+        >
             {
                 label && (
                     <span className={ cls.label }>
@@ -59,7 +65,7 @@ export const Select = <T extends string>(props: SelectProps<T>): JSX.Element => 
             >
                 { optionList }
             </select>
-        </div>
+        </HStack>
     );
 };
 

@@ -1,7 +1,8 @@
-import React, { type FC, memo, useCallback } from 'react';
+import React, { type FC, memo, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { type AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 import { RequireAuth } from 'app/providers/router/ui/RequireAuth';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 interface AppRouterProps {
     props?: any;
@@ -10,9 +11,9 @@ interface AppRouterProps {
 const AppRouter: FC<AppRouterProps> = (props) => {
     const renderWithWrapper = useCallback((route: AppRoutesProps) => {
         const element = (
-            <div className="page-wrapper">
+            <Suspense fallback={ <Loader/> } >
                 { route.element }
-            </div>
+            </Suspense>
         );
 
         return (
