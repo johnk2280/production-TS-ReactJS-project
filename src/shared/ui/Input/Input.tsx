@@ -34,7 +34,7 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
     return (
         <HStack
             max={ true }
-            justify={ 'between' }
+            justify={ 'start' }
             gap={ '16' }
             className={ classNames('', mods, [className ?? '']) }
         >

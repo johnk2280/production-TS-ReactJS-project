@@ -47,7 +47,7 @@ export const Select = <T extends string>(props: SelectProps<T>): JSX.Element => 
         <HStack
             gap={ '16' }
             max={ true }
-            justify={ 'between' }
+            justify={ 'start' }
             className={ classNames(cls.Wrapper, {}, [className]) }
         >
             {
