@@ -89,6 +89,7 @@ export const ProfileCard: FC<ProfileCardProps> = (props) => {
             <HStack
                 align={ 'center' }
                 max={ true }
+                justify={ 'center' }
             >
                 {
                     data?.avatar && <Avatar src={ data?.avatar } alt={ '' }/>

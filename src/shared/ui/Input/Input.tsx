@@ -1,6 +1,7 @@
 import { classNames, type Mods } from 'shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 import React, { type FC, type InputHTMLAttributes, memo } from 'react';
+import { HStack } from '../Stack/HStack/HStack';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>;
 
@@ -31,7 +32,12 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
     };
 
     return (
-        <div className={ classNames(cls.InputWrapper, mods, [className ?? '']) }>
+        <HStack
+            max={ true }
+            justify={ 'start' }
+            gap={ '16' }
+            className={ classNames('', mods, [className ?? '']) }
+        >
             <div className={ cls.placeholder }>
                 { placeholder && placeholder }
             </div>
@@ -41,7 +47,7 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
                 readOnly={ readonly }
                 { ...otherProps }
             />
-        </div>
+        </HStack>
 
     );
 });

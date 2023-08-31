@@ -1,10 +1,10 @@
 import { type FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './CommentList.module.scss';
 import { type IComment } from '../../model/types/comment';
 import { Text } from 'shared/ui/Text/Text';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { useTranslation } from 'react-i18next';
+import { VStack } from 'shared/ui/Stack';
 
 interface CommentListProps {
     className?: string;
@@ -22,23 +22,29 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
 
     if (isLoading) {
         return (
-            <div className={ classNames(cls.CommentList, {}, [className]) }>
-                <CommentCard className={ cls.comment } isLoading={ isLoading }/>
-                <CommentCard className={ cls.comment } isLoading={ isLoading }/>
-                <CommentCard className={ cls.comment } isLoading={ isLoading }/>
-                <CommentCard className={ cls.comment } isLoading={ isLoading }/>
+            <VStack
+                gap={ '16' }
+                className={ classNames('', {}, [className]) }
+            >
+                <CommentCard isLoading={ isLoading }/>
+                <CommentCard isLoading={ isLoading }/>
+                <CommentCard isLoading={ isLoading }/>
+                <CommentCard isLoading={ isLoading }/>
 
-            </div>
+            </VStack>
         );
     }
 
     return (
-        <div className={ classNames(cls.CommentList, {}, [className]) }>
+        <VStack
+            gap={ '16' }
+            max={ true }
+            className={ classNames('', {}, [className]) }
+        >
             {
                 comments?.length
                     ? comments.map(comment => (
                         <CommentCard
-                            className={ cls.comment }
                             item={ comment }
                             key={ comment.id }
                             isLoading={ isLoading }
@@ -46,7 +52,7 @@ export const CommentList: FC<CommentListProps> = memo((props: CommentListProps) 
                     ))
                     : <Text text={ t('Комментарии отсутствуют') }/>
             }
-        </div>
+        </VStack>
     );
 });
 
