@@ -71,6 +71,7 @@ module.exports = {
                 'justify',
                 'align',
                 'gap',
+                'role'
             ]
         }],
         "@typescript-eslint/consistent-type-assertions": "warn",

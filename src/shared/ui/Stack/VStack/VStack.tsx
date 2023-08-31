@@ -1,9 +1,9 @@
-import { type FC, memo } from 'react';
+import { type FC } from 'react';
 import { Flex, type FlexProps } from '../Flex/Flex';
 
 type VStackProps = Omit<FlexProps, 'direction'>;
 
-export const VStack: FC<VStackProps> = memo((props: VStackProps) => {
+export const VStack: FC<VStackProps> = (props: VStackProps) => {
     const { align = 'start' } = props;
     return (
         <Flex
@@ -12,6 +12,4 @@ export const VStack: FC<VStackProps> = memo((props: VStackProps) => {
             { ...props }
         />
     );
-});
-
-VStack.displayName = 'VStack';
+};
