@@ -1,3 +1,21 @@
 .Listbox {
+  position: relative;
+}
+
+.trigger {
+
+}
+
+.options {
+  background: var(--listBox-bg);
+  position: absolute;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px var(--listBox-bg);
+  padding: 10px;
+
+}
+
+.item {
 
 }
