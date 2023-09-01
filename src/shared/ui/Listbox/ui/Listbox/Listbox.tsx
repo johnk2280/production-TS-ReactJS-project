@@ -33,13 +33,13 @@ export function Listbox (props: ListboxProps): JSX.Element {
     return (
         <HListbox
             as={ 'div' }
-            className={ classNames(cls.Listbox, { [cls.disabled]: readonly }, [className ?? '']) }
+            className={ classNames(cls.Listbox, {}, [className ?? '']) }
             value={ value }
             onChange={ onChange }
             disabled={ readonly }
         >
             <HListbox.Button className={ cls.trigger } as={ 'div' }>
-                <Button>
+                <Button disabled={ readonly }>
                     { value ?? defaultValue }
                 </Button>
             </HListbox.Button>

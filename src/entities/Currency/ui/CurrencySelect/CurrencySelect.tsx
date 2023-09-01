@@ -3,6 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Currency } from '../../model/types/currency';
 import { useTranslation } from 'react-i18next';
 import { Listbox, type ListboxItem } from 'shared/ui/Listbox';
+import { HStack } from 'shared/ui/Stack';
 
 interface CurrencySelectProps {
     className?: string;
@@ -10,8 +11,6 @@ interface CurrencySelectProps {
     onChange?: (value: Currency) => void;
     readonly?: boolean;
 }
-
-// label={ t('Валюта') }
 
 const options: ListboxItem[] = [
     { value: Currency.RUB, content: Currency.RUB, disabled: false },
@@ -34,14 +33,17 @@ export const CurrencySelect: FC<CurrencySelectProps> = memo((props: CurrencySele
     }, [onChange]);
 
     return (
-        <Listbox
-            className={ classNames('', {}, [className]) }
-            onChange={ onChangeHandler }
-            items={ options }
-            value={ value }
-            defaultValue={ t('Укажите валюту') }
-            readonly={ readonly }
-        />
+        <HStack gap={ '16' }>
+            { t('Валюта') }
+            <Listbox
+                className={ classNames('', {}, [className]) }
+                onChange={ onChangeHandler }
+                items={ options }
+                value={ value }
+                defaultValue={ t('Укажите валюту') }
+                readonly={ readonly }
+            />
+        </HStack>
 
     );
 });
