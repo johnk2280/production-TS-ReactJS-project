@@ -1,1 +1,1 @@
-export { Listbox } from './ui/Listbox/Listbox';
+export { Listbox, type ListboxItem } from './ui/Listbox/Listbox';

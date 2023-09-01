@@ -17,6 +17,7 @@ interface ListboxProps {
     value?: string;
     defaultValue?: string;
     onChange: <T extends string>(value: T) => void;
+    readonly?: boolean;
 }
 
 export function Listbox (props: ListboxProps): JSX.Element {
@@ -25,17 +26,19 @@ export function Listbox (props: ListboxProps): JSX.Element {
         items,
         value,
         onChange,
-        defaultValue
+        defaultValue,
+        readonly
     } = props;
 
     return (
         <HListbox
             as={ 'div' }
-            className={ classNames(cls.Listbox, {}, [className ?? '']) }
+            className={ classNames(cls.Listbox, { [cls.disabled]: readonly }, [className ?? '']) }
             value={ value }
             onChange={ onChange }
+            disabled={ readonly }
         >
-            <HListbox.Button className={ cls.trigger } >
+            <HListbox.Button className={ cls.trigger } as={ 'div' }>
                 <Button>
                     { value ?? defaultValue }
                 </Button>
@@ -50,6 +53,7 @@ export function Listbox (props: ListboxProps): JSX.Element {
                 >
                     { items?.length && items.map((item) => (
                         <HListbox.Option
+                            as={ 'div' }
                             key={ item.value }
                             value={ item.value }
                             disabled={ item.disabled }
