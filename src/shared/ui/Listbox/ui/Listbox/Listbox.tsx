@@ -1,30 +1,44 @@
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { Listbox as HListbox } from '@headlessui/react';
 import cls from './Listbox.module.scss';
-import { VStack } from 'shared/ui/Stack';
+import { HStack, VStack } from '../../../Stack';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button } from '../../../Button/Button';
 
-const people = [
-    { id: 1, name: 'Durward Reynolds', unavailable: false },
-    { id: 2, name: 'Kenton Towne', unavailable: false },
-    { id: 3, name: 'Therese Wunsch', unavailable: false },
-    { id: 4, name: 'Benedict Kessler', unavailable: true },
-    { id: 5, name: 'Katelyn Rohan', unavailable: false }
-];
+export interface ListboxItem {
+    value: string;
+    content: ReactNode;
+    disabled: boolean;
+}
 
-export function Listbox (): JSX.Element {
-    const [selectedPerson, setSelectedPerson] = useState(people[0]);
+interface ListboxProps {
+    items?: ListboxItem[];
+    className?: string;
+    value?: string;
+    defaultValue?: string;
+    onChange: <T extends string>(value: T) => void;
+}
+
+export function Listbox (props: ListboxProps): JSX.Element {
+    const {
+        className,
+        items,
+        value,
+        onChange,
+        defaultValue
+    } = props;
 
     return (
         <HListbox
             as={ 'div' }
-            className={ cls.Listbox }
-            value={ selectedPerson }
-            onChange={ setSelectedPerson }
+            className={ classNames(cls.Listbox, {}, [className ?? '']) }
+            value={ value }
+            onChange={ onChange }
         >
-            <HListbox.Button
-                className={ cls.trigger }
-            >
-                { selectedPerson.name }
+            <HListbox.Button className={ cls.trigger } >
+                <Button>
+                    { value ?? defaultValue }
+                </Button>
             </HListbox.Button>
             <HListbox.Options
                 className={ cls.options }
@@ -34,14 +48,36 @@ export function Listbox (): JSX.Element {
                     max={ true }
                     align={ 'start' }
                 >
-                    { people.map((person) => (
+                    { items?.length && items.map((item) => (
                         <HListbox.Option
-                            key={ person.id }
-                            value={ person }
-                            disabled={ person.unavailable }
-                            className={ cls.item }
+                            key={ item.value }
+                            value={ item.value }
+                            disabled={ item.disabled }
+                            className={ cls.option }
                         >
-                            { person.name }
+                            { ({ active, selected, disabled }) => (
+                                <li
+                                    className={ classNames(
+                                        cls.item,
+                                        {
+                                            [cls.active]: active,
+                                            [cls.selected]: selected,
+                                            [cls.disabled]: disabled
+                                        }
+                                    ) }
+                                >
+                                    <HStack
+                                        gap={ '4' }
+                                        max={ true }
+                                        justify={ 'between' }
+                                    >
+                                        { /* eslint-disable-next-line i18next/no-literal-string */ }
+                                        { selected && <p>&#10004;</p> }
+                                        { item.content }
+                                    </HStack>
+
+                                </li>
+                            ) }
                         </HListbox.Option>
                     )) }
                 </VStack>

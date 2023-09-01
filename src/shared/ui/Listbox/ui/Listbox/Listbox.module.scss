@@ -3,7 +3,11 @@
 }
 
 .trigger {
-
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
 
 .options {
@@ -12,10 +16,30 @@
   z-index: 1000;
   border-radius: 10px;
   box-shadow: 2px 2px 4px var(--listBox-bg);
-  padding: 10px;
+  width: 100%;
+  //padding: 10px;
 
 }
 
-.item {
+.option {
+  min-width: 100%;
+}
 
+.item {
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 100%;
+}
+
+
+.active {
+  background: var(--inverted-secondary-color);
+}
+
+.selected {
+
+}
+
+.disabled {
+  opacity: 0.3;
 }

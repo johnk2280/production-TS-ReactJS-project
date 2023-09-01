@@ -10,8 +10,6 @@ export default {
     }
 } as ComponentMeta<typeof Listbox>;
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 const Template: ComponentStory<typeof Listbox> = (args) => <Listbox { ...args } />;
 
 export const Normal = Template.bind({});
