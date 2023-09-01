@@ -36,18 +36,16 @@ export const CountrySelect: FC<CountrySelectProps> = memo((props: CountrySelectP
     }, [onChange]);
 
     return (
-        <HStack gap={ '16' }>
-            { t('Страна') }
-            <Listbox
-                className={ classNames('', {}, [className]) }
-                onChange={ onChangeHandler }
-                items={ options }
-                value={ value }
-                readonly={ readonly }
-                defaultValue={ t('Укажите страну') }
-            />
-        </HStack>
-
+        <Listbox
+            className={ classNames('', {}, [className]) }
+            onChange={ onChangeHandler }
+            items={ options }
+            value={ value }
+            readonly={ readonly }
+            defaultValue={ t('Укажите страну') }
+            direction={ 'top' }
+            label={ t('Страна') }
+        />
     );
 });
 

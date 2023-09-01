@@ -33,18 +33,15 @@ export const CurrencySelect: FC<CurrencySelectProps> = memo((props: CurrencySele
     }, [onChange]);
 
     return (
-        <HStack gap={ '16' }>
-            { t('Валюта') }
-            <Listbox
-                className={ classNames('', {}, [className]) }
-                onChange={ onChangeHandler }
-                items={ options }
-                value={ value }
-                defaultValue={ t('Укажите валюту') }
-                readonly={ readonly }
-            />
-        </HStack>
-
+        <Listbox
+            className={ classNames('', {}, [className]) }
+            onChange={ onChangeHandler }
+            items={ options }
+            value={ value }
+            defaultValue={ t('Укажите валюту') }
+            readonly={ readonly }
+            label={ t('Валюта') }
+        />
     );
 });
 
