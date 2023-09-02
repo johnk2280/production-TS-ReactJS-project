@@ -3,6 +3,7 @@ import cls from './Dropdown.module.scss';
 import { Menu } from '@headlessui/react';
 import { VStack } from '../../../ui/Stack';
 import { Fragment, type ReactNode } from 'react';
+import { type DropDownDirection } from 'shared/types/ui';
 
 export interface DropdownItem {
     value: string;
@@ -16,15 +17,26 @@ export interface DropdownProps {
     className?: string;
     items: DropdownItem[];
     trigger: ReactNode;
+    direction?: DropDownDirection;
 }
+
+const mapDirectionClass: Record<DropDownDirection, string> = {
+    'bottom left': cls.optionsBottomLeft,
+    'top left': cls.optionsTopLeft,
+    'bottom right': cls.optionsBottomRight,
+    'top right': cls.optionsTopRight
+};
 
 export function Dropdown (props: DropdownProps): JSX.Element {
     const {
         className,
         items,
-        trigger
-
+        trigger,
+        direction = 'bottom right'
     } = props;
+
+    const optionsClasses = [mapDirectionClass[direction]];
+
     return (
         <Menu
             as={ 'div' }
@@ -33,7 +45,7 @@ export function Dropdown (props: DropdownProps): JSX.Element {
             <Menu.Button className={ cls.btn }>
                 { trigger }
             </Menu.Button>
-            <Menu.Items className={ cls.menu }>
+            <Menu.Items className={ classNames(cls.menu, {}, optionsClasses) }>
                 <VStack gap={ '8' }>
                     { items.map(item => (
                         <Menu.Item

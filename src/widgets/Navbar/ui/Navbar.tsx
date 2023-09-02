@@ -62,6 +62,7 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                                 value: 'logout'
                             }
                         ] }
+                        direction={ 'bottom left' }
                     />
                 </HStack>
             </header>
