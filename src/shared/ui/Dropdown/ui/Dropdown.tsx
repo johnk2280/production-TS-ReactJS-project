@@ -2,15 +2,28 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Dropdown.module.scss';
 import { Menu } from '@headlessui/react';
 import { VStack } from '../../../ui/Stack';
-import { Fragment } from 'react';
+import { Fragment, type ReactNode } from 'react';
+
+export interface DropdownItem {
+    value: string;
+    content: ReactNode;
+    onClick: () => void;
+    disabled?: boolean;
+    href?: string;
+}
 
 export interface DropdownProps {
     className?: string;
+    items: DropdownItem[];
+    trigger: ReactNode;
 }
 
 export function Dropdown (props: DropdownProps): JSX.Element {
     const {
-        className
+        className,
+        items,
+        trigger
+
     } = props;
     return (
         <Menu
@@ -18,22 +31,29 @@ export function Dropdown (props: DropdownProps): JSX.Element {
             className={ classNames(cls.Dropdown, {}, [className ?? '']) }
         >
             <Menu.Button className={ cls.btn }>
-                More
+                { trigger }
             </Menu.Button>
             <Menu.Items className={ cls.menu }>
                 <VStack gap={ '8' }>
-                    <Menu.Item as={ Fragment }>
-                        { ({ active, disabled }) => (
-                            <li
-                                className={
-                                    classNames(cls.item, { [cls.active]: active, [cls.disabled]: disabled })
-                                }
-                            >
-                                Account settings
-                            </li>
-                        ) }
-                    </Menu.Item>
-
+                    { items.map(item => (
+                        <Menu.Item
+                            as={ Fragment }
+                            key={ item.value }
+                            disabled={ item.disabled }
+                        >
+                            { ({ active, disabled }) => (
+                                <button
+                                    type={ 'button' }
+                                    onClick={ item.onClick }
+                                    className={
+                                        classNames(cls.item, { [cls.active]: active, [cls.disabled]: disabled })
+                                    }
+                                >
+                                    { item.content }
+                                </button>
+                            ) }
+                        </Menu.Item>
+                    )) }
                 </VStack>
 
             </Menu.Items>

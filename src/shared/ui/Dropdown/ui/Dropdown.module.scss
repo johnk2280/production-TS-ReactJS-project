@@ -7,7 +7,7 @@
   outline: none;
   margin: 0;
   padding: 0;
-  cursor: auto;
+  cursor: pointer;
   border: none;
 }
 
@@ -33,7 +33,7 @@
 .active {
   opacity: 0.8;
   background: var(--inverted-secondary-color);
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
 .disabled {
