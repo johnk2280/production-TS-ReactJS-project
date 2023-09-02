@@ -4,11 +4,12 @@ import { Menu } from '@headlessui/react';
 import { VStack } from '../../../ui/Stack';
 import { Fragment, type ReactNode } from 'react';
 import { type DropDownDirection } from 'shared/types/ui';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 
 export interface DropdownItem {
     value: string;
     content: ReactNode;
-    onClick: () => void;
+    onClick?: () => void;
     disabled?: boolean;
     href?: string;
 }
@@ -47,28 +48,46 @@ export function Dropdown (props: DropdownProps): JSX.Element {
             </Menu.Button>
             <Menu.Items className={ classNames(cls.menu, {}, optionsClasses) }>
                 <VStack gap={ '8' }>
-                    { items.map(item => (
-                        <Menu.Item
-                            as={ Fragment }
-                            key={ item.value }
-                            disabled={ item.disabled }
-                        >
-                            { ({ active, disabled }) => (
-                                <button
-                                    type={ 'button' }
-                                    onClick={ item.onClick }
-                                    className={
-                                        classNames(cls.item, { [cls.active]: active, [cls.disabled]: disabled })
-                                    }
+                    { items.map(item => {
+                        const content = ({ active, disabled }: { active: boolean; disabled: boolean }): JSX.Element => (
+                            <button
+                                type={ 'button' }
+                                onClick={ item.onClick }
+                                disabled={ item.disabled }
+                                className={
+                                    classNames(cls.item, { [cls.active]: active, [cls.disabled]: disabled })
+                                }
+                            >
+                                { item.content }
+                            </button>
+                        );
+
+                        if (item.href) {
+                            return (
+                                <Menu.Item
+                                    as={ AppLink }
+                                    to={ item.href }
+                                    key={ item.value }
+                                    disabled={ item.disabled }
                                 >
-                                    { item.content }
-                                </button>
-                            ) }
-                        </Menu.Item>
-                    )) }
+                                    { content }
+                                </Menu.Item>
+                            );
+                        }
+                        return (
+                            <Menu.Item
+                                as={ Fragment }
+                                key={ item.value }
+                                disabled={ item.disabled }
+                            >
+                                { content }
+                            </Menu.Item>
+                        );
+                    }) }
                 </VStack>
 
             </Menu.Items>
+
         </Menu>
     );
 }

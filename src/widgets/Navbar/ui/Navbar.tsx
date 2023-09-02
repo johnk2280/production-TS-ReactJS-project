@@ -57,6 +57,11 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                         trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
                         items={ [
                             {
+                                content: t('Профиль'),
+                                value: 'profile',
+                                href: RoutePath.profile + authData.id
+                            },
+                            {
                                 content: t('Выйти'),
                                 onClick: onLogout,
                                 value: 'logout'
