@@ -9,6 +9,9 @@ import { getUserAuthData, userActions } from 'entities/User';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Dropdown } from 'shared/ui/Dropdown';
+import { HStack } from 'shared/ui/Stack';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 
 interface NavbarProps {
     className?: string;
@@ -36,26 +39,37 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
     if (authData != null) {
         return (
             <header className={ classNames(cls.Navbar, {}, [className ?? '']) }>
-                <Text
-                    className={ cls.appName }
-                    title={ t('JOHNK2280') }
-                    theme={ TextTheme.INVERTED }
-                />
-                <AppLink
-                    to={ RoutePath.article_create }
-                    theme={ AppLinkTheme.SECONDARY }
-                    className={ cls.creatLink }
-                >
-                    { t('Создать статью') }
-                </AppLink>
-                <Button
-                    theme={ ButtonTheme.BACKGROUND_INVERTED }
-                    className={ cls.links }
-                    onClick={ onLogout }
-                >
-                    { t('Выйти') }
-                </Button>
-
+                <HStack max={ true }>
+                    <Text
+                        className={ cls.appName }
+                        title={ t('JOHNK2280') }
+                        theme={ TextTheme.INVERTED }
+                    />
+                    <AppLink
+                        to={ RoutePath.article_create }
+                        theme={ AppLinkTheme.SECONDARY }
+                        className={ cls.creatLink }
+                    >
+                        { t('Создать статью') }
+                    </AppLink>
+                    <Dropdown
+                        className={ cls.dropdown }
+                        trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
+                        items={ [
+                            {
+                                content: t('Профиль'),
+                                value: 'profile',
+                                href: RoutePath.profile + authData.id
+                            },
+                            {
+                                content: t('Выйти'),
+                                onClick: onLogout,
+                                value: 'logout'
+                            }
+                        ] }
+                        direction={ 'bottom left' }
+                    />
+                </HStack>
             </header>
         );
     }
