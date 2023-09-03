@@ -3,3 +3,4 @@
 **/*.test.*
 jestEmptyComponent.tsx
 json-server
+**/scripts/*
