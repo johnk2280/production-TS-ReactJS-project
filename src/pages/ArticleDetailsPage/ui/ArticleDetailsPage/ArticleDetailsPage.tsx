@@ -22,6 +22,7 @@ import { fetchArticleRecommendations } from '../../model/services/fetchArticleRe
 import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { VStack } from 'shared/ui/Stack';
+import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -40,8 +41,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     const dispatch = useAppDispatch();
     const comments = useSelector(getArticleComments.selectAll);
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const recommendations = useSelector(getArticleRecommendations.selectAll);
-    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
     const onSendComment = useCallback((text: string) => {
         dispatch(addCommentForArticle(text));
@@ -66,17 +65,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                 <VStack gap={ '16' } max={ true }>
                     <ArticleDetailsPageHeader/>
                     <ArticleDetails id={ id }/>
-                    <Text
-                        className={ cls.commentTitle }
-                        title={ t('Рекомендуем') }
-                        size={ TextSize.L }
-                    />
-                    <ArticleList
-                        className={ cls.recommendations }
-                        articleList={ recommendations }
-                        isLoading={ recommendationsIsLoading }
-                        target={ '_blank' }
-                    />
+                    <ArticleRecommendationsList/>
                     <Text
                         className={ cls.commentTitle }
                         title={ t('Комментарии') }
