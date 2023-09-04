@@ -1,11 +1,5 @@
 import type { NavigateFunction } from 'react-router-dom';
-import type {
-    AnyAction,
-    CombinedState,
-    EnhancedStore,
-    Reducer,
-    ReducersMapObject
-} from '@reduxjs/toolkit';
+import type { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 
 import type { AxiosInstance } from 'axios';
 
@@ -14,19 +8,17 @@ import type { CounterSchema } from 'entities/Counter';
 import type { LoginSchema } from 'features/AuthByUsername';
 import type { ProfileSchema } from 'entities/Profile';
 import type { ArticleDetailSchema } from 'entities/Article';
-import type {
-    ArticleDetailsCommentsSchema,
-    ArticleDetailsPageSchema,
-    ArticleDetailsRecommendationsSchema
-} from 'pages/ArticleDetailsPage';
+import type { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import type { AddCommentFormSchema } from 'features/AddCommentForm';
 import type { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { type UISchema } from 'features/UI';
+import { type rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
     counter: CounterSchema;
     user: UserSchema;
     ui: UISchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     // Асинхронные редюсеры.
     loginForm?: LoginSchema;
