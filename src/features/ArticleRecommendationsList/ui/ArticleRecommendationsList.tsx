@@ -16,14 +16,16 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
     const { t } = useTranslation('article-details');
 
     return (
-        <VStack gap={ '8' }>
+        <VStack
+            gap={ '8' }
+            className={ classNames('', {}, [className ?? '']) }
+        >
             <Text
                 title={ t('Рекомендуем') }
                 size={ TextSize.L }
             />
             <ArticleList
                 articleList={ [] }
-                isLoading={ false }
                 target={ '_blank' }
             />
 
