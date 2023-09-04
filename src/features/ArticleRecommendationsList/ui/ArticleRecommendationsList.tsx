@@ -4,27 +4,11 @@ import { VStack } from 'shared/ui/Stack';
 import { Text, TextSize } from 'shared/ui/Text/Text';
 import { ArticleList } from 'entities/Article';
 import { useTranslation } from 'react-i18next';
-import { rtkApi } from 'shared/api/rtkApi';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useGetArticleRecommendationsQuery } from '../api/articleRecommendationsApi';
 
 interface ArticleRecommendationsListProps {
     className?: string;
 }
-
-const recommendationsApi = rtkApi.injectEndpoints({
-    endpoints: (build) => ({
-        getArticleRecommendations: build.query({
-            query: (limit) => ({
-                url: RoutePath.articles,
-                params: {
-                    _limit: limit
-                }
-            })
-        })
-    })
-});
-
-export const { useGetArticleRecommendationsQuery } = recommendationsApi;
 
 export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = memo((props: ArticleRecommendationsListProps) => {
     const {
@@ -36,6 +20,11 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
         data: articles,
         error
     } = useGetArticleRecommendationsQuery(3);
+
+    if (isLoading || error) {
+        // TODO: просто заглушка - в случае загрузки отобразить спиннер, в случае ошибки - сообщение
+        return null;
+    }
 
     return (
         <VStack
