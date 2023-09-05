@@ -23,6 +23,7 @@ import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 import { VStack } from 'shared/ui/Stack';
 import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
+import { ArticleDetailsComments } from 'pages/ArticleDetailsPage/ui/ArticleDetailsComments/ArticleDetailsComments';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -38,17 +39,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
     } = props;
     const { t } = useTranslation('article-details');
     const { id } = useParams();
-    const dispatch = useAppDispatch();
-    const comments = useSelector(getArticleComments.selectAll);
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-
-    const onSendComment = useCallback((text: string) => {
-        dispatch(addCommentForArticle(text));
-    }, [dispatch]);
-
-    useInitialEffect(() => {
-        dispatch(fetchCommentsByArticleId(id));
-    });
 
     if (!id) {
         return (
@@ -65,15 +55,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = (props) => {
                     <ArticleDetailsPageHeader/>
                     <ArticleDetails id={ id }/>
                     <ArticleRecommendationsList/>
-                    <Text
-                        className={ cls.commentTitle }
-                        title={ t('Комментарии') }
-                        size={ TextSize.L }
-                    />
-                    <AddCommentForm
-                        onSendComment={ onSendComment }
-                    />
-                    <CommentList isLoading={ commentsIsLoading } comments={ comments }/>
+                    <ArticleDetailsComments articleId={ id }/>
                 </VStack>
 
             </Page>
