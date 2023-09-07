@@ -2,8 +2,7 @@ import {profileActions, profileReducer} from "./profileSlice";
 import {Currency} from "entities/Currency";
 import {Country} from "entities/Country";
 import {updateProfileData} from "entities/Profile";
-import {TRUE} from "sass";
-import {ProfileSchema, ValidateProfileError} from "features/EditableProfileCard";
+import {ProfileSchema, ValidateProfileError} from "../types/EditableProfileCardSchema";
 
 
 const data = {

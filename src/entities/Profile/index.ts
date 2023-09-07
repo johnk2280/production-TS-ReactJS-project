@@ -1,4 +1,3 @@
-export { ValidateProfileError } from './model/types/profileSchema';
 
 export {
     getProfileValidateError
@@ -24,4 +23,4 @@ export { fetchProfileData } from './model/services/fetchProfileData/fetchProfile
 
 export { profileActions, profileReducer } from './model/slice/profileSlice';
 
-export type { ProfileType, ProfileSchema } from './model/types/profileSchema';
+export type { ProfileType } from './model/types/profileSchema';

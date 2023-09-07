@@ -10,7 +10,7 @@ import {
     getProfileForm,
     getProfileIsLoading,
     getProfileReadOnly,
-    getProfileValidateError, profileActions, ProfileCard, ValidateProfileError
+    getProfileValidateError, profileActions, ProfileCard
 } from 'entities/Profile';
 import { useParams } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -18,6 +18,7 @@ import { type Currency } from 'entities/Currency';
 import { type Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
+import { ValidateProfileError } from 'features/EditableProfileCard';
 
 interface EditableProfileCardProps {
     className?: string;

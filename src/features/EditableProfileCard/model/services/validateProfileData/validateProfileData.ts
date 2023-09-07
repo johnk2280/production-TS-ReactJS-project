@@ -1,6 +1,5 @@
 import { type ProfileType } from '../../types/profileSchema';
-
-import { ValidateProfileError } from 'features/EditableProfileCard';
+import { ValidateProfileError } from '../../types/profileSchema';
 
 export const validateProfileData = (profile: ProfileType | undefined): ValidateProfileError[] => {
     if (profile == null) {
