@@ -4,10 +4,13 @@ import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { getProfileData, getProfileReadOnly, profileActions, updateProfileData } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from 'entities/User';
 import { HStack } from 'shared/ui/Stack';
+import { getProfileReadOnly } from 'features/EditableProfileCard/model/selectors/getProfileReadOnly/getProfileReadOnly';
+import { getProfileData } from 'features/EditableProfileCard/model/selectors/getProfileData/getProfileData';
+import { profileActions } from 'features/EditableProfileCard/model/slice/profileSlice';
+import { updateProfileData } from 'features/EditableProfileCard/model/services/updateProfileData/updateProfileData';
 
 interface ProfilePageHeaderProps {
     className?: string;
