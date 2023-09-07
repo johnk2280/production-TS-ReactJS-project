@@ -4,7 +4,6 @@ import cls from './EditableProfileCard.module.scss';
 import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { type Currency } from 'entities/Currency';
 import { type Country } from 'entities/Country';
@@ -12,14 +11,10 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
 import { ValidateProfileError } from '../../model/types/EditableProfileCardSchema';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
-import {
-    getProfileIsLoading
-} from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
+import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
 import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';
-import {
-    getProfileValidateError
-} from '../../model/selectors/getProfileValidateError/getProfileValidateError';
+import { getProfileValidateError } from '../../model/selectors/getProfileValidateError/getProfileValidateError';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { ProfileCard } from 'entities/Profile';
@@ -27,6 +22,7 @@ import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/Dyn
 
 interface EditableProfileCardProps {
     className?: string;
+    id?: string;
 }
 
 const reducers: ReducerList = {
@@ -35,7 +31,8 @@ const reducers: ReducerList = {
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const {
-        className = ''
+        className = '',
+        id
     } = props;
     const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
@@ -44,7 +41,6 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadOnly);
     const validateErrors = useSelector(getProfileValidateError);
-    const { id } = useParams<{ id: string }>();
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
