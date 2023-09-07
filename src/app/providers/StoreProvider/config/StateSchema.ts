@@ -6,13 +6,13 @@ import type { AxiosInstance } from 'axios';
 import type { UserSchema } from 'entities/User';
 import type { CounterSchema } from 'entities/Counter';
 import type { LoginSchema } from 'features/AuthByUsername';
-import type { ProfileSchema } from 'entities/Profile';
 import type { ArticleDetailSchema } from 'entities/Article';
 import type { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import type { AddCommentFormSchema } from 'features/AddCommentForm';
 import type { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { type UISchema } from 'features/UI';
 import { type rtkApi } from 'shared/api/rtkApi';
+import { type ProfileSchema } from 'features/EditableProfileCard';
 
 export interface StateSchema {
     counter: CounterSchema;

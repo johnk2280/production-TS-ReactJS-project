@@ -20,5 +20,6 @@
     "Некорректный регион": "Incorrect region",
     "Ошибка сервера": "Server error",
     "Укажите валюту": "Select currency",
-    "Укажите страну": "Select country"
+    "Укажите страну": "Select country",
+    "Профиль не найден": "Profile not found"
 }

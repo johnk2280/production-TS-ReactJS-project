@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { classNames, type Mods } from 'shared/lib/classNames/classNames';
 import cls from './ProfileCard.module.scss';
-import { type ProfileType, type ValidateProfileError } from '../../model/types/profileSchema';
+import { type ProfileType } from '../../model/types/profileSchema';
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
@@ -11,6 +11,7 @@ import { type Currency } from 'entities/Currency/model/types/currency';
 import { CurrencySelect } from 'entities/Currency';
 import { type Country, CountrySelect } from 'entities/Country';
 import { HStack, VStack } from 'shared/ui/Stack';
+import { type ValidateProfileError } from 'features/EditableProfileCard';
 
 interface ProfileCardProps {
     className?: string;

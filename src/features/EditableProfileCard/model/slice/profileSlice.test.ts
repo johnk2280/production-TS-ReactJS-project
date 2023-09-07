@@ -1,9 +1,8 @@
-import {ProfileSchema, ValidateProfileError} from "../types/profileSchema";
 import {profileActions, profileReducer} from "./profileSlice";
 import {Currency} from "entities/Currency";
 import {Country} from "entities/Country";
-import {updateProfileData} from "entities/Profile";
-import {TRUE} from "sass";
+import {updateProfileData} from "../services/updateProfileData/updateProfileData";
+import {ProfileSchema, ValidateProfileError} from "../types/EditableProfileCardSchema";
 
 
 const data = {

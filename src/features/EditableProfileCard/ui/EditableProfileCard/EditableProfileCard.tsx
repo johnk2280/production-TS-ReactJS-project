@@ -4,28 +4,35 @@ import cls from './EditableProfileCard.module.scss';
 import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import {
-    fetchProfileData,
-    getProfileError,
-    getProfileForm,
-    getProfileIsLoading,
-    getProfileReadOnly,
-    getProfileValidateError, profileActions, ProfileCard, ValidateProfileError
-} from 'entities/Profile';
-import { useParams } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { type Currency } from 'entities/Currency';
 import { type Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { VStack } from 'shared/ui/Stack';
+import { ValidateProfileError } from '../../model/types/EditableProfileCardSchema';
+import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
+import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
+import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
+import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';
+import { getProfileValidateError } from '../../model/selectors/getProfileValidateError/getProfileValidateError';
+import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
+import { profileActions, profileReducer } from '../../model/slice/profileSlice';
+import { ProfileCard } from 'entities/Profile';
+import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
 
 interface EditableProfileCardProps {
     className?: string;
+    id?: string;
 }
+
+const reducers: ReducerList = {
+    profile: profileReducer
+};
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const {
-        className = ''
+        className = '',
+        id
     } = props;
     const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
@@ -34,7 +41,6 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadOnly);
     const validateErrors = useSelector(getProfileValidateError);
-    const { id } = useParams<{ id: string }>();
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
@@ -76,36 +82,39 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     }, [dispatch]);
 
     return (
-        <VStack
-            max={ true }
-            className={ classNames(cls.EditableProfileCard, {}, [className]) }
-        >
-            {
-                validateErrors?.length && validateErrors.map(err =>
-                    (
-                        <Text
-                            theme={ TextTheme.ERROR }
-                            text={ validateErrorTranslates[err] }
-                            key={ err }
-                        />
+        <DynamicModuleLoader reducers={ reducers } removeAfterUnmount>
+            <VStack
+                max={ true }
+                className={ classNames(cls.EditableProfileCard, {}, [className]) }
+            >
+                {
+                    validateErrors?.length && validateErrors.map((err: ValidateProfileError) =>
+                        (
+                            <Text
+                                theme={ TextTheme.ERROR }
+                                text={ validateErrorTranslates[err] }
+                                key={ err }
+                            />
+                        )
                     )
-                )
-            }
-            <ProfileCard
-                data={ formData }
-                isLoading={ isLoading }
-                error={ error }
-                readonly={ readonly }
-                onChangeFirstname={ onChangeFirstname }
-                onChangeLastname={ onChangeLastname }
-                onChangeAge={ onChangeAge }
-                onChangeCurrency={ onChangeCurrency }
-                onChangeCountry={ onChangeCountry }
-                onChangeCity={ onChangeCity }
-                onChangeUsername={ onChangeUsername }
-                onChangeAvatar={ onChangeAvatar }
-            />
-        </VStack>
+                }
+                <ProfileCard
+                    data={ formData }
+                    isLoading={ isLoading }
+                    error={ error }
+                    readonly={ readonly }
+                    onChangeFirstname={ onChangeFirstname }
+                    onChangeLastname={ onChangeLastname }
+                    onChangeAge={ onChangeAge }
+                    onChangeCurrency={ onChangeCurrency }
+                    onChangeCountry={ onChangeCountry }
+                    onChangeCity={ onChangeCity }
+                    onChangeUsername={ onChangeUsername }
+                    onChangeAvatar={ onChangeAvatar }
+                />
+            </VStack>
+        </DynamicModuleLoader>
+
     );
 });
 
