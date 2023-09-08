@@ -4,7 +4,7 @@ import { Menu } from '@headlessui/react';
 import { VStack } from '../../../ui/Stack';
 import { Fragment, type ReactNode } from 'react';
 import { type DropDownDirection } from 'shared/types/ui';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { AppLink } from '../../AppLink/AppLink';
 
 export interface DropdownItem {
     value: string;

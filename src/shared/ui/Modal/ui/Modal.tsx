@@ -26,7 +26,6 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const timeRef = useRef<ReturnType<typeof setTimeout>>(); // ссылка используется для реализации анимации закрытия, в нее передается таймер
-    const { theme } = useTheme();
 
     useEffect(() => {
         if (isOpen) {
