@@ -19,6 +19,7 @@ import { fetchProfileData } from '../../model/services/fetchProfileData/fetchPro
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { ProfileCard } from 'entities/Profile';
 import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -87,6 +88,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                 max={ true }
                 className={ classNames(cls.EditableProfileCard, {}, [className]) }
             >
+                <EditableProfileCardHeader/>
                 {
                     validateErrors?.length && validateErrors.map((err: ValidateProfileError) =>
                         (

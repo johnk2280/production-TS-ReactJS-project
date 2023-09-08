@@ -1,22 +1,22 @@
-import { type FC, useCallback } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';
+import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
+import { getUserAuthData } from 'entities/User';
+import { profileActions } from '../../model/slice/profileSlice';
+import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
+import { HStack } from 'shared/ui/Stack';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getUserAuthData } from 'entities/User';
-import { HStack } from 'shared/ui/Stack';
-import { getProfileReadOnly } from 'features/EditableProfileCard/model/selectors/getProfileReadOnly/getProfileReadOnly';
-import { getProfileData } from 'features/EditableProfileCard/model/selectors/getProfileData/getProfileData';
-import { profileActions } from 'features/EditableProfileCard/model/slice/profileSlice';
-import { updateProfileData } from 'features/EditableProfileCard/model/services/updateProfileData/updateProfileData';
 
-interface ProfilePageHeaderProps {
+interface EditableProfileCardHeaderProps {
     className?: string;
 }
 
-export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
+export const EditableProfileCardHeader: FC<EditableProfileCardHeaderProps> = memo((props: EditableProfileCardHeaderProps) => {
     const {
         className = ''
     } = props;
@@ -85,4 +85,6 @@ export const ProfilePageHeader: FC<ProfilePageHeaderProps> = (props) => {
 
         </HStack>
     );
-};
+});
+
+EditableProfileCardHeader.displayName = 'EditableProfileCardHeader';

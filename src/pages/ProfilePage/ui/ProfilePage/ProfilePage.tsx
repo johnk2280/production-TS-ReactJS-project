@@ -1,6 +1,5 @@
 import { type FC } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ProfilePageHeader } from '../ProfilePageHeader/ProfilePageHeader';
 import { Page } from 'widgets/Page';
 import { VStack } from 'shared/ui/Stack';
 import { EditableProfileCard } from 'features/EditableProfileCard';
@@ -29,7 +28,7 @@ const ProfilePage: FC<ProfilePageProps> = (props) => {
                 gap={ '16' }
                 max={ true }
             >
-                <ProfilePageHeader/>
+
                 <EditableProfileCard id={ id }/>
             </VStack>
         </Page>
