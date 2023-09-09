@@ -4,3 +4,6 @@
 /storybook-static
 .loki/report.json
 .loki/report.html
+*/jest-html-reporters
+*/html-report
+/html-report/
