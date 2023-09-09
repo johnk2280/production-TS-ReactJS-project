@@ -145,6 +145,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo((props: ArticleDetai
             <VStack
                 className={ classNames(cls.ArticleDetails, {}, [className]) }
                 gap={ '16' }
+                max={ true }
             >
                 { content }
             </VStack>

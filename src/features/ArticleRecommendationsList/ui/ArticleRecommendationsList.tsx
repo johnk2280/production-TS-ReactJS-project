@@ -21,7 +21,7 @@ export const ArticleRecommendationsList: FC<ArticleRecommendationsListProps> = m
         error
     } = useGetArticleRecommendationsQuery(3);
 
-    if (isLoading || error) {
+    if (isLoading ?? error ?? !articles) {
         // TODO: просто заглушка - в случае загрузки отобразить спиннер, в случае ошибки - сообщение
         return null;
     }
