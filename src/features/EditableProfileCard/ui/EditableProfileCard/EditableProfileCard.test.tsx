@@ -63,4 +63,16 @@ describe('Sidebar', () => {
         expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue('Super Evgen');
         expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue('Kungurov');
     });
+
+    test('Должна появиться ошибка', async () => {
+        componentRender(<EditableProfileCard id={'1'}/>, options)
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
+
+        await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
+
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'));
+
+        expect(screen.getByTestId('EditableProfileCard.error.Paragraph')).toBeInTheDocument();
+    });
+
 })
