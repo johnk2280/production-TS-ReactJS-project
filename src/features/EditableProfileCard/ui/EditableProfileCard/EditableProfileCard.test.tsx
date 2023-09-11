@@ -6,6 +6,7 @@ import {Currency} from "entities/Currency";
 import {Country} from "entities/Country";
 import {profileReducer} from "../../model/slice/profileSlice";
 import userEvent from "@testing-library/user-event";
+import {$api} from "shared/api/api";
 
 const profile: ProfileType = {
     id: "1",
@@ -73,6 +74,19 @@ describe('Sidebar', () => {
         await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'));
 
         expect(screen.getByTestId('EditableProfileCard.error.Paragraph')).toBeInTheDocument();
+    });
+
+    test('На сервер уходит PUT запрос', async () => {
+        const mockPutRequest = jest.spyOn($api, 'put')
+        componentRender(<EditableProfileCard id={'1'}/>, options);
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
+
+        await userEvent.type(screen.getByTestId('ProfileCard.firstname'), 'Evgen');
+
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'));
+
+        expect(mockPutRequest).toHaveBeenCalled();
+
     });
 
 })
