@@ -21,7 +21,7 @@ const profile: ProfileType = {
 
 
 describe('Sidebar', () => {
-    test('first', () => {
+    test('Переключение режима reedonly на редактирование', async () => {
         componentRender(<EditableProfileCard id={'1'}/>, {
             initialState: {
                 profile: {
@@ -31,12 +31,16 @@ describe('Sidebar', () => {
                     data: profile,
                     form: profile,
                     validateError: []
+                },
+                user: {
+                    authData: {id: '1'}
                 }
             },
             asyncReducers: {
                 profile: profileReducer,
             },
         })
-        userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'))
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
+        expect(screen.getByTestId('EditableProfileCardHeader.CancelButton')).toBeInTheDocument();
     });
 })
