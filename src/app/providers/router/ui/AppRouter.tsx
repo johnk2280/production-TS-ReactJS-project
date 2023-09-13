@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { type AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 import { RequireAuth } from 'app/providers/router/ui/RequireAuth';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { UserRole } from 'entities/User';
 
 interface AppRouterProps {
     props?: any;
@@ -19,7 +20,9 @@ const AppRouter: FC<AppRouterProps> = (props) => {
         return (
             <Route
                 key={ route.path }
-                element={ route.authOnly ? <RequireAuth>{ element }</RequireAuth> : element }
+                element={ route.authOnly
+                    ? <RequireAuth roles={ [UserRole.ADMIN, UserRole.MANAGER] }>{ element }</RequireAuth>
+                    : element }
                 path={ route.path }
             />
         );
