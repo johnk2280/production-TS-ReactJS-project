@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData, getUserRoles, type UserRole } from 'entities/User';
 import { Navigate, useLocation } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { ForbiddenPage } from 'pages/ForbiddenPage';
 
 interface RequireAuthProps {
     roles?: UserRole[];
@@ -31,7 +30,7 @@ export const RequireAuth: FC<RequireAuthProps> = (props) => {
     }
 
     if (!hasRequiredRoles) {
-        return <ForbiddenPage/>;
+        return <Navigate to={ RoutePath.forbidden } state={ { from: location } } replace/>;
     }
 
     return (<>{ children }</>);
