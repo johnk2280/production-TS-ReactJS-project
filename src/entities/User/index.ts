@@ -1,6 +1,6 @@
 export { UserRole } from './model/types/userSchema';
 
-export { isUserAdmin, isUserManager } from './model/selectors/roleSelectors/roleSelectors';
+export { isUserAdmin, isUserManager, getUserRoles } from './model/selectors/roleSelectors/roleSelectors';
 
 export { getUserInited } from './model/selectors/getUserInited/getUserInited';
 
