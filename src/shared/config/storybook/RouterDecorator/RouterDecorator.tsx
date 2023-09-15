@@ -1,12 +1,12 @@
-import 'app/styles/index.scss';
 import { type Story } from '@storybook/react';
-import { BrowserRouter } from 'react-router-dom';
+import 'app/styles/index.scss';
 import { type ReactNode } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-export const RouterDecorator = (story: () => Story): ReactNode => {
+export const RouterDecorator = (ComponentStory: Story): ReactNode => {
     return (
         <BrowserRouter>
-            { story() }
+            <ComponentStory/>
         </BrowserRouter>
     );
 };
