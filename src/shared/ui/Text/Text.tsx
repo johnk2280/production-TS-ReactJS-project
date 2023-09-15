@@ -1,7 +1,7 @@
+import { type TFunction } from 'i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Text.module.scss';
 import { type FC, memo } from 'react';
-import { type TFunction } from 'react-i18next';
 
 export enum TextTheme {
     PRIMARY = 'primary',
