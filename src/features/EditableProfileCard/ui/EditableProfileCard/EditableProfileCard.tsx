@@ -1,6 +1,7 @@
 import { type Country } from 'entities/Country';
 import { type Currency } from 'entities/Currency';
 import { ProfileCard } from 'entities/Profile';
+import { ValidateProfileError } from 'features/EditableProfileCard';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -17,7 +18,6 @@ import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/get
 import { getProfileValidateError } from '../../model/selectors/getProfileValidateError/getProfileValidateError';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
-import { ValidateProfileError } from '../../model/types/EditableProfileCardSchema';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 
 interface EditableProfileCardProps {

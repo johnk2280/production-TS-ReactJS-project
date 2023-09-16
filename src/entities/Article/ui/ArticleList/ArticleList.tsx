@@ -1,6 +1,7 @@
+import { ArticleView } from 'entities/Article/model/consts/consts';
 import { type FC, type HTMLAttributeAnchorTarget, memo, type ReactNode, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { type Article, ArticleView } from '../../model/types/article';
+import { type Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItemSkeleton/ArticleListItemSkeleton';
 import cls from './ArticleList.module.scss';
