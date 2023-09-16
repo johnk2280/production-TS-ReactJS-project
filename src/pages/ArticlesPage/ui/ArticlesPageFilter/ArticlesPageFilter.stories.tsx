@@ -1,9 +1,10 @@
-import React from 'react';
 import { type ComponentStory, type ComponentMeta } from '@storybook/react';
+import React from 'react';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ArticlesPageFilter } from './ArticlesPageFilter';
 
 export default {
-    title: 'shared/ArticlesPageFilter',
+    title: 'pages/ArticlesPage/ArticlesPageFilter',
     component: ArticlesPageFilter,
     argTypes: {
         backgroundColor: { control: 'color' }
@@ -14,3 +15,4 @@ const Template: ComponentStory<typeof ArticlesPageFilter> = (args) => <ArticlesP
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [StoreDecorator({})];
