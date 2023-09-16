@@ -1,7 +1,7 @@
 import { type Country } from 'entities/Country';
 import { type Currency } from 'entities/Currency';
 import { ProfileCard } from 'entities/Profile';
-import { ValidateProfileError } from 'features/EditableProfileCard';
+import { ValidateProfileError } from '../../model/consts/consts';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
