@@ -17,7 +17,7 @@ import {
 
 interface ArticleDetailsCommentsProps {
     className?: string;
-    articleId: string;
+    articleId?: string;
 }
 
 export const ArticleDetailsComments: FC<ArticleDetailsCommentsProps> = memo((props: ArticleDetailsCommentsProps) => {
