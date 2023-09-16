@@ -3,7 +3,7 @@ import { type ComponentStory, type ComponentMeta } from '@storybook/react';
 import { ArticleRecommendationsList } from './ArticleRecommendationsList';
 
 export default {
-    title: 'shared/ArticleRecommendationsList',
+    title: 'features/ArticleRecommendationsList',
     component: ArticleRecommendationsList,
     argTypes: {
         backgroundColor: { control: 'color' }
