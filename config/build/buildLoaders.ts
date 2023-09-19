@@ -27,10 +27,12 @@ export function buildLoaders (options: BuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/
     };
 
-    const babelLoader = buildBabelLoader(options);
+    const codeBabelLoader = buildBabelLoader({ ...options, isTSX: false });
+    const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTSX: true });
 
     return [
-        babelLoader,
+        codeBabelLoader,
+        tsxCodeBabelLoader,
         typescriptLoader,
         cssLoader,
         svgLoader,

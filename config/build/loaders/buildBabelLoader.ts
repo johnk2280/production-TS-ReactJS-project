@@ -15,6 +15,13 @@ export function buildBabelLoader (options: BuildBabelLoaderProps): object {
             options: {
                 presets: ['@babel/preset-env'],
                 plugins: [
+                    [
+                        '@babel/plugin-transform-typescript',
+                        {
+                            isTSX
+                        }
+                    ],
+                    '@babel/plugin-transform-runtime',
                     isDev && require.resolve('react-refresh/babel')
                 ].filter(Boolean)
             }
