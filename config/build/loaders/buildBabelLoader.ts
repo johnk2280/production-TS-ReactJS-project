@@ -1,10 +1,14 @@
 import { type BuildOptions } from '../types/config';
 
-export function buildBabelLoader (options: BuildOptions): object {
-    const { isDev } = options;
+interface BuildBabelLoaderProps extends BuildOptions {
+    isTSX?: boolean;
+}
+
+export function buildBabelLoader (options: BuildBabelLoaderProps): object {
+    const { isDev, isTSX } = options;
 
     return {
-        test: /\.(js|jsx|tsx)$/,
+        test: isTSX ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
