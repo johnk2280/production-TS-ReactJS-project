@@ -21,11 +21,11 @@ export function buildLoaders (options: BuildOptions): webpack.RuleSetRule[] {
         ]
     };
 
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-    };
+    // const typescriptLoader = {
+    //     test: /\.tsx?$/,
+    //     use: 'ts-loader',
+    //     exclude: /node_modules/
+    // };
 
     const codeBabelLoader = buildBabelLoader({ ...options, isTSX: false });
     const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTSX: true });
@@ -33,7 +33,6 @@ export function buildLoaders (options: BuildOptions): webpack.RuleSetRule[] {
     return [
         codeBabelLoader,
         tsxCodeBabelLoader,
-        typescriptLoader,
         cssLoader,
         svgLoader,
         fileLoader
