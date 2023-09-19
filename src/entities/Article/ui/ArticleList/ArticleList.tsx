@@ -1,4 +1,4 @@
-import { ArticleView } from 'entities/Article/model/consts/consts';
+import { ArticleView } from '../../model/consts/consts';
 import { type FC, type HTMLAttributeAnchorTarget, memo, type ReactNode, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type Article } from '../../model/types/article';
