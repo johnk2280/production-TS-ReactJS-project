@@ -1,10 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Dropdown.module.scss';
 import { Menu } from '@headlessui/react';
-import { VStack } from '../../../ui/Stack';
+import { VStack } from '../../../../Stack';
 import { Fragment, type ReactNode } from 'react';
 import { type DropDownDirection } from 'shared/types/ui';
-import { AppLink } from '../../AppLink/AppLink';
+import { AppLink } from '../../../../AppLink/AppLink';
 
 export interface DropdownItem {
     value: string;

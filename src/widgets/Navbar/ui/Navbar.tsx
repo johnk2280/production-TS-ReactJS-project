@@ -1,17 +1,19 @@
-import React, { type FC, memo, useCallback, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Navbar.module.scss';
-import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { LoginModal } from 'features/AuthByUsername';
-import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from 'entities/User';
-import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { LoginModal } from 'features/AuthByUsername';
+import React, { type FC, memo, useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Dropdown } from 'shared/ui/Dropdown';
-import { HStack } from 'shared/ui/Stack';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Icon } from 'shared/ui/Icon/Icon';
+import { Dropdown } from 'shared/ui/Popups';
+import { HStack } from 'shared/ui/Stack';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import NotificationIcon from '../../../shared/assets/icons/notification-20-20.svg';
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
     className?: string;
@@ -56,30 +58,40 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                     >
                         { t('Создать статью') }
                     </AppLink>
-                    <Dropdown
-                        className={ cls.dropdown }
-                        trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
-                        items={ [
-                            ...(isAdminPanelAvailable
-                                ? [{
-                                    content: t('Админка'),
-                                    value: 'admin',
-                                    href: RoutePath.admin_panel
-                                }]
-                                : []),
-                            {
-                                content: t('Профиль'),
-                                value: 'profile',
-                                href: RoutePath.profile + authData.id
-                            },
-                            {
-                                content: t('Выйти'),
-                                onClick: onLogout,
-                                value: 'logout'
-                            }
-                        ] }
-                        direction={ 'bottom left' }
-                    />
+                    <HStack
+                        gap={ '16' }
+                        className={ cls.actions }
+                    >
+                        <Button
+                            theme={ ButtonTheme.CLEAR }
+                        >
+                            <Icon Svg={ NotificationIcon } inverted={ true }/>
+                        </Button>
+                        <Dropdown
+                            trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
+                            items={ [
+                                ...(isAdminPanelAvailable
+                                    ? [{
+                                        content: t('Админка'),
+                                        value: 'admin',
+                                        href: RoutePath.admin_panel
+                                    }]
+                                    : []),
+                                {
+                                    content: t('Профиль'),
+                                    value: 'profile',
+                                    href: RoutePath.profile + authData.id
+                                },
+                                {
+                                    content: t('Выйти'),
+                                    onClick: onLogout,
+                                    value: 'logout'
+                                }
+                            ] }
+                            direction={ 'bottom left' }
+                        />
+                    </HStack>
+
                 </HStack>
             </header>
         );
