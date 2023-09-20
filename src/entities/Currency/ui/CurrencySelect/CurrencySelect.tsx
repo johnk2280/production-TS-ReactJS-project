@@ -1,9 +1,8 @@
 import { type FC, memo, useCallback } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Currency } from '../../model/types/currency';
 import { useTranslation } from 'react-i18next';
-import { Listbox, type ListboxItem } from 'shared/ui/Listbox';
-import { HStack } from 'shared/ui/Stack';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { type ListboxItem, Listbox } from 'shared/ui/Popups';
+import { Currency } from '../../model/types/currency';
 
 interface CurrencySelectProps {
     className?: string;

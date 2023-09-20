@@ -1,10 +1,8 @@
 import { type FC, memo, useCallback } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Select } from 'shared/ui/Select/Select';
 import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { type ListboxItem, Listbox } from 'shared/ui/Popups';
 import { Country } from '../model/types/country';
-import { Listbox, type ListboxItem } from 'shared/ui/Listbox';
-import { HStack } from 'shared/ui/Stack';
 
 interface CountrySelectProps {
     className?: string;

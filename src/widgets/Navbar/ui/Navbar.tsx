@@ -8,12 +8,12 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Dropdown } from 'shared/ui/Dropdown';
 import { Icon } from 'shared/ui/Icon/Icon';
+import { Dropdown } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import cls from './Navbar.module.scss';
 import NotificationIcon from '../../../shared/assets/icons/notification-20-20.svg';
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
     className?: string;

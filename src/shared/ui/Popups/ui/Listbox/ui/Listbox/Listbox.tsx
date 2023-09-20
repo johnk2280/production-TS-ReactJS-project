@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react';
 import { Listbox as HListbox } from '@headlessui/react';
-import cls from './Listbox.module.scss';
-import { HStack, VStack } from '../../../Stack';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from '../../../Button/Button';
-import { type DropDownDirection } from '../../../../types/ui';
+import { type DropDownDirection } from 'shared/types/ui';
+import { Button } from '../../../../../Button/Button';
+import { HStack, VStack } from '../../../../../Stack';
+import cls from './Listbox.module.scss';
 
 export interface ListboxItem {
     value: string;
