@@ -2,6 +2,15 @@
   position: relative;
 }
 
+.trigger {
+  background: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+}
+
 .active {
   opacity: 0.8;
   background: var(--inverted-secondary-color);
