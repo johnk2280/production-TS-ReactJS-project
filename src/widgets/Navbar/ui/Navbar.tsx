@@ -9,7 +9,7 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { Dropdown } from 'shared/ui/Popups';
+import { Dropdown, Popover } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import NotificationIcon from '../../../shared/assets/icons/notification-20-20.svg';
@@ -62,11 +62,16 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                         gap={ '16' }
                         className={ cls.actions }
                     >
-                        <Button
-                            theme={ ButtonTheme.CLEAR }
+                        <Popover
+                            trigger={
+                                <Button theme={ ButtonTheme.CLEAR }>
+                                    <Icon Svg={ NotificationIcon } inverted={ true }/>
+                                </Button>
+                            }
+                            direction={ 'bottom left' }
                         >
-                            <Icon Svg={ NotificationIcon } inverted={ true }/>
-                        </Button>
+                            adsfgsdgdfg
+                        </Popover>
                         <Dropdown
                             trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
                             items={ [
