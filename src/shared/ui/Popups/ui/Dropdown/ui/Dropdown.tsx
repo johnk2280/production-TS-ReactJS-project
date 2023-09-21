@@ -1,10 +1,12 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Dropdown.module.scss';
 import { Menu } from '@headlessui/react';
-import { VStack } from '../../../../Stack';
 import { Fragment, type ReactNode } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { type DropDownDirection } from 'shared/types/ui';
+import { mapDirectionClass } from '../../../styles/consts';
 import { AppLink } from '../../../../AppLink/AppLink';
+import { VStack } from '../../../../Stack';
+import cls from './Dropdown.module.scss';
+import popupCls from '../../../styles/popup.module.scss';
 
 export interface DropdownItem {
     value: string;
@@ -21,13 +23,6 @@ export interface DropdownProps {
     direction?: DropDownDirection;
 }
 
-const mapDirectionClass: Record<DropDownDirection, string> = {
-    'bottom left': cls.optionsBottomLeft,
-    'top left': cls.optionsTopLeft,
-    'bottom right': cls.optionsBottomRight,
-    'top right': cls.optionsTopRight
-};
-
 export function Dropdown (props: DropdownProps): JSX.Element {
     const {
         className,
@@ -41,7 +36,7 @@ export function Dropdown (props: DropdownProps): JSX.Element {
     return (
         <Menu
             as={ 'div' }
-            className={ classNames(cls.Dropdown, {}, [className ?? '']) }
+            className={ classNames(cls.Dropdown, {}, [className ?? '', popupCls.popup]) }
         >
             <Menu.Button className={ cls.btn }>
                 { trigger }
@@ -55,7 +50,13 @@ export function Dropdown (props: DropdownProps): JSX.Element {
                                 onClick={ item.onClick }
                                 disabled={ item.disabled }
                                 className={
-                                    classNames(cls.item, { [cls.active]: active, [cls.disabled]: disabled })
+                                    classNames(
+                                        cls.item,
+                                        {
+                                            [popupCls.active]: active,
+                                            [popupCls.disabled]: disabled
+                                        }
+                                    )
                                 }
                             >
                                 { item.content }

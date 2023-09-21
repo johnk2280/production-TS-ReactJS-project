@@ -1,7 +1,8 @@
-import { type ReactNode } from 'react';
 import { Listbox as HListbox } from '@headlessui/react';
+import { type ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type DropDownDirection } from 'shared/types/ui';
+import { mapDirectionClass } from '../../../../styles/consts';
 import { Button } from '../../../../../Button/Button';
 import { HStack, VStack } from '../../../../../Stack';
 import cls from './Listbox.module.scss';
@@ -22,13 +23,6 @@ interface ListboxProps {
     direction?: DropDownDirection;
     label?: string;
 }
-
-const mapDirectionClass: Record<DropDownDirection, string> = {
-    'bottom left': cls.optionsBottomLeft,
-    'top left': cls.optionsTopLeft,
-    'bottom right': cls.optionsBottomRight,
-    'top right': cls.optionsTopRight
-};
 
 export function Listbox (props: ListboxProps): JSX.Element {
     const {

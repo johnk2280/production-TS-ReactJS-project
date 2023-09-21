@@ -1,6 +1,4 @@
-.Dropdown {
-  position: relative;
-}
+
 
 .btn {
   background: none;
@@ -30,33 +28,3 @@
 }
 
 
-.active {
-  opacity: 0.8;
-  background: var(--inverted-secondary-color);
-  //transition: all 0.1s;
-}
-
-.disabled {
-  opacity: 0.7;
-  cursor: auto;
-}
-
-.optionsBottomLeft {
-  top: 100%;
-  right: 0;
-}
-
-.optionsTopLeft {
-  bottom: 100%;
-  right: 0;
-}
-
-.optionsBottomRight {
-  top: 100%;
-  left: 0;
-}
-
-.optionsTopRight {
-  bottom: 100%;
-  left: 0;
-}
