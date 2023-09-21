@@ -1,4 +1,4 @@
-import { Popover } from '@headlessui/react';
+import { Popover as HPopover } from '@headlessui/react';
 import { type JSX, type ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { type DropDownDirection } from 'shared/types/ui';
@@ -13,7 +13,7 @@ interface PopoverProps {
     children: ReactNode;
 }
 
-export function CustomPopover (props: PopoverProps): JSX.Element {
+export function Popover (props: PopoverProps): JSX.Element {
     const {
         className,
         trigger,
@@ -22,16 +22,14 @@ export function CustomPopover (props: PopoverProps): JSX.Element {
     } = props;
     const optionsClasses = [mapDirectionClass[direction]];
     return (
-        <Popover className="relative">
-            <Popover.Button
-                className={ classNames(cls.Popover, {}, [className ?? '', popupCls.popup]) }
-            >
+        <HPopover className={ classNames(cls.Popover, {}, [className ?? '', popupCls.popup]) }>
+            <HPopover.Button className={ popupCls.trigger }>
                 { trigger }
-            </Popover.Button>
+            </HPopover.Button>
 
-            <Popover.Panel className={ classNames(cls.panel, {}, optionsClasses) }>
+            <HPopover.Panel className={ classNames(cls.panel, {}, optionsClasses) }>
                 { children }
-            </Popover.Panel>
-        </Popover>
+            </HPopover.Panel>
+        </HPopover>
     );
 }
