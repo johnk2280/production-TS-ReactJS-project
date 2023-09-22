@@ -1,4 +1,5 @@
 import { NotificationItem } from 'entities/Notification/ui/NotificationItem/NotificationItem';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { VStack } from 'shared/ui/Stack';
 import { useGetNotificationsQuery } from '../../api/notificationApi';
 import { type FC, memo } from 'react';
@@ -19,10 +20,19 @@ export const NotificationList: FC<NotificationListProps> = memo((props: Notifica
         error
     } = useGetNotificationsQuery(null);
 
-    // if (isLoading ?? error ?? !notifications) {
-    //     // TODO: просто заглушка - в случае загрузки отобразить спиннер, в случае ошибки - сообщение
-    //     return null;
-    // }
+    if (isLoading) {
+        return (
+            <VStack
+                gap={ '16' }
+                max={ true }
+                className={ classNames(cls.NotificationList, {}, [className]) }
+            >
+                <Skeleton width={ '100%' } border={ '8px' } height={ '80px' }/>
+                <Skeleton width={ '100%' } border={ '8px' } height={ '80px' }/>
+                <Skeleton width={ '100%' } border={ '8px' } height={ '80px' }/>
+            </VStack>
+        );
+    }
 
     return (
         <VStack
