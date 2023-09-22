@@ -1,3 +1,4 @@
+import { NotificationList } from 'entities/Notification';
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import React, { type FC, memo, useCallback, useState } from 'react';
@@ -70,7 +71,7 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                             }
                             direction={ 'bottom left' }
                         >
-                            adsfgsdgdfg
+                            <NotificationList/>
                         </Popover>
                         <Dropdown
                             trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
