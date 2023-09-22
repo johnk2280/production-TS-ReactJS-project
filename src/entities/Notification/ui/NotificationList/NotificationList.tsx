@@ -18,7 +18,9 @@ export const NotificationList: FC<NotificationListProps> = memo((props: Notifica
         data: notifications,
         isLoading,
         error
-    } = useGetNotificationsQuery(null);
+    } = useGetNotificationsQuery(null, {
+        pollingInterval: 5000
+    });
 
     if (isLoading) {
         return (
