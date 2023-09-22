@@ -1,9 +1,9 @@
-import { NotificationItem } from 'entities/Notification/ui/NotificationItem/NotificationItem';
+import { type FC, memo } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { VStack } from 'shared/ui/Stack';
 import { useGetNotificationsQuery } from '../../api/notificationApi';
-import { type FC, memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { NotificationItem } from '../../ui/NotificationItem/NotificationItem';
 import cls from './NotificationList.module.scss';
 
 interface NotificationListProps {

@@ -1,6 +1,6 @@
-import { NotificationList } from 'entities/Notification';
 import { getUserAuthData, isUserAdmin, isUserManager, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
+import { NotificationButton } from 'features/NotificationButton';
 import React, { type FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,11 +9,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Icon } from 'shared/ui/Icon/Icon';
-import { Dropdown, Popover } from 'shared/ui/Popups';
+import { Dropdown } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import NotificationIcon from '../../../shared/assets/icons/notification-20-20.svg';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -63,16 +61,7 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                         gap={ '16' }
                         className={ cls.actions }
                     >
-                        <Popover
-                            trigger={
-                                <Button theme={ ButtonTheme.CLEAR }>
-                                    <Icon Svg={ NotificationIcon } inverted={ true }/>
-                                </Button>
-                            }
-                            direction={ 'bottom left' }
-                        >
-                            <NotificationList className={ cls.notifications }/>
-                        </Popover>
+                        <NotificationButton/>
                         <Dropdown
                             trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
                             items={ [
