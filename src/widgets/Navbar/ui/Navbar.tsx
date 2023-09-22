@@ -71,7 +71,7 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
                             }
                             direction={ 'bottom left' }
                         >
-                            <NotificationList/>
+                            <NotificationList className={ cls.notifications }/>
                         </Popover>
                         <Dropdown
                             trigger={ <Avatar size={ 30 } src={ authData.avatar }/> }
