@@ -1,12 +1,11 @@
-import { rtkApi } from 'shared/api/rtkApi';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { type Article } from 'entities/Article';
+import { rtkApi } from 'shared/api/rtkApi';
 
 const recommendationsApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
         getArticleRecommendations: build.query<Article[], number>({
             query: (limit) => ({
-                url: RoutePath.articles,
+                url: '/.articles',
                 params: {
                     _limit: limit
                 }
