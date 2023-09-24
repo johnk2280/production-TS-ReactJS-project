@@ -1,5 +1,6 @@
 import React, { type FC, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { classNames, type Mods } from 'shared/lib/classNames/classNames';
+import { Overlay } from '../../Overlay/Overlay';
 import { Portal } from '../../Portal';
 import cls from './Modal.module.scss';
 
@@ -52,12 +53,6 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         }
     }, [closeHandler]);
 
-    const onContentClick = (e: React.MouseEvent): void => {
-        // Блокирует клик на контентную часть, что бы не срабатывала функция closeHandler()
-        // и не закрывалось модальное окно при клике на контентную часть
-        e.stopPropagation();
-    };
-
     useEffect(() => {
         if (isOpen) {
             window.addEventListener('keydown', onKeyDown);
@@ -82,10 +77,9 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
     return (
         <Portal>
             <div className={ classNames(cls.Modal, mods, [className ?? '']) }>
-                <div className={ classNames(cls.overlay) } onClick={ closeHandler }>
-                    <div className={ classNames(cls.content) } onClick={ onContentClick }>
-                        { children }
-                    </div>
+                <Overlay onClick={ closeHandler } className={ cls.overlay }/>
+                <div className={ classNames(cls.content) }>
+                    { children }
                 </div>
             </div>
         </Portal>
