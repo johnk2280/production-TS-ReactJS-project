@@ -1,6 +1,7 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import { type FC, memo, type ReactNode } from 'react';
-import { classNames, type Mods } from 'shared/lib/classNames/classNames';
+import { classNames, type Mods } from '../../lib/classNames/classNames';
+import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal';
 import cls from './Drawer.module.scss';
 
@@ -25,7 +26,7 @@ export const Drawer: FC<DrawerProps> = memo((props: DrawerProps) => {
 
     return (
         <Portal>
-            <div className={ classNames(cls.Drawer, {}, [className, theme ?? '', 'app_drawer']) }>
+            <div className={ classNames(cls.Drawer, mods, [className, theme ?? '', 'app_drawer']) }>
                 <Overlay onClick={ onClose }/>
                 <div className={ cls.content }>
                     { children }
