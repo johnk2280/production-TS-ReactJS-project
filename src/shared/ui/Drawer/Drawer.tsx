@@ -1,5 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import { type FC, memo, type ReactNode } from 'react';
+import { useAnimationLibs } from 'shared/lib/components/AnimationProvider';
 import { useModal } from 'shared/lib/hooks/useModal/useModal';
 import { classNames, type Mods } from '../../lib/classNames/classNames';
 import { Overlay } from '../Overlay/Overlay';
@@ -14,7 +15,7 @@ interface DrawerProps {
     lazy?: boolean;
 }
 
-export const Drawer: FC<DrawerProps> = memo((props: DrawerProps) => {
+export const DrawerContent: FC<DrawerProps> = memo((props: DrawerProps) => {
     const {
         className = '',
         children,
@@ -52,4 +53,17 @@ export const Drawer: FC<DrawerProps> = memo((props: DrawerProps) => {
     );
 });
 
+export const Drawer = memo((props: DrawerProps) => {
+    const { isLoaded } = useAnimationLibs();
+
+    if (!isLoaded) {
+        return null;
+    }
+
+    return (
+        <DrawerContent { ...props }>{ props.children }</DrawerContent>
+    );
+});
+
 Drawer.displayName = 'Drawer';
+DrawerContent.displayName = 'DrawerContent';

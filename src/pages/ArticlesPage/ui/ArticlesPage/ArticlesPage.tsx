@@ -1,6 +1,6 @@
 import { type FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader';
+import { DynamicModuleLoader, type ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articlesPageReducer } from '../../model/slice/articlesPageSlice';
 import cls from './ArticlesPage.module.scss';
 import { Page } from 'widgets/Page';
