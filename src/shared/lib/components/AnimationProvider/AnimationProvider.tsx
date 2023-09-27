@@ -15,23 +15,21 @@ interface AnimationContextPayload {
 
 const AnimationContext = createContext<AnimationContextPayload>({});
 
-interface AnimationProviderProps {
-    children: ReactNode;
-}
-
 const getAsyncAnimationModules = async (): Promise<Awaited<any>> => {
-    return await Promise.all([
+    // eslint-disable-next-line @typescript-eslint/return-await
+    return Promise.all([
         import('@react-spring/web'),
         import('@use-gesture/react')
     ]);
 };
 
-export const useAnimationLibs = (): AnimationContextPayload => {
-    return useContext(AnimationContext);
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const useAnimationLibs = () => {
+    return useContext(AnimationContext) as Required<AnimationContextPayload>;
 };
 
-export const AnimationProvider = (props: AnimationProviderProps): JSX.Element => {
-    const { children } = props;
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const AnimationProvider = ({ children }: { children: ReactNode }) => {
     const SpringRef = useRef<SpringType>();
     const GestureRef = useRef<GestureType>();
     const [isLoaded, setIsLoaded] = useState(false);
