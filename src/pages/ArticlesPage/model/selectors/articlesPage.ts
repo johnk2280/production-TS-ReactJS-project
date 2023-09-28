@@ -1,6 +1,6 @@
-import { type StateSchema } from 'app/providers/StoreProvider';
-import { ArticleSortField, ArticleType, ArticleView } from 'entities/Article';
-import { type SortOrder } from 'shared/types/sortTypes';
+import { type StateSchema } from '@/app/providers/StoreProvider';
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+import { type SortOrder } from '@/shared/types/sortTypes';
 
 export const getArticlesPageView = (state: StateSchema): ArticleView => state.articlesPage?.view ?? ArticleView.SMALL;
 export const getArticlesPageError = (state: StateSchema): string => state.articlesPage?.error ?? '';

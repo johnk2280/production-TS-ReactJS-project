@@ -1,11 +1,11 @@
-import {StateSchema} from "app/providers/StoreProvider";
-import {Article, ArticleType} from "entities/Article";
-import {ArticleBlockType} from "entities/Article/model/consts/consts";
+import {StateSchema} from "@/app/providers/StoreProvider";
+import {Article, ArticleType} from "@/entities/Article";
+import {ArticleBlockType} from "@/entities/Article/model/consts/consts";
 import {
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading
-} from "entities/Article/model/selectors/articleDetails";
+} from "@/entities/Article/model/selectors/articleDetails";
 
 const article: Article = {
     id: '1',

@@ -1,6 +1,6 @@
 import {LoginSchema} from "../types/loginSchema";
 import {loginActions, loginReducer} from "./loginSlice";
-import {StateSchema} from "app/providers/StoreProvider";
+import {StateSchema} from "@/app/providers/StoreProvider";
 
 describe('loginSlice.test', () => {
     test('test set username', () => {

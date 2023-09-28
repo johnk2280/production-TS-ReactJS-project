@@ -7,12 +7,12 @@ import {
     type ThunkDispatch
 } from '@reduxjs/toolkit';
 import { type StateSchema, type ThunkExtraArgs } from '../config/StateSchema';
-import { counterReducer } from 'entities/Counter';
-import { userReducer } from 'entities/User';
+import { counterReducer } from '@/entities/Counter';
+import { userReducer } from '@/entities/User';
 import { createReducerManager } from './reducerManager';
-import { $api } from 'shared/api/api';
-import { UIReducer } from 'features/UI';
-import { rtkApi } from 'shared/api/rtkApi';
+import { $api } from '@/shared/api/api';
+import { UIReducer } from '@/features/UI';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 // Возникают ошибки из-за возвращаемого типа, если явно указать type EnhancedStore,
 // тогда, как возвращается type:

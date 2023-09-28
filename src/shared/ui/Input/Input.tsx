@@ -1,4 +1,4 @@
-import { classNames, type Mods } from 'shared/lib/classNames/classNames';
+import { classNames, type Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 import React, { type FC, type InputHTMLAttributes, memo } from 'react';
 import { HStack } from '../Stack/HStack/HStack';

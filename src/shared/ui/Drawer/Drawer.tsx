@@ -1,6 +1,6 @@
 import { a, useSpring, config } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
-import { useTheme } from 'app/providers/ThemeProvider';
+import { useTheme } from '@/app/providers/ThemeProvider';
 import { type FC, memo, type ReactNode, useCallback, useEffect } from 'react';
 import { classNames } from '../../lib/classNames/classNames';
 import { Overlay } from '../Overlay/Overlay';

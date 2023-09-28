@@ -1,7 +1,7 @@
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VStack } from 'shared/ui/Stack';
-import { Page } from 'widgets/Page';
+import { VStack } from '@/shared/ui/Stack';
+import { Page } from '@/widgets/Page';
 
 interface MainPageProps {
     props?: any;
