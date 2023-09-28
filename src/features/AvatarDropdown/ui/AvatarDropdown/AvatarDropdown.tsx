@@ -1,11 +1,11 @@
-import { isUserAdmin, isUserManager, getUserAuthData, userActions } from 'entities/User';
+import { isUserAdmin, isUserManager, getUserAuthData, userActions } from '@/entities/User';
 import React, { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Avatar } from 'shared/ui/Avatar/Avatar';
-import { Dropdown } from 'shared/ui/Popups';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Avatar } from '@/shared/ui/Avatar/Avatar';
+import { Dropdown } from '@/shared/ui/Popups';
 import cls from './AvatarDropdown.module.scss';
 
 interface AvatarDropdownProps {

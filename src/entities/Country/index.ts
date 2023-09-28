@@ -1,3 +1,3 @@
-export { CountrySelect } from 'entities/Country/ui/CountrySelect';
+export { CountrySelect } from './ui/CountrySelect';
 
-export { Country } from 'entities/Country/model/types/country';
+export { Country } from './model/types/country';

@@ -1,6 +1,6 @@
-import {TestAsyncThunk} from "shared/lib/tests/TestAsyncThunk/TestAsyncThunk";
+import {TestAsyncThunk} from "@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk";
 import {fetchNextArticles} from "./fetchNextArticles";
-import {ArticleView} from "entities/Article";
+import {ArticleView} from "@/entities/Article";
 import {fetchArticles} from "../fetchArticles/fetchArticles";
 
 
