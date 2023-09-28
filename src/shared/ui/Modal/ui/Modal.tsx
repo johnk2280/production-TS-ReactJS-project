@@ -41,7 +41,7 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
     return (
         <Portal>
             <div className={ classNames(cls.Modal, mods, [className ?? '']) }>
-                <Overlay onClick={ close } className={ cls.overlay }/>
+                <Overlay onClick={ close } />
                 <div className={ classNames(cls.content) }>
                     { children }
                 </div>
