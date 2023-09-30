@@ -1,3 +1,4 @@
+import { StarRating } from '@/shared/ui/StarRating/StarRating';
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VStack } from '@/shared/ui/Stack';
@@ -14,6 +15,8 @@ const MainPage: FC<MainPageProps> = (props) => {
         <Page>
             <VStack gap={ '8' }>
                 { t('Главная страница') }
+
+                <StarRating/>
             </VStack>
         </Page>
     );
