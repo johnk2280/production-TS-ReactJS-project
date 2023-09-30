@@ -24,9 +24,9 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
     const [currentStarsCount, setCurrentStarsCount] = useState(0);
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
-    const onHover = useCallback((starNumber: number) => () => {
+    const onHover = useCallback((starsCount: number) => () => {
         if (!isSelected) {
-            setCurrentStarsCount(starNumber);
+            setCurrentStarsCount(starsCount);
         }
     }, [isSelected]);
 
@@ -36,6 +36,14 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
         }
     }, [isSelected]);
 
+    const onClick = useCallback((starsCount: number) => () => {
+        if (!isSelected) {
+            setIsSelected(true);
+            setCurrentStarsCount(starsCount);
+            onSelect?.(starsCount);
+        }
+    }, [isSelected, onSelect]);
+
     return (
         <div className={ classNames(cls.StarRating, {}, [className]) }>
             {
@@ -43,11 +51,16 @@ export const StarRating: FC<StarRatingProps> = memo((props: StarRatingProps) => 
                     <Icon
                         Svg={ StarIcon }
                         key={ starNumber }
-                        className={ classNames(cls.icon, { [cls.hovered]: currentStarsCount >= starNumber }) }
+                        className={ classNames(cls.icon, {
+                            [cls.hovered]: currentStarsCount >= starNumber,
+                            [cls.selected]: isSelected
+                        })
+                        }
                         height={ size }
                         width={ size }
                         onMouseEnter={ onHover(starNumber) }
                         onMouseLeave={ onLeave }
+                        onClick={ onClick(starNumber) }
                     />
                 ))
             }

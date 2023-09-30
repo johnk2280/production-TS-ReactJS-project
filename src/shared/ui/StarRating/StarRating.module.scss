@@ -1,4 +1,5 @@
 .StarRating {
+  cursor: pointer;
 
 }
 
@@ -8,5 +9,8 @@
 
 .hovered {
   fill: var(--primary-color);
-  cursor: pointer;
+}
+
+.selected {
+  cursor: auto;
 }
