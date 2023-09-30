@@ -1,7 +1,5 @@
 import { createContext, type ReactNode, useRef, useState, useEffect, useMemo, useContext } from 'react';
 
-export {};
-
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 type SpringType = typeof import('@react-spring/web');
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
@@ -15,7 +13,8 @@ interface AnimationContextPayload {
 
 const AnimationContext = createContext<AnimationContextPayload>({});
 
-const getAsyncAnimationModules = async (): Promise<Awaited<any>> => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const getAsyncAnimationModules = async () => {
     // eslint-disable-next-line @typescript-eslint/return-await
     return Promise.all([
         import('@react-spring/web'),
@@ -50,7 +49,7 @@ export const AnimationProvider = ({ children }: { children: ReactNode }) => {
     }), [isLoaded]);
 
     return (
-        <AnimationContext.Provider value={ value } >
+        <AnimationContext.Provider value={ value }>
             { children }
         </AnimationContext.Provider>
     );

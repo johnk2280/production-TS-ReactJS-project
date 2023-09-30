@@ -1,4 +1,5 @@
 import { NotificationList } from '@/entities/Notification';
+import { AnimationProvider } from '@/shared/lib/components/AnimationProvider';
 import React, { type FC, memo, useCallback, useState } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 import NotificationIcon from '@/shared/assets/icons/notification-20-20.svg';
@@ -46,9 +47,11 @@ export const NotificationButton: FC<notificationButtonProps> = memo((props: noti
             </BrowserView>
             <MobileView>
                 { trigger }
-                <Drawer onClose={ onCloseDrawer } isOpen={ isOpenDrawer }>
-                    <NotificationList/>
-                </Drawer>
+                <AnimationProvider>
+                    <Drawer onClose={ onCloseDrawer } isOpen={ isOpenDrawer }>
+                        <NotificationList/>
+                    </Drawer>
+                </AnimationProvider>
             </MobileView>
         </div>
     );
