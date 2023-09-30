@@ -1,5 +1,5 @@
 import { useTheme } from '@/app/providers/ThemeProvider';
-import { useAnimationLibs } from '@/shared/lib/components/AnimationProvider';
+import { useAnimationLibs, AnimationProvider } from '@/shared/lib/components/AnimationProvider';
 import { type FC, type ReactNode, useCallback, useEffect } from 'react';
 import { classNames } from '../../lib/classNames/classNames';
 import { Overlay } from '../Overlay/Overlay';
@@ -93,7 +93,7 @@ export const DrawerContent: FC<DrawerProps> = (props: DrawerProps) => {
     );
 };
 
-export const Drawer: FC<DrawerProps> = (props) => {
+const DrawerAsync: FC<DrawerProps> = (props) => {
     const { isLoaded } = useAnimationLibs();
     const { children, ...otherProps } = props;
 
@@ -105,5 +105,18 @@ export const Drawer: FC<DrawerProps> = (props) => {
         <DrawerContent { ...otherProps }>
             { children }
         </DrawerContent>
+    );
+};
+
+export const Drawer: FC<DrawerProps> = (props) => {
+    const { children, ...otherProps } = props;
+
+    return (
+        <AnimationProvider>
+            <DrawerAsync { ...otherProps }>
+                { children }
+            </DrawerAsync>
+        </AnimationProvider>
+
     );
 };

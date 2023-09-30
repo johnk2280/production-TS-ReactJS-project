@@ -47,11 +47,9 @@ export const NotificationButton: FC<notificationButtonProps> = memo((props: noti
             </BrowserView>
             <MobileView>
                 { trigger }
-                <AnimationProvider>
-                    <Drawer onClose={ onCloseDrawer } isOpen={ isOpenDrawer }>
-                        <NotificationList/>
-                    </Drawer>
-                </AnimationProvider>
+                <Drawer onClose={ onCloseDrawer } isOpen={ isOpenDrawer }>
+                    <NotificationList/>
+                </Drawer>
             </MobileView>
         </div>
     );
