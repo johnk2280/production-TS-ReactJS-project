@@ -20,8 +20,8 @@ export const Modal: FC<ModalProps> = (props: ModalProps) => {
         className,
         children,
         isOpen = false,
-        onClose,
-        lazy// Коллбэк для закрытия окна, т.е. для изменения состояния isOpen в родительском компоненте
+        onClose, // Коллбэк для закрытия окна, т.е. для изменения состояния isOpen в родительском компоненте
+        lazy
     } = props;
     const { isMounted, isClosing, close } = useModal({
         isOpen,

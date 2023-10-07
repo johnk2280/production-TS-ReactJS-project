@@ -13,11 +13,17 @@ const MainPage: FC<MainPageProps> = (props) => {
 
     return (
         <Page>
-            <VStack gap={ '8' }>
-                { t('Главная страница') }
+            { /* <VStack gap={ '32' } max={ true } align={ 'center' }> */ }
+            { /*    */ }
+            { /* </VStack> */ }
 
-                <RatingCard/>
-            </VStack>
+            { t('Главная страница') }
+
+            <RatingCard
+                title={ t('Как Вам статья?') }
+                feedbackTitle={ t('Оставить отзыв о статье') }
+                hasFeedBack={ true }
+            />
         </Page>
     );
 };
