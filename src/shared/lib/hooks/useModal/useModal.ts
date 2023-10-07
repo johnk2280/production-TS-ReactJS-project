@@ -44,7 +44,6 @@ export const useModal = (props: UseModalProps): UseModalReturn => {
 
     const onKeyDown = useCallback((e: KeyboardEvent): void => {
         if (e.key === 'Escape') {
-            console.log(e.key);
             close();
         }
     }, [close]);
