@@ -60,27 +60,14 @@ export const RatingCard: FC<RatingCardProps> = memo((props: RatingCardProps) => 
     }, [onCancel, starsCount]);
 
     const modalContent = (
-        <VStack gap={ '32' } max={ true }>
+        <>
             <Text title={ feedbackTitle }/>
             <Input
                 placeholder={ t('Ваш отзыв') }
                 value={ feedback }
                 onChange={ onChangeFeedback }
             />
-            <HStack max={ true } gap={ '16' } justify={ 'end' }>
-                <Button
-                    onClick={ onClickSend }
-                >
-                    { t('Отправить') }
-                </Button>
-                <Button
-                    theme={ ButtonTheme.OUTLINE_RED }
-                    onClick={ onClickCancel }
-                >
-                    { t('Закрыть') }
-                </Button>
-            </HStack>
-        </VStack>
+        </>
     );
 
     return (
@@ -91,12 +78,39 @@ export const RatingCard: FC<RatingCardProps> = memo((props: RatingCardProps) => 
             </VStack>
             <BrowserView>
                 <Modal isOpen={ isModalOpen } lazy={ true }>
-                    { modalContent }
+                    <VStack gap={ '32' } max={ true }>
+                        <HStack max={ true } gap={ '16' } justify={ 'end' }>
+                            { modalContent }
+                            <Button
+                                onClick={ onClickSend }
+                            >
+                                { t('Отправить') }
+                            </Button>
+                            <Button
+                                theme={ ButtonTheme.OUTLINE_RED }
+                                onClick={ onClickCancel }
+                            >
+                                { t('Закрыть') }
+                            </Button>
+                        </HStack>
+                    </VStack>
                 </Modal>
             </BrowserView>
             <MobileView>
-                <Drawer isOpen={ isModalOpen }>
-                    { modalContent }
+                <Drawer
+                    isOpen={ isModalOpen }
+                    lazy={ true }
+                    onClose={ onClickCancel }
+                >
+                    <VStack gap={ '32' } max={ true }>
+                        { modalContent }
+                        <Button
+                            onClick={ onClickSend }
+                            fullWidth={ true }
+                        >
+                            { t('Отправить') }
+                        </Button>
+                    </VStack>
                 </Drawer>
             </MobileView>
 
