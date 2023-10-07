@@ -46,7 +46,14 @@ export const RatingCard: FC<RatingCardProps> = memo((props: RatingCardProps) => 
     const onChangeFeedback = useCallback((val: string) => {
         setFeedback(val);
     }, []);
-    console.log(feedback);
+
+    const onClickSend = useCallback(() => {
+        onAccept?.(starsCount, feedback);
+    }, [feedback, onAccept, starsCount]);
+
+    const onClickCancel = useCallback(() => {
+        onCancel?.(starsCount);
+    }, [onCancel, starsCount]);
 
     return (
         <Card className={ classNames(cls.RatingCard, {}, [className]) }>
@@ -63,10 +70,15 @@ export const RatingCard: FC<RatingCardProps> = memo((props: RatingCardProps) => 
                         onChange={ onChangeFeedback }
                     />
                     <HStack max={ true } gap={ '16' } justify={ 'end' }>
-                        <Button>
+                        <Button
+                            onClick={ onClickSend }
+                        >
                             { t('Отправить') }
                         </Button>
-                        <Button theme={ ButtonTheme.OUTLINE_RED }>
+                        <Button
+                            theme={ ButtonTheme.OUTLINE_RED }
+                            onClick={ onClickCancel }
+                        >
                             { t('Закрыть') }
                         </Button>
                     </HStack>
