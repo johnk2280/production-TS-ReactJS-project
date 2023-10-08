@@ -1,5 +1,3 @@
-import { RatingCard } from '@/entities/Rating';
-import { VStack } from '@/shared/ui/Stack';
 import { Page } from '@/widgets/Page';
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,17 +11,7 @@ const MainPage: FC<MainPageProps> = (props) => {
 
     return (
         <Page>
-            { /* <VStack gap={ '32' } max={ true } align={ 'center' }> */ }
-            { /*    */ }
-            { /* </VStack> */ }
-
             { t('Главная страница') }
-
-            <RatingCard
-                title={ t('Как Вам статья?') }
-                feedbackTitle={ t('Оставить отзыв о статье') }
-                hasFeedBack={ true }
-            />
         </Page>
     );
 };

@@ -695,5 +695,21 @@
       "username": "johnk2280",
       "avatar": "https://img.freepik.com/premium-vector/gorilla-in-a-jacket-and-hoodie-vector-illustration_893755-17.jpg?w=740"
     }
+  ],
+  "article-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "2"
+    }
   ]
 }
