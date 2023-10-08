@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useGetArticleRatingQuery } from '../../api/articleRatingApi';
 
-interface ArticleRatingProps {
+export interface ArticleRatingProps {
     className?: string;
     articleId: string;
 }
