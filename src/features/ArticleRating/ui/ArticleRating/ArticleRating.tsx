@@ -1,6 +1,7 @@
-import { type FC, memo } from 'react';
+import { RatingCard } from '@/entities/Rating';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './ArticleRating.module.scss';
+import { type FC, memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface ArticleRatingProps {
     className?: string;
@@ -10,11 +11,15 @@ const ArticleRating: FC<ArticleRatingProps> = memo((props: ArticleRatingProps) =
     const {
         className = ''
     } = props;
+    const { t } = useTranslation(['main', 'translation']);
 
     return (
-        <div className={ classNames(cls.ArticleRating, {}, [className]) }>
-
-        </div>
+        <RatingCard
+            className={ classNames('', {}, [className]) }
+            title={ t('Как Вам статья?') }
+            feedbackTitle={ t('Оставить отзыв о статье') }
+            hasFeedBack={ true }
+        />
     );
 });
 
