@@ -79,8 +79,8 @@ export const RatingCard: FC<RatingCardProps> = memo((props: RatingCardProps) => 
             <BrowserView>
                 <Modal isOpen={ isModalOpen } lazy={ true }>
                     <VStack gap={ '32' } max={ true }>
+                        { modalContent }
                         <HStack max={ true } gap={ '16' } justify={ 'end' }>
-                            { modalContent }
                             <Button
                                 onClick={ onClickSend }
                             >
