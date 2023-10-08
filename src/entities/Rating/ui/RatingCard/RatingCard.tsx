@@ -76,7 +76,7 @@ export const RatingCard: FC<RatingCardProps> = memo((props: RatingCardProps) => 
         <Card max={ true } className={ classNames(cls.RatingCard, {}, [className]) }>
             <VStack align={ 'center' } gap={ '8' }>
                 <Text title={ title }/>
-                <StarRating size={ 40 } onSelect={ onSelectStars }/>
+                <StarRating size={ 40 } onSelect={ onSelectStars } selectedStars={ starsCount }/>
             </VStack>
             <BrowserView>
                 <Modal isOpen={ isModalOpen } lazy={ true }>
