@@ -710,6 +710,27 @@
       "feedback": "Хорошая статья",
       "userId": "1",
       "articleId": "2"
+    },
+    {
+      "userId": "1",
+      "articleId": "3",
+      "rate": 4,
+      "feedback": "норм",
+      "id": "Ocv3I9d"
+    },
+    {
+      "userId": "1",
+      "articleId": "4",
+      "rate": 2,
+      "feedback": "цфуываывапфывап",
+      "id": "ItOMXYB"
+    },
+    {
+      "userId": "1",
+      "articleId": "10",
+      "rate": 5,
+      "feedback": "fine!",
+      "id": "IscMNLT"
     }
   ]
 }
