@@ -28,7 +28,7 @@ const articleRatingApi = rtkApi.injectEndpoints({
             query: ({ userId, articleId, rate, feedback }) => ({
                 url: '/article-ratings',
                 method: 'POST',
-                params: {
+                body: {
                     userId,
                     articleId,
                     rate,
