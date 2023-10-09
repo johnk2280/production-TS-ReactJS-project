@@ -5,7 +5,7 @@ import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { type FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useGetArticleRatingQuery } from '../../api/articleRatingApi';
+import { useGetArticleRatingQuery, useRateArticleMutation } from '../../api/articleRatingApi';
 
 export interface ArticleRatingProps {
     className?: string;
@@ -24,9 +24,27 @@ const ArticleRating: FC<ArticleRatingProps> = memo((props: ArticleRatingProps) =
         articleId,
         userId: userData?.id ?? ''
     });
+    const [rateArticleMutation] = useRateArticleMutation();
 
-    const onAccept = useCallback(() => {}, []);
-    const onCancel = useCallback(() => {}, []);
+    const handleRateArticleMutation = useCallback((starCount: number, feedback?: string) => {
+        rateArticleMutation({
+            articleId,
+            userId: userData?.id ?? '',
+            rate: starCount,
+            feedback
+        })
+            .catch(e => {
+                console.log(e);
+            });
+    }, [articleId, rateArticleMutation, userData?.id]);
+
+    const onAccept = useCallback((starCount: number, feedback?: string) => {
+        handleRateArticleMutation(starCount, feedback);
+    }, [handleRateArticleMutation]);
+
+    const onCancel = useCallback((starCount: number) => {
+        handleRateArticleMutation(starCount);
+    }, [handleRateArticleMutation]);
 
     if (isLoading) {
         return (
