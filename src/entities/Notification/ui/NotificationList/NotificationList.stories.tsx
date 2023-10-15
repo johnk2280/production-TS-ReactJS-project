@@ -1,4 +1,3 @@
-import { NormalWithRate } from '@/features/ArticleRating/ui/ArticleRating/ArticleRating.stories';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 import React from 'react';

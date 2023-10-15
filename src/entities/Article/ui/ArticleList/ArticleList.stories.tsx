@@ -1,4 +1,4 @@
-import { ArticleView } from '@/entities/Article/model/consts/consts';
+import { ArticleView } from '../../model/consts/consts';
 import React from 'react';
 import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
