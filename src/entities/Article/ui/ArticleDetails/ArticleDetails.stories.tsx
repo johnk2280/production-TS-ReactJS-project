@@ -1,9 +1,9 @@
-import { ArticleBlockType, ArticleType } from '@/entities/Article/model/consts/consts';
-import React from 'react';
-import { type ComponentStory, type ComponentMeta } from '@storybook/react';
-import { ArticleDetails } from './ArticleDetails';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { type ComponentMeta, type ComponentStory } from '@storybook/react';
+import React from 'react';
+import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
 import { type Article } from '../../model/types/article';
+import { ArticleDetails } from './ArticleDetails';
 
 const article: Article = {
     id: '1',

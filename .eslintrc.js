@@ -95,7 +95,7 @@ module.exports = {
         "@typescript-eslint/semi": ["error", "always"],
         'object-curly-spacing': ['warn', 'always'],
         'react/jsx-curly-spacing': ['warn', {'when': 'always', children: true}],
-        'johnk2280-plugin/path-checker': 'error'
+        'johnk2280-plugin/path-checker': ['error', {alias: "@"}]
     },
     globals: {
         __IS_DEV__: true,
