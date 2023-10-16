@@ -7,7 +7,7 @@ import { Text, TextAlign, TextTheme } from '@/shared/ui/Text/Text';
 import { Input } from '@/shared/ui/Input/Input';
 import { Loader } from '@/shared/ui/Loader/Loader';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { type Currency } from '@/entities/Currency/model/types/currency';
+import { type Currency } from '@/entities/Currency';
 import { CurrencySelect } from '@/entities/Currency';
 import { type Country, CountrySelect } from '@/entities/Country';
 import { HStack, VStack } from '@/shared/ui/Stack';
