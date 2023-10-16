@@ -14,5 +14,6 @@ export type { ArticleDetailSchema } from './model/types/articleDetailSchema';
 export {
     ArticleSortField,
     ArticleView,
-    ArticleType
+    ArticleType,
+    ArticleBlockType
 } from './model/consts/consts';
