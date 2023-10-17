@@ -3,8 +3,7 @@ export { ArticleList } from './ui/ArticleList/ArticleList';
 export { getArticleDetailsData } from './model/selectors/articleDetails';
 
 export {
-    articleDetailsActions,
-    articleDetailsReducer
+    articleDetailsActions
 } from './model/slice/articleDetailsSlice';
 
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
