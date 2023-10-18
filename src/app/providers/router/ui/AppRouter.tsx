@@ -1,6 +1,7 @@
+import { routeConfig } from '@/app/providers/router/config/routeConfig';
 import React, { type FC, memo, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { type AppRoutesProps, routeConfig } from '@/shared/config/routeConfig/routeConfig';
+import { type AppRoutesProps } from '@/shared/config/routeConfig/routeConfig';
 import { RequireAuth } from '@/app/providers/router/ui/RequireAuth';
 import { Loader } from '@/shared/ui/Loader/Loader';
 import { UserRole } from '@/entities/User';
