@@ -731,6 +731,13 @@
       "rate": 5,
       "feedback": "fine!",
       "id": "IscMNLT"
+    },
+    {
+      "userId": "1",
+      "articleId": "6",
+      "rate": 3,
+      "feedback": "",
+      "id": "wcJzRN5"
     }
   ]
 }
