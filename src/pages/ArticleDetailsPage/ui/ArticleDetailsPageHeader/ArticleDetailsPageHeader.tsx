@@ -1,6 +1,6 @@
+import { RoutePath } from '@/shared/const/router';
 import { type FC, memo, useCallback } from 'react';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
