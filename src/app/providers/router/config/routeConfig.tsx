@@ -55,7 +55,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: RoutePath.forbidden,
         element: <ForbiddenPage />
     },
-
     [AppRoutes.NOT_FOUND]: {
         path: RoutePath.not_found,
         element: <NotFoundPage />
